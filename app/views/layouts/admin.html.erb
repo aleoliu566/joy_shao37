@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'layouts/navbar'%>
+    <div class="admin-block">
+      <div class="admin-sidebar">
+        <%= render "layouts/admin_sidebar" %>
+      </div>
+      <div class="admin-container">
+        <%= yield %>      
+      </div>
+    </div>
+
+  </body>
+</html>

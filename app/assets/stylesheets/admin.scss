@@ -1,0 +1,18 @@
+.admin-block{
+  margin-top: -20px;
+  white-space: nowrap;
+}
+.admin-sidebar{
+  background-color: lightgreen;
+  height: calc( 100vh - 50px );
+  display: inline-block;
+  vertical-align: top;
+  width: 220px;
+}
+
+.admin-container{
+  background-color: rgba(249,249,249,0.7);
+  display: inline-block;
+  padding: 20px 5%;
+  width: calc( 100% - 220px );
+}

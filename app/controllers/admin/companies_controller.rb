@@ -2,6 +2,8 @@ class Admin::CompaniesController < ApplicationController
   before_action :set_company, only:[:show,:edit,:update]
   before_action :company_params, only:[:update]
 
+  layout 'admin'
+
   def home
     @jobs = Job.all
     @company = Company.all

@@ -1,0 +1,19 @@
+.enterprise-block{
+  margin-top: -20px;
+  white-space: nowrap;
+}
+.enterprise-sidebar{
+  background-color: rgb(25,60,102);
+  height: calc( 100vh - 50px );
+  display: inline-block;
+  vertical-align: top;
+  width: 220px;
+  color: white;
+}
+
+.enterprise-container{
+  background-color: rgba(249,249,249,0.7);
+  display: inline-block;
+  padding: 20px 5%;
+  width: calc( 100% - 220px );
+}

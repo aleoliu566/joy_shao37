@@ -1,6 +1,8 @@
 class Enterprise::JobsController < ApplicationController
   before_action :set_company 
-  before_action :set_job, except: [ :new]
+  before_action :set_job, except: [ :new, :create]
+
+  layout 'enterprise'
 
   def new
     @job = Job.new
@@ -12,6 +14,7 @@ class Enterprise::JobsController < ApplicationController
     if @job.save
       redirect_to enterprise_companies_path
     else
+      redirect_to root_path
     end
   end
 

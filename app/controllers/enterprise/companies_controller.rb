@@ -2,8 +2,10 @@ class Enterprise::CompaniesController < ApplicationController
 
   before_action :set_company, only:[:update]
 
+  layout 'enterprise'
+
   def index
-    @jobs = Job.all
+    @jobs = current_user.company.jobs
     @company = current_user.company
   end
 
