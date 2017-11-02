@@ -5,6 +5,15 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :companies do
+      resources :jobs
+    end
+  end
+
+  # 後台首頁
+  get 'home', :to => 'admin/companies#home'
+
   devise_for :users
 
   root 'companies#home'

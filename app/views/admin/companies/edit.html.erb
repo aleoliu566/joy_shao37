@@ -1,0 +1,24 @@
+<p>編輯公司</p>
+
+<%= form_for @company ,:url => admin_company_path, :method => :PATCH do |j|%>
+  <%= j.label :name %>
+  <%= j.text_field :name%>
+  <br>
+  <%= j.label :phone %>
+  <%= j.text_field :phone %>
+  <br>
+  <%= j.label :email %>
+  <%= j.text_field :email %>
+  <br>
+  <%= j.label :address %>
+  <%= j.text_field :address %>
+  <br>
+  <%= j.label :about %>
+  <%= j.text_field :about %>
+  <br>
+  <%= j.collection_select(:user_ids, User.all, :id, :email) %>
+  <br>
+  <%= j.submit "確認"%>
+  <%= link_to "取消", home_path %>
+  
+<% end %>

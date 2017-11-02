@@ -1,0 +1,25 @@
+<h3>公司介紹</h3>
+<%= @company.name %>
+<br>
+<%= @company.phone %>
+<br>
+<%= @company.email %>
+<br>
+<%= @company.address %>
+<br>
+<%= @company.about %>
+<br>
+<br>
+
+<h4>人資</h4>
+
+<% @company.users.each do |u|%>
+  <%= u.email %>
+<% end%>
+
+
+<h4>職缺</h4>
+
+<% @company.jobs.each do |j|%>
+  <%= j.name %>
+<% end %>
