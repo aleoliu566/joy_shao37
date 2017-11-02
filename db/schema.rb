@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102025510) do
+ActiveRecord::Schema.define(version: 20171102072705) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -22,6 +22,21 @@ ActiveRecord::Schema.define(version: 20171102025510) do
     t.integer "views_count", default: 0
     t.string "account_status"
     t.string "resume_password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string "name"
+    t.date "published_on"
+    t.text "content"
+    t.string "status"
+    t.integer "views_count", default: 0
+    t.integer "company_id"
+    t.integer "year_salary_ceiling"
+    t.integer "year_salary_floor"
+    t.integer "hour_salary_ceiling"
+    t.integer "hour_salary_floor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -46,6 +61,7 @@ ActiveRecord::Schema.define(version: 20171102025510) do
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

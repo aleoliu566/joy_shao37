@@ -1,0 +1,2 @@
+module Enterprise::CompaniesHelper
+end

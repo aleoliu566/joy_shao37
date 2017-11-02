@@ -29,7 +29,14 @@
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
         </li>
-        <% if current_user %>
+        <% if current_user && current_user.role == 1 %>
+          <li>
+            <%= link_to "後台", enterprise_companies_path %>
+          </li>
+          <li>
+            <%= link_to "個人資料", edit_user_registration_path %>
+          </li>
+        <% elsif current_user %>
           <li>
             <%= link_to "個人資料", edit_user_registration_path %>
           </li>

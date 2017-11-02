@@ -1,0 +1,18 @@
+<p>編輯公司內容</p>
+
+<%= form_for @company,:url => enterprise_company_path(@company), method: :put do |c| %>
+  <%= c.label :name %>
+  <%= c.text_field :name%>
+  <br>
+  <%= c.label :phone %>
+  <%= c.text_field :phone %>
+  <br>
+  <%= c.label :email %>
+  <%= c.text_field :email%>
+  <br>
+  <%= c.label :about %>
+  <%= c.text_field :about %>
+  <br>
+
+  <%= c.submit %>
+<% end %>

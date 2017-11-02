@@ -1,0 +1,38 @@
+<p>安安 這是企業後台！</p>
+
+<%= @company.name %>
+<%= link_to "編輯公司", edit_enterprise_company_path(@company) %>
+<br>
+phone: <%= @company.phone %>
+<br>
+<%= link_to "新增職缺", new_enterprise_company_job_path(@company) %>
+
+<br>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>職稱</th>
+      <th>公司名稱</th>
+      <th>發表日期</th>
+      <th>時薪</th>
+      <th>描述</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jobs.each do |job| %>
+      <tr>
+        <th><%= job.name %></th>
+        <th><%= job.company.name %> </th>
+        <th><%= job.published_on %> </th>
+        <th><%= job.hour_salary_floor %> ~ <%= job.hour_salary_ceiling %></th>
+        <th><%= job.content %></th>
+        <th><%= link_to "編輯職缺", edit_enterprise_company_job_path(@company,job) %></th>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
+
+
+<%#= link_to "新增職缺", new_enterprise_company_path %>
