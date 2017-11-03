@@ -1,0 +1,23 @@
+<p>新增文章</p>
+
+<%= form_for @article ,:url => admin_articles_path, :method => :post do |j|%>
+  <%= j.label :name %>
+  <%= j.text_field :name%>
+  <br>
+  <%= j.label :phone %>
+  <%= j.text_field :phone %>
+  <br>
+  <%= j.label :email %>
+  <%= j.text_field :email %>
+  <br>
+  <%= j.label :address %>
+  <%= j.text_field :address %>
+  <br>
+  <%= j.label :about %>
+  <%= j.text_field :about %>
+  <br>
+  <%= j.collection_select(:user_ids, User.all, :id, :email) %>
+  <br>
+  <%= j.submit "確認"%>
+  <%= link_to "取消", home_path %>
+<% end %>

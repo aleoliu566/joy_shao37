@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admin/articles'
+
   namespace :enterprise do
     resources :companies do
       resources :jobs
@@ -11,9 +13,15 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :articles do
+      resources :jobs
+    end
+  end
+
   # 後台首頁
   get 'home', :to => 'admin/companies#home'
-
+  get 'article', :to => 'admin/articles#say'
   devise_for :users
 
   root 'companies#home'
