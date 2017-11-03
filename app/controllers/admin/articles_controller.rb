@@ -1,6 +1,6 @@
 class Admin::ArticlesController < ApplicationController
 	before_action :set_article, only:[:show,:edit,:update]
-  before_action :set_company, only:[:new,:create]
+  before_action :set_company, only:[:index,:edit,:update,:new,:create]
   before_action :article_params, only:[:update,:create]
 
   layout 'admin'
@@ -10,7 +10,7 @@ class Admin::ArticlesController < ApplicationController
 	end
 
 	def index
-	    
+    @articles = @company.articles
 	end
 
   def edit
@@ -18,7 +18,11 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def update
-    
+    if @article.update(article_params)
+      redirect_to admin_company_articles_path(@company)
+    else
+      redirect_to root_path
+    end
   end
 
   private

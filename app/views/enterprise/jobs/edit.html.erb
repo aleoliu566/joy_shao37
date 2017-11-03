@@ -1,6 +1,7 @@
 <h2>編輯職缺</h2>
 
-<%= form_for @job,url: enterprise_company_job_path(@company,@job), method: :PATCH do |j| %><%= j.label :name%>
+<%= form_for @job,url: enterprise_company_job_path(@company,@job), method: :PATCH do |j| %>
+  <%= j.label :name%>
   <%= j.text_field :name%>
   <br>
   <%= j.label :publish_date %>
