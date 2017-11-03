@@ -11,9 +11,9 @@
 
 分工
 - 劉　皪：User
-- 邵家怡：Job、收藏、Job tag
-- 張月馨：Company、Article
-- 賴立芸：Admin
+- 邵家怡：(Enterprise) Job、收藏、Job tag
+- 張月馨：(Enterprise) Company、Article
+- 賴立芸：(Admin) Admin
 - 黃懷萱：前端介面
 
 - 文件（英文）：一起
@@ -22,17 +22,28 @@
 
 ### 執行步驟
 
+1.安裝rails 5
 
-安裝gem
+- [教學1: 為你自己學 Ruby on rails](http://railsbook.tw/chapters/02-environment-setup.html)
+- [教學2: Google](https://www.google.com.tw/)(請善用谷歌大神)
+
+
+2.在terminal中執行
+```
+git clone https://github.com/aleoliu566/joy_shao37.git
+```
+
+3.安裝gem
 ```
 bundle
 ```
 
-migrate
+4.migrate(設定資料庫)
 ```
 rails db:migrate
 ```
-啟動伺服器
+
+5.啟動伺服器
 ```
 rails s
 ```
