@@ -1,0 +1,12 @@
+<p>編輯文章</p>
+
+<%= form_for @article ,:url => admin_company_articles_path(@company), :method => :post do |j|%>
+  <%= j.label :title %>
+  <%= j.text_field :title%>
+  <br>
+  <%= j.label :content %>
+  <%= j.text_area :content %>
+  <br>
+  <%= j.submit "確認"%>
+  <%= link_to "取消", home_path %>
+<% end %>

@@ -1,21 +1,16 @@
 Rails.application.routes.draw do
-  get 'admin/articles'
 
   namespace :enterprise do
     resources :companies do
       resources :jobs
+      resources :articles
     end
   end
 
   namespace :admin do
     resources :companies do
       resources :jobs
-    end
-  end
-
-  namespace :admin do
-    resources :articles do
-      resources :jobs
+      resources :articles
     end
   end
 

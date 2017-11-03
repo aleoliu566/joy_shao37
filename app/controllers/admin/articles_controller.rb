@@ -1,8 +1,9 @@
 class Admin::ArticlesController < ApplicationController
-	before_action :set_company, only:[:show,:edit,:update]
-  	before_action :company_params, only:[:update]
+	before_action :set_article, only:[:show,:edit,:update]
+  before_action :set_company, only:[:new,:create]
+  before_action :article_params, only:[:update,:create]
 
-  	layout 'admin'
+  layout 'admin'
 
 	def say
     	@jobs = Job.all
@@ -12,27 +13,26 @@ class Admin::ArticlesController < ApplicationController
 	    
 	end
 
-	def new
+  def edit
+    
+  end
 
-  	end
+  def update
+    
+  end
 
-  	def create
-    	@article = Article.new(article_params)
+  private
 
-    	if @article.save
-      		redirect_to home_path
-    	else
-    	end
-    end
+  def article_params
+  	params.require(:article).permit(:title, :content)
+	end
 
-    private
+  def set_company
+    @company = Company.find(params[:company_id])
+  end
 
-    def article_params
-    	params.require(:article).permit(:name, :phone, :email, :address, :about, :user_ids)
-  	end
-
-  	def set_company
-    	@article = Article.find(params[:id])
-  	end
+	def set_article
+  	@article = Article.find(params[:id])
+	end
 
 end

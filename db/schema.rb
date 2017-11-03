@@ -13,8 +13,15 @@
 ActiveRecord::Schema.define(version: 20171103100514) do
 
   create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "view_count", default: 0
+    t.integer "company_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_articles_on_company_id"
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "companies", force: :cascade do |t|

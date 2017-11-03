@@ -1,0 +1,9 @@
+<p>企業文章管理</p>
+
+<%= link_to "新增文章",new_enterprise_company_article_path(current_user.id) %>
+<br>
+
+<% @articles.each do |article| %>
+  <%= article.title %>
+  <%= article.content %><br>
+<% end %>
