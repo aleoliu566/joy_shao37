@@ -1,20 +1,35 @@
 <p>哈囉，這是首頁！</p>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>公司名稱</th>
-      <th>職缺</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @jobs.each do |j| %>
-      <tr>
-        <th><%= j.company.name %></th>
-        <th><%= j.name%></th>
-      </tr>
+<p>公司介紹</p>
+<% @companies.each do |company|%>
+  <div class="col-sm-4 home-company-block">
+    <div>
+      <%= company.name %><br>
+      <p>
+        <%= company.about %>
+      </p>
+    </div>
+  </div>
+<%end%>
 
-    <% end %>
-  </tbody>
-</table>
+<div class="col-xs-12">
+  <p>職缺介紹</p> 
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>公司名稱</th>
+        <th>職缺</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @jobs.each do |j| %>
+        <tr>
+          <th><%= j.company.name %></th>
+          <th><%= j.name%></th>
+        </tr>
+
+      <% end %>
+    </tbody>
+  </table>  
+</div>
 
