@@ -34,6 +34,8 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 
+gem 'font-awesome-rails', '~> 4.3'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
