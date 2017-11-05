@@ -1,9 +1,21 @@
-<p>安安 這是企業後台！</p>
-
-<%= @company.name %>
+<p>這是HR後台</p>
+<p>公司現有資訊：</p>
+公司名稱: <%= @company.name %>
+<br>
+手機: <%= @company.phone %>
+<br>
+地址: <%= @company.address %>
+<br>
+信箱: <%= @company.email %>
+<br>
+關於: <%= @company.about %>
+<br>
+<br>
+<br>
+<br>
 <%= link_to "編輯公司", edit_enterprise_company_path(@company) %>
 <br>
-phone: <%= @company.phone %>
+<br>
 <br>
 <%= link_to "新增職缺", new_enterprise_company_job_path(@company) %>
 

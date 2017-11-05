@@ -1,17 +1,17 @@
 <p>企業文章管理</p>
 
-<%= link_to "新增文章",new_enterprise_company_article_path(current_user.id) %>
+<%= link_to "新增文章",new_enterprise_company_article_path %>
 <br>
 <br>
 <% @articles.each do |article| %>
   <div class="col-sm-4 col-xs-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <%= article.title %>
+        標題： <%= article.title %>
         <%= link_to "編輯文章", edit_enterprise_company_article_path(@company,article), class:'pull-right' %>    
       </div>
       <div class="panel-body">
-        <%= simple_format(article.content) %><br>
+        內容：<%= simple_format(article.content) %><br>
         撰文者:<%= article.user.email%><br>
         所屬公司:<%= article.user.company.name %>
       </div>
