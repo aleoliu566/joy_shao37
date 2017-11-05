@@ -1,0 +1,21 @@
+<h3>Admin User</h3>
+
+<% @admin_users.each do |u| %>
+  <%= u.email%>
+  <%= u.role %>
+  <div class="cancel-admin-user">
+    <%= form_for u,:url => admin_user_path(u), method: :patch do |f| %>
+      <%= f.text_field :role%>
+      <%= f.submit %>
+    <% end %>
+  </div>
+
+  <br>
+<% end %>
+
+<h3>新增Admin User</h3>
+<%= form_tag admin_set_admin_path, method: :patch do %>
+  <% cities_array = User.where(role: nil).map { |city| [city.email, city.id] } %>
+  <%=select_tag "user_id", options_for_select(cities_array) %>
+  <%=submit_tag "確認" %>
+<% end %>

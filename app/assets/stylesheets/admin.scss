@@ -16,3 +16,11 @@
   padding: 20px 5%;
   width: calc( 100% - 220px );
 }
+
+.cancel-admin-user{
+  display: inline-block;
+  width: 50px;
+  input[type="text"] {
+    width: 40px;
+  }
+}
