@@ -1,6 +1,6 @@
 class Enterprise::ArticlesController < ApplicationController
-  before_action :set_article, only:[:show,:edit,:update]
-  before_action :set_company, only:[:new,:create]
+  before_action :set_article, only:[:show,:edit,:update,:edit]
+  before_action :set_company, only:[:index,:new,:create,:edit,:update]
   before_action :article_params, only:[:update,:create]
 
   layout 'enterprise'
@@ -26,6 +26,16 @@ class Enterprise::ArticlesController < ApplicationController
       redirect_to enterprise_company_articles_path(current_user.company)
     else
       render 'admin/articles/new'
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @article.update(article_params)
+      redirect_to enterprise_company_articles_path(@company)
+    else
     end
   end
 

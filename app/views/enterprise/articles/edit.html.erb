@@ -1,0 +1,11 @@
+<h3>編輯文章</h3>
+
+<%= form_for @article,:url => enterprise_company_article_path(@company,@article), :method => :PATCH do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br>
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+  <br>
+  <%= f.submit %>
+<% end %>
