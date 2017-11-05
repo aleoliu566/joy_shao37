@@ -48,6 +48,25 @@ rails db:migrate
 rails s
 ```
 
+6.新增假資料
+```
+rails db:seed
+```
+
+測試資料
+
+一般使用者
+帳號:test1@gmail.com
+密碼:12345678
+
+Admin帳號
+帳號:admin@gmail.com
+密碼:12345678
+
+Company帳號  (屬於google的HR)
+帳號:company@gmail.com
+密碼:12345678
+
 
 ###參考資料
 

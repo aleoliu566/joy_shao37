@@ -1,8 +1,5 @@
 <p>文章管理</p>
 
-<%#= link_to "編輯文章", edit_admin_company_article_path() %>
-<table class="table">
-
 <table class="table table-bordered">
   <% @articles.each do |article|%>
     <tr>
@@ -13,7 +10,10 @@
         <%= article.content %>
       </td>
       <td>
-        <%= link_to "編輯文章", edit_admin_company_article_path(@company,article) %>
+        發布公司:<%= article.company.name%>
+      </td>
+      <td>
+        <%= link_to "編輯文章", edit_admin_article_path(article) %>
       </td>
     </tr>
   <% end %>

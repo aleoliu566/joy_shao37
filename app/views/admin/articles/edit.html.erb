@@ -1,6 +1,6 @@
 <p>編輯文章</p>
 
-<%= form_for @article ,:url => admin_company_article_path(@company,@article), :method => :patch do |j|%>
+<%= form_for @article ,:url => admin_article_path(@article), :method => :patch do |j|%>
   <%= j.label :title %>
   <%= j.text_field :title%>
   <br>

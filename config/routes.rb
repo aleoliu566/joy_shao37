@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :companies do
       resources :jobs
-      resources :articles
     end
+
+    resources :articles
     resources :users
     patch 'set_admin', :to => 'users#set_admin'
   end
