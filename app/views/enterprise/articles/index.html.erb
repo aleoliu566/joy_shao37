@@ -5,5 +5,8 @@
 
 <% @articles.each do |article| %>
   <%= article.title %>
-  <%= article.content %><br>
+  <%= article.content %>
+  撰文者:<%= article.user.email%>
+  所屬公司:<%= article.user.company.name %>
+  <br>
 <% end %>
