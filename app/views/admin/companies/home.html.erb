@@ -2,6 +2,21 @@
 
 <%= link_to "新增公司", new_admin_company_path %>
 
+<br>
+
+<%= link_to "xxxxxxxxx",new_admin_company_path %>
+
+<br>
+<% @jobs.each do |job| %>
+  <%= job.name %>
+  <% if job.content != nil %>
+    <%= job.content %>
+  <% else %>
+    <span>沒有</span>
+  <% end %>
+  <br>
+<% end %>
+
 <table class="table table-bordered">
   <% @company.each do |c|%>
     <tr>
@@ -12,6 +27,10 @@
       </td>
       <td>
         <%= link_to "編輯公司", edit_admin_company_path(c) %>
+      </td>
+      <td>
+        
+      <%= link_to c.name, edit_admin_company_path(c) %>
       </td>
     </tr>
   <% end %>
