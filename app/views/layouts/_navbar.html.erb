@@ -5,33 +5,59 @@
     </div>
 
     <ul class="nav navbar-nav">
-      <li><a href="/">企業</a></li>
-      <li><a href="/">職缺</a></li>
+      <li class="active">
+        <%= link_to root_path do %>
+          <i class="fa fa-building"></i>
+          <span>&nbsp;企業</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to root_path do %>
+          <i class="fa fa-suitcase"></i>
+          <span>&nbsp;職缺</span>
+        <% end %>
+      </li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
       <% if current_user && current_user.role != nil %>
         <li>
-          <%= link_to "後台管理", home_path %>
+          <%= link_to home_path do %>
+            <i class="fa fa-wrench"></i>
+            <span>&nbsp;後台管理</span>
+          <% end %>
         </li>
       <% end %>
 
       <% if current_user && current_user.company != nil %>
         <li>
-          <%= link_to "企業管理", enterprise_companies_path %>
+          <%= link_to enterprise_companies_path do %>
+            <i class="fa fa-wrench"></i>
+            <span>&nbsp;企業管理</span>
+          <% end %>
         </li>
       <% end %>
 
       <% if current_user %>
         <li>
-          <%= link_to "會員管理", edit_user_registration_path %>
+          <%= link_to edit_user_registration_path do %>
+            <i class="fa fa-user"></i>
+            <span>&nbsp;會員管理</span>
+          <% end %>
         </li>
       <% end %>
 
       <% if current_user %>
-        <li><%= link_to "登出", destroy_user_session_path, :method => :delete %></li>
+        <li>
+          <%= link_to '<i class="fa fa-sign-out"></i><span>&nbsp;登出</span>'.html_safe, destroy_user_session_path, :method => :delete %>
+        </li>
       <% else %>
-        <li><%= link_to "登入 / 註冊", user_session_path %></li>
+        <li>
+          <%= link_to user_session_path do %>
+            <i class="fa fa-user"></i>
+            <span>&nbsp;登入 / 註冊</span>
+          <% end %>
+        </li>
         <!--<li><%= link_to "註冊", new_user_session_path %></li>-->
       <% end %>
     </ul>
