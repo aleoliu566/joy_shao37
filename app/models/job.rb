@@ -1,3 +1,19 @@
 class Job < ApplicationRecord
   belongs_to :company
+  #資料驗證
+  validates_presence_of :name, :published_on, :content, :hour_salary_ceiling, :hour_salary_floor
+  
+
+  	#READ(Select)
+    def self.get_all_job(c)
+     # 把sql寫在這邊
+     query = <<-SQL
+     SELECT * FROM jobs WHERE company_id = '#{c}'
+     SQL
+     all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
+    end
+
+ 	
+
+
 end

@@ -1,20 +1,7 @@
 <h2>編輯職缺</h2>
 
 <%= form_for @job,url: enterprise_company_job_path(@company,@job), method: :PATCH do |j| %>
-  <%= j.label :name%>
-  <%= j.text_field :name%>
+  <%= render :partial => 'form', :locals => { :j => j } %>
   <br>
-  <%= j.label :publish_date %>
-  <%= j.date_field :published_on %>
-  <br>
-  <%= j.label :content %>
-  <%= j.text_area :content %>
-  <br>
-  <%= j.label :hour_salary_ceiling %>
-  <%= j.number_field :hour_salary_ceiling %>
-  <br>
-  <%= j.label :hour_salary_floor %>
-  <%= j.number_field :hour_salary_floor %>
-
-  <%= j.submit %>
+  <%= j.submit "更改" %>
 <% end %>
