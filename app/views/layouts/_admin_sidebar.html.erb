@@ -1,7 +1,27 @@
-<p>使用者管理</p>
+<h2>後台管理</h2>
 <ul>
-  <li><%= link_to "公司", home_path %></li>
-  <li>投遞紀錄</li>
-  <li><%= link_to "文章管理", admin_articles_path %></li>
-  <li><%= link_to "管理使用者", admin_users_path %></li>
+  <li>
+    <%= link_to home_path do %>
+      <i class="fa fa-building"></i>
+      <span>&nbsp;企業</span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to do %>
+      <i class="fa fa-paper-plane-o"></i>
+      <span>&nbsp;應徵紀錄</span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to admin_articles_path do %>
+      <i class="fa fa-newspaper-o"></i>
+      <span>&nbsp;文章</span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to admin_users_path do %>
+      <i class="fa fa-user"></i>
+      <span>&nbsp;使用者</span>
+    <% end %>
+  </li>
 </ul>
