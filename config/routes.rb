@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   get 'article', :to => 'admin/articles#say'
   devise_for :users
 
+  resources :resumes, only: [:index, :new, :create, :destroy]
+  resources :jobs
+
   root 'companies#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

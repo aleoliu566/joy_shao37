@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103100514) do
+ActiveRecord::Schema.define(version: 20171108055754) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20171103100514) do
     t.integer "hour_salary_floor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "resumes", force: :cascade do |t|
+    t.string "name"
+    t.string "content"
+    t.string "attachment"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
