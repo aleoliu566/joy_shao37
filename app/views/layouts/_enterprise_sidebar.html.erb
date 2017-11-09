@@ -1,7 +1,21 @@
-<p>企業管理後台</p>
-
+<h2>企業管理</h2>
 <ul>
-  <li><%= link_to "公司管理", edit_enterprise_company_path(current_user.company) %></li>
-  <li>投遞紀錄</li>
-  <li><%= link_to "文章管理", enterprise_company_articles_path(current_user.company) %></li>
+  <li>
+    <%= link_to edit_enterprise_company_path(current_user.company) do %>
+      <i class="fa fa-edit"></i>
+      <span>&nbsp;編輯企業資料</span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to do %>
+      <i class="fa fa-paper-plane-o"></i>
+      <span>&nbsp;應徵紀錄</span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to enterprise_company_articles_path(current_user.company) do %>
+      <i class="fa fa-newspaper-o"></i>
+      <span>&nbsp;文章</span>
+    <% end %>
+  </li>
 </ul>
