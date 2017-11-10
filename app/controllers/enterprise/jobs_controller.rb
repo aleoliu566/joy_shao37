@@ -1,5 +1,5 @@
 class Enterprise::JobsController < ApplicationController
-  before_action :set_job, only:[:show,:edit,:update,:edit,:destroy]
+  before_action :set_job, only:[:show,:edit,:update,:destroy]
   before_action :set_company, only:[:index,:new,:create,:edit,:update,:destroy]
   before_action :job_params, only:[:update,:create]
 
@@ -24,6 +24,10 @@ class Enterprise::JobsController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
   def edit
     
   end
@@ -37,7 +41,6 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def destroy
-
   @job.destroy
   redirect_to enterprise_company_jobs_path
   end
