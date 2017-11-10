@@ -1,19 +1,73 @@
 .enterprise-block{
-  margin-top: -20px;
-  white-space: nowrap;
+  height: calc(100% - 50px);
 }
+
 .enterprise-sidebar{
-  background-color: rgb(25,60,102);
-  height: calc( 100vh - 50px );
-  display: inline-block;
-  vertical-align: top;
-  width: 220px;
+  background-color: #29333f;
+  width: 200px;
+  float: left;
   color: white;
+  height: 100%;
+
+  li {
+    a {
+      padding: 15px 35px;
+      text-align: left;
+      display: block;
+      font-size: 16px;
+      color: white;
+      text-decoration: none;
+    }
+
+    a:hover, a:focus {
+      color: white;
+      text-decoration: none;
+      background-color: #1c232d;
+    }
+  }
+}
+
+h2 {
+  margin: 35px auto 25px auto;
+  text-align: center;
+  font-size: 20px;
+  color: #12BDBC;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .enterprise-container{
-  background-color: rgba(249,249,249,0.7);
+  background-color: #f2f3f2;
+  color: #2c2a28;
+  height: 100%;
+  width: calc(100% - 200px);
+  float: left;
+  padding: 30px;
+}
+
+/*.cancel-admin-user{
   display: inline-block;
-  padding: 20px 5%;
-  width: calc( 100% - 220px );
+  width: 50px;
+  input[type="text"] {
+    width: 40px;
+  }
+}*/
+
+/* Clear Float */
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+*zoom: 1; /* For IE 6&7 only */
 }
