@@ -1,21 +1,5 @@
-<p>公司 新增職缺</p>
-
-
+<h2>新增職缺</h2>
 <%= form_for @job ,:url => enterprise_company_jobs_path(@company), method: :post do |j| %>
-  <%= j.label :name%>
-  <%= j.text_field :name%>
-  <br>
-  <%= j.label :publish_date %>
-  <%= j.date_field :published_on %>
-  <br>
-  <%= j.label :content %>
-  <%= j.text_area :content %>
-  <br>
-  <%= j.label :hour_salary_ceiling %>
-  <%= j.number_field :hour_salary_ceiling %>
-  <br>
-  <%= j.label :hour_salary_floor %>
-  <%= j.number_field :hour_salary_floor %>
-
-  <%= j.submit %>
+  <%= render :partial => 'form', :locals => { :j => j } %>
+  <%= j.submit "提交"%>
 <% end %>

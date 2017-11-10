@@ -12,6 +12,12 @@
       <span>&nbsp;應徵紀錄</span>
     <% end %>
   </li>
+   <li>
+    <%= link_to enterprise_company_jobs_path(current_user.company) do%>
+      <i class=""></i>
+      <span>&nbsp;職缺管理</span>
+    <% end %>
+  </li>
   <li>
     <%= link_to enterprise_company_articles_path(current_user.company) do %>
       <i class="fa fa-newspaper-o"></i>

@@ -1,8 +1,13 @@
 class Enterprise::JobsController < ApplicationController
-  before_action :set_company 
-  before_action :set_job, except: [ :new, :create]
+  before_action :set_job, only:[:show,:edit,:update,:destroy]
+  before_action :set_company, only:[:index,:new,:create,:edit,:update,:destroy]
+  before_action :job_params, only:[:update,:create]
 
   layout 'enterprise'
+
+  def index
+    @jobs = Job.get_all_job(params[:company_id]) #沒有current_user令人擔心
+  end
 
   def new
     @job = Job.new
@@ -10,12 +15,17 @@ class Enterprise::JobsController < ApplicationController
 
   def create
     @job = current_user.company.jobs.new(job_params)
+    #@job = Job.create_job(:name,:published_on, :content, :hour_salary_ceiling, :hour_salary_floor)
 
     if @job.save
-      redirect_to enterprise_companies_path
+      redirect_to enterprise_company_jobs_path
     else
-      redirect_to root_path
+      render :action => :new
     end
+  end
+
+  def show
+
   end
 
   def edit
@@ -24,9 +34,15 @@ class Enterprise::JobsController < ApplicationController
 
   def update
     if @job.update(job_params)
-      redirect_to enterprise_companies_path
+      redirect_to enterprise_company_jobs_path
     else
+      render :action => :edit
     end
+  end
+
+  def destroy
+  @job.destroy
+  redirect_to enterprise_company_jobs_path
   end
 
   private

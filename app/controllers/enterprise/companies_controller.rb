@@ -14,7 +14,7 @@ class Enterprise::CompaniesController < ApplicationController
   end
 
   def create
-    @job = Job.new
+     @job = Job.new
   end
 
   def edit
