@@ -20,7 +20,7 @@ body {
   height: 100%;
   font-family: "微軟正黑體", Arial, Helvetica, sans-serif;
   font-size: 15px;
-  color: #2c2a28;
+  color: #666;
 }
 
 .navbar {
@@ -59,3 +59,132 @@ body {
 .navbar-default .navbar-nav > .active > a:focus {
   background: transparent;
 }
+
+.page-title {
+	border-bottom: 1px solid #e0e0e0;
+	display: block;
+  margin: 0 0 25px 0;
+  
+  h2 {
+    font-weight: bold;
+    padding: 0 0 13px 0;
+    font-size: 22px;
+    line-height: 30px;
+    margin: 0;
+  }
+
+  span {
+    color: #aaa;
+  }
+
+}
+
+.bolded-line {
+	text-indent: -9999px;
+	height: 3px;
+	width: 100px;
+	display: block;
+	background: #12BDBC;
+	margin-bottom: -2px;
+}
+
+.unit {
+	padding: 20px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	overflow:hidden;
+  margin: 40px auto;
+  
+  a, a:visited { text-decoration: none; -webkit-transition: color 0.1s ease-in-out; -moz-transition: color 0.1s ease-in-out; -o-transition: color 0.1s ease-in-out; -transition: color 0.1s ease-in-out; outline: 0; color: #666; font-family: "微軟正黑體"; font-size: 14px;}
+  
+	a:hover, a:focus { color: #12BDBC; }
+}
+
+.login {
+	margin-bottom: 8px;
+	float: right ;
+}
+
+.border-radius {
+	border-radius: 3px;
+}
+
+input[type="date"], 
+input[type="text"], 
+input[type="password"], 
+input[type="email"], 
+input[type="url"], 
+textarea, 
+select {
+  color: rgb(85, 85, 85);
+  width: 100%;
+  box-shadow: rgba(180, 180, 180, 0.1) 0px 1px 1px 0px;
+  font-size: 13px;
+  font-family: 微軟正黑體;
+  margin-bottom: 30px;
+  display: block;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(224, 224, 224);
+  border-image: initial;
+  outline: none;
+  background: rgb(255, 255, 255);
+  padding: 9px;
+}
+
+label {
+  cursor: pointer;
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: 微軟正黑體;
+  margin-bottom: 8px;
+}
+
+.btn-success {
+	color:#fff;
+	background-color:#12BDBC;
+	border-radius:3px;
+}
+
+.btn-success:focus,
+.btn-success.focus,
+.btn-success:hover {
+	color:#fff;
+	background-color:#1caab2;
+	border-radius:3px;
+}
+
+.btn-fail {
+	color:#fff;
+	background-color:#aaa;
+	border-radius:3px;
+}
+
+.btn-fail:focus,
+.btn-fail.focus,
+.btn-fail:hover {
+	color:#fff;
+	background-color:#919191;
+	border-radius:3px;
+}
+
+.button,
+input[type="button"] {
+	border: 0px;
+	font-family: "微軟正黑體";
+	cursor: pointer;
+	width: auto;
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	-ms-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+	padding: 14px 16px;
+	display: inline-block;
+	font-size: 14px;
+}
+
+input[type="button"] {float: left;}
+
+.button.medium {padding: 10px 10px; font-size: 14px;}
