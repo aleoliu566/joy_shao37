@@ -1,29 +1,67 @@
-<h2>Sign up</h2>
+<div class="col-sm-3"></div>
+<div class="col-sm-6">
+  <div class="unit">
+		<div class="page-title">
+			<h2>註冊</h2>
+			<div class="bolded-line"></div>
+		</div>
+		<br>
+		<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <!--
+        待辦事項：
+        1.<%= devise_error_messages! %>
+        2.送出後的密碼錯誤
+        3.改寫姓名～生日的寫法 + 後端功能
+      -->
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+			<div>
+        <%= f.label :email%>
+        <%= f.email_field :email, autofocus: true, :class => "border-radius" %>
+			</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+			<div>
+        <%= f.label :password, "密碼" %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off", :class => "border-radius" %>
+			</div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+      <div>
+        <%= f.label :password_confirmation, "再次確認密碼" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", :class => "border-radius" %>
+			</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+      <div>
+				<label for="name">姓名</label>
+				<input class="border-radius" id="name" name="name" type="text">
+			</div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+			<div>
+				<label for="gender">性別</label>&nbsp;&nbsp;&nbsp;&nbsp;
+				<input id="male" name="gender" type="radio" value="male"> 男&nbsp;&nbsp;&nbsp;&nbsp;
+				<input id="female" name="gender" type="radio" value="female"> 女
+			</div><br/>
 
-<%= render "devise/shared/links" %>
+			<div>
+				<label for="birthday">生日</label>
+				<input class="border-radius" id="birthday" name="birthday" type="date">
+			</div>
+      
+      <br>
+
+			<div class="login">
+        <%= f.submit "註冊", :class => "button btn-success medium" %>
+				<button type="reset" class="button btn-fail medium">清除</button>
+			</div>
+      <br><br><br><br>
+			<div class="page-title"></div>
+
+      <u><%= link_to "登入", new_session_path(resource_name) %></u>&nbsp;&nbsp;
+      <strong>/</strong>
+      &nbsp;&nbsp;<u><%= link_to "忘記密碼了嗎？", new_password_path(resource_name) %></u>						
+		<% end %>
+	</div>
+</div>
+<div class="col-sm-3"></div>
+
