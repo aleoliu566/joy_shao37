@@ -43,3 +43,4 @@ class Enterprise::ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 end
+
