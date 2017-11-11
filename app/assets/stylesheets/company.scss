@@ -149,11 +149,21 @@ label {
 
 .btn-success:focus,
 .btn-success.focus,
-.btn-success:hover {
+.btn-success:hover,
+.btn-success:active,
+.btn-success:active:hover, 
+.btn-success:active:focus, 
+.btn-success:active.focus, 
+.btn-success.active:hover, 
+.btn-success.active:focus, 
+.btn-success.active.focus, {
 	color:#fff;
-	background-color:#1caab2;
+  background-color:#1caab2;
+  border-color: transparent;
 	border-radius:3px;
 }
+
+
 
 .btn-fail {
 	color:#fff;
