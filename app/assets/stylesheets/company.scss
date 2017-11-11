@@ -151,6 +151,7 @@ label {
 .btn-success.focus,
 .btn-success:hover,
 .btn-success:active,
+.btn-success.active,
 .btn-success:active:hover, 
 .btn-success:active:focus, 
 .btn-success:active.focus, 
@@ -158,7 +159,7 @@ label {
 .btn-success.active:focus, 
 .btn-success.active.focus, {
 	color:#fff;
-  background-color:#1caab2;
+  background-color:#1caab2 !important;
   border-color: transparent;
 	border-radius:3px;
 }
@@ -192,7 +193,8 @@ input[type="button"] {
 	transition: all 0.1s ease-in-out;
 	padding: 14px 16px;
 	display: inline-block;
-	font-size: 14px;
+  font-size: 14px;
+  outline: none;
 }
 
 input[type="button"] {float: left;}
