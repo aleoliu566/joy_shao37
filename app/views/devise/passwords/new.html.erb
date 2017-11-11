@@ -1,16 +1,39 @@
-<h2>Forgot your password?</h2>
+<div class="col-sm-3"></div>
+<div class="col-sm-6">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+ <!-- <div class='notification error closeable' id='notification_1' style='display: block;'>
+					<%= devise_error_messages! %>
+					<a class='close' href='#'></a>
+	</div>-->
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <div class="unit">
+		<div class="page-title">
+			<h2>忘記密碼了嗎？</h2>
+			<div class="bolded-line"></div>
+		</div>
+		<br>
+		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <!--
+      待辦事項：
+      1.修改<%= devise_error_messages! %>的樣式
+    -->
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+			<div>
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, :class => "border-radius" %>
+			</div><br>
 
-<%= render "devise/shared/links" %>
+			<div class="login">
+        <%= f.submit "重新取得密碼", :class => "button btn-success medium" %>
+				<button type="reset" class="button btn-fail medium">清除</button>
+			</div>
+      <br><br><br><br>
+			<div class="page-title"></div>
+
+      <u><%= link_to "登入", new_session_path(resource_name) %></u>&nbsp;&nbsp;
+      <strong>/</strong>
+      &nbsp;&nbsp;<u><%= link_to "註冊", new_registration_path(resource_name) %></u>						
+		<% end %>
+	</div>
+</div>
+<div class="col-sm-3"></div>
