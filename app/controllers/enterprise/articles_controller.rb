@@ -1,6 +1,6 @@
 class Enterprise::ArticlesController < ApplicationController
-  before_action :set_article, only:[:show,:edit,:update,:edit]
-  before_action :set_company, only:[:index,:new,:create,:edit,:update]
+  before_action :set_article, only:[:show,:edit,:update,:edit,:destroy]
+  before_action :set_company, only:[:index,:new,:create,:edit,:update,:destroy]
   before_action :article_params, only:[:update,:create]
 
   layout 'enterprise'
@@ -37,6 +37,11 @@ class Enterprise::ArticlesController < ApplicationController
       redirect_to enterprise_company_articles_path(@company)
     else
     end
+  end
+
+  def destroy
+    @article.destroy
+    redirect_to enterprise_company_articles_path
   end
 
   private
