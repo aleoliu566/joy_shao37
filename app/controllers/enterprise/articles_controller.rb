@@ -1,5 +1,5 @@
 class Enterprise::ArticlesController < ApplicationController
-  before_action :set_article, only:[:show,:edit,:update,:edit,:destroy]
+  before_action :set_article, only:[:show,:edit,:edit,:update,:destroy]
   before_action :set_company, only:[:index,:new,:create,:edit,:update,:destroy]
   before_action :article_params, only:[:update,:create]
 
@@ -32,16 +32,40 @@ class Enterprise::ArticlesController < ApplicationController
   def edit
   end
 
+
+  # def update
+  #   if @article.update(article_params)
+  #     redirect_to enterprise_company_articles_path(@company)
+  #   else
+  #   end
+  # end
+
   def update
-    if @article.update(article_params)
+      query = <<-SQL
+      update articles
+      set title = 'title'
+      where id = '#{@article.id}'
+      SQL
+
+      Article.connection.execute(query)
       redirect_to enterprise_company_articles_path(@company)
-    else
-    end
   end
 
+  # def destroy
+  #   @article.destroy
+  #   redirect_to enterprise_company_articles_path
+  # end
+
+
+
   def destroy
-    @article.destroy
-    redirect_to enterprise_company_articles_path
+      query = <<-SQL
+      delete from articles
+      where id = '#{@article.id}'
+      SQL
+
+      Article.connection.execute(query)
+      redirect_to enterprise_company_articles_path(@company)
   end
 
   private
