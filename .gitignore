@@ -26,5 +26,5 @@
 *.DS_Store
 
 
-# public/uploads/resume/attachment/*
-# public/uploads/*
+public/uploads/resume/attachment/*
+public/uploads/*
