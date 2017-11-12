@@ -1,11 +1,12 @@
 <h3>編輯文章</h3>
 
 <%= form_for @article,:url => enterprise_company_article_path(@company,@article), :method => :PATCH do |f| %>
-  <%= f.label :title %>
+  <%= f.label "文章標題： " %>
   <%= f.text_field :title %>
   <br>
-  <%= f.label :content %>
+  <%= f.label "文章內容： " %>
   <%= f.text_area :content %>
   <br>
-  <%= f.submit %>
+  <%= f.submit "確認更改"%>
+  <%= link_to "取消更改", enterprise_company_articles_path %>
 <% end %>
