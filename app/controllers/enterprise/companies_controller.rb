@@ -29,6 +29,10 @@ class Enterprise::CompaniesController < ApplicationController
     end
   end
 
+  def check_resume
+    
+  end
+
   private
   
   def set_company
