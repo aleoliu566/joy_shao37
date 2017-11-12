@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108055754) do
+ActiveRecord::Schema.define(version: 20171112130648) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20171108055754) do
     t.integer "year_salary_floor"
     t.integer "hour_salary_ceiling"
     t.integer "hour_salary_floor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "resume_jobships", force: :cascade do |t|
+    t.text "recommend_letter"
+    t.integer "resume_id"
+    t.integer "job_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

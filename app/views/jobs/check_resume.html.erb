@@ -1,0 +1,10 @@
+<p>您現在應徵的是xxx職位</p>
+
+
+<h3>填寫自我推薦信</h3>
+
+<%= form_for @resumeJobship,:url => apply_company_job_path(@company, @job), method: :post do |f| %>
+  <%= f.label :推薦信 %>
+  <%= f.text_area :recommend_letter %>
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>

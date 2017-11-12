@@ -5,6 +5,8 @@ class ResumesController < ApplicationController
 
   def new
     @resume = Resume.new
+
+    @resumes = Resume.all
   end
 
   def create
@@ -12,10 +14,15 @@ class ResumesController < ApplicationController
     @resume.user_id = current_user.id
 
     if @resume.save
-      redirect_to root_path, notice: "The resume #{@resume.name} has been uploaded."
+      redirect_to new_user_resume_path(current_user.id), notice: "The resume #{@resume.name} has been uploaded."
     else
       render "new"
     end
+  end
+
+  def record
+    # Resume.where(user_id: current_user.id).ids
+    @resumeJobships = ResumeJobship.where(resume_id:Resume.where(user_id: current_user.id).ids).order(id: :desc)
   end
 
   def destroy
@@ -26,6 +33,6 @@ class ResumesController < ApplicationController
 
   private
   def resume_params
-    params.require(:resume).permit(:name, :attachment)
+    params.require(:resume).permit(:name, :content, :attachment)
   end
 end

@@ -23,12 +23,25 @@ Rails.application.routes.draw do
   # 後台首頁
   get 'home', :to => 'admin/companies#home'
   get 'article', :to => 'admin/articles#say'
-  devise_for :users
+  devise_for :users 
 
-  resources :resumes, only: [:index, :new, :create, :destroy]
-  resources :jobs
+  resources :users do
+    resources :resumes, only: [:index, :new, :create, :destroy]
+    get 'record', :to => 'resumes#record'
+  end
+
+  
+  resources :jobs  
 
   root 'companies#home'
+  resources :companies do
+    resources :jobs do
+      member do
+        get :check_resume
+        post :apply
+      end
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 

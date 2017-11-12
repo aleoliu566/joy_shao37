@@ -1,8 +1,12 @@
 <p>哈囉，這是首頁！</p>
-<%= link_to "New Resume", new_resume_path, class: "btn btn-primary" %>
+<%#= link_to "New Resume", new_resume_path, class: "btn btn-primary" %>
 <% if current_user %>
-  <%= link_to "Download Resume", current_user.resumes.find(1).attachment_url %>
+  <%#= link_to "Download Resume", current_user.resumes.find(1).attachment_url %>
+  <%= link_to "寫履歷", new_user_resume_path(current_user) %>
+  <%= link_to "投遞紀錄", user_record_path(current_user) %>
 <% end %>
+
+
 <p>公司介紹</p>
 <% @companies.each do |company|%>
   <div class="col-sm-4 home-company-block">
@@ -24,6 +28,7 @@
       <tr>
         <th>公司名稱</th>
         <th>職缺</th>
+        <th>應徵</th>
       </tr>
     </thead>
     <tbody>
@@ -31,8 +36,8 @@
         <tr>
           <th><%= j.company.name%></th>
           <th><%= j.name%></th>
+          <th><%= link_to "應徵", check_resume_company_job_path(j.company,j) %></th> 
         </tr>
-
       <% end %>
     </tbody>
   </table>  
