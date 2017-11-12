@@ -19,6 +19,7 @@ class Enterprise::JobsController < ApplicationController
 
     if @job.save
       redirect_to enterprise_company_jobs_path
+
     else
       render :action => :new
     end
@@ -41,7 +42,8 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def destroy
-  @job.destroy
+  #@job.destroy
+  Job.delete_job(params[:id])
   redirect_to enterprise_company_jobs_path
   end
 
