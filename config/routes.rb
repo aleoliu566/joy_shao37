@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     resources :articles
     resources :users
     patch 'set_admin', :to => 'users#set_admin'
+
+    get 'record', :to => 'resumes#record'
   end
 
   # 後台首頁
