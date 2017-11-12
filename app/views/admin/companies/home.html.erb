@@ -4,7 +4,7 @@
 
 <br>
 
-<%= link_to "xxxxxxxxx",new_admin_company_path %>
+
 
 <br>
 <% @jobs.each do |job| %>
@@ -32,6 +32,23 @@
         
       <%= link_to c.name, edit_admin_company_path(c) %>
       </td>
+      <td>
+        <!-- 要做停權，禁止公司可以新增職缺 -->
+        <% if c.account_status != 'banned' %>
+          <%= link_to "將此公司停權", ban_admin_company_path(c),
+                                    method: :ban,
+                                    data:{confirm:"您確定要停權嗎？"} %> 
+        <% else c.account_status != 'open' %>
+          <%= link_to "開放此公司", ban_admin_company_path(c),
+                                  method: :ban,
+                                  data: { confirm:"開放此公司" } %> 
+        <% end %>
+      </td>
+      <td>
+        <%= link_to "刪除此家公司", admin_company_path(c),
+                                  method: :delete,
+                                  data: { confirm:"您確定要刪除嗎？" } %> 
+        <%#記得要寫path%>
     </tr>
   <% end %>
 </table>

@@ -1,20 +1,14 @@
-<p>這是HR後台</p>
-<p>公司現有資訊：</p>
+<p>企業資料管理</p>
+<p>公司現有資訊： <%= link_to "編輯公司", edit_enterprise_company_path(@company) %></p>
 公司名稱: <%= @company.name %>
 <br>
-手機: <%= @company.phone %>
+電話: <%= @company.phone %>
 <br>
 地址: <%= @company.address %>
 <br>
 信箱: <%= @company.email %>
 <br>
-關於: <%= @company.about %>
-<br>
-<br>
-<br>
-<br>
-<%= link_to "編輯公司", edit_enterprise_company_path(@company) %>
-<br>
-<br>
+關於這家公司: <%= @company.about %>
+
 
 <%#= link_to "新增職缺", new_enterprise_company_path %>

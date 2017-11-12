@@ -34,6 +34,23 @@ class Admin::CompaniesController < ApplicationController
     
   end
 
+  # 刪除寫在這
+  def destroy
+    @company = Company.find(params[:id])
+    if @company.destroy
+      redirect_to home_path
+    else
+    end
+  end
+
+  def ban
+    @company = Company.find(params[:id])
+    if @company.ban
+        redirect_to home_path
+    else
+    end
+  end
+
   def update
     if @company.update(company_params)
       redirect_to home_path
