@@ -13,7 +13,13 @@ class Job < ApplicationRecord
      all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
     end
 
- 	
+ 	  #DELETE
+    def self.delete_job(j)
+      query = <<-SQL
+      DELETE FROM jobs WHERE id = '#{j}'
+      SQL
+      self.find_by_sql(query)
+    end
 
 
 end
