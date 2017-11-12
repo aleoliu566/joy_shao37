@@ -24,3 +24,6 @@
 
 .DS_Store
 *.DS_Store
+
+
+public/uploads/resume/attachment/*
