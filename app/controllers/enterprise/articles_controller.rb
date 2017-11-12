@@ -41,14 +41,15 @@ class Enterprise::ArticlesController < ApplicationController
   # end
 
   def update
-      query = <<-SQL
-      update articles
-      set title = 'title'
-      where id = '#{@article.id}'
-      SQL
 
-      Article.connection.execute(query)
-      redirect_to enterprise_company_articles_path(@company)
+    query = <<-SQL
+    update articles
+    set title = '#{article_params[:title]}'
+    where id = '#{@article.id}'
+    SQL
+
+    Article.connection.execute(query)
+    redirect_to enterprise_company_articles_path(@company)
   end
 
   # def destroy
@@ -56,16 +57,14 @@ class Enterprise::ArticlesController < ApplicationController
   #   redirect_to enterprise_company_articles_path
   # end
 
-
-
   def destroy
-      query = <<-SQL
-      delete from articles
-      where id = '#{@article.id}'
-      SQL
+    query = <<-SQL
+    delete from articles
+    where id = '#{@article.id}'
+    SQL
 
-      Article.connection.execute(query)
-      redirect_to enterprise_company_articles_path(@company)
+    Article.connection.execute(query)
+    redirect_to enterprise_company_articles_path(@company)
   end
 
   private
