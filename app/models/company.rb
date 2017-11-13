@@ -17,4 +17,18 @@ class Company < ApplicationRecord
       self.update_column("account_status", "open")
     end
   end
+
+    #UPDATE 
+  def self.hr_update_company(c,name,phone,email,address,about)
+    t = DateTime.now
+    query = <<-SQL
+    UPDATE companies
+    SET name = "#{name}", phone = "#{phone}", email = "#{email}",address = "#{address}",about = "#{about}",updated_at="#{t}"
+    WHERE id = "#{c}"
+    SQL
+    self.find_by_sql(query)
+  end
+
+
+
 end
