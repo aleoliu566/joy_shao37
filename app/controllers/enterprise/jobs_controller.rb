@@ -14,10 +14,9 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def create
-    @job = current_user.company.jobs.new(job_params)
-    #@job = Job.create_job(:name,:published_on, :content, :hour_salary_ceiling, :hour_salary_floor)
+    #@job = current_user.company.jobs.new(job_params)
+    if @job = Job.create_job(@company.id,job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor])
 
-    if @job.save
       redirect_to enterprise_company_jobs_path
 
     else
