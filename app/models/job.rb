@@ -3,6 +3,10 @@ class Job < ApplicationRecord
   #資料驗證
   validates_presence_of :name, :published_on, :content, :hour_salary_ceiling, :hour_salary_floor
   
+  # 關聯
+  has_many :resume_jobships
+  has_many :resumes, :through => :resume_jobships
+
 
   	#READ(Select)
     def self.get_all_job(c)

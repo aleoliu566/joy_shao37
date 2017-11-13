@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   belongs_to :company, optional: true
   has_many :articles
+  has_many :resumes
 end
