@@ -21,5 +21,10 @@ class Job < ApplicationRecord
       self.find_by_sql(query)
     end
 
+    #CREATE
+
+
+    #UPDATE
+    
 
 end
