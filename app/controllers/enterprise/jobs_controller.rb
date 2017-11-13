@@ -6,7 +6,7 @@ class Enterprise::JobsController < ApplicationController
   layout 'enterprise'
 
   def index
-    @jobs = Job.get_all_job(params[:company_id]) #沒有current_user令人擔心
+    @jobs = Job.get_all_job(@company.id) #沒有current_user令人擔心
   end
 
   def new
@@ -34,7 +34,8 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def update
-    if @job.update(job_params)
+    if Job.update_job(@job.id,job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor])
+
       redirect_to enterprise_company_jobs_path
     else
       render :action => :edit
@@ -43,7 +44,7 @@ class Enterprise::JobsController < ApplicationController
 
   def destroy
   #@job.destroy
-  Job.delete_job(params[:id])
+  Job.delete_job(@job.id)
   redirect_to enterprise_company_jobs_path
   end
 
