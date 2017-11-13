@@ -29,7 +29,18 @@ class Enterprise::ArticlesController < ApplicationController
     end
   end
 
+  # def create 
+  #   query = <<-SQL
+  #   insert into articles(title, content)
+  #   values ('#{article_params[:title]}','#{article_params[:content]}')
+  #   SQL
+
+  #   Article.connection.execute(query)    
+  #   redirect_to enterprise_company_articles_path(current_user.company)
+  # end
+
   def edit
+
   end
 
 
@@ -41,10 +52,10 @@ class Enterprise::ArticlesController < ApplicationController
   # end
 
   def update
-
     query = <<-SQL
     update articles
-    set title = '#{article_params[:title]}'
+    set title = '#{article_params[:title]}', 
+        content = '#{article_params[:content]}'
     where id = '#{@article.id}'
     SQL
 
