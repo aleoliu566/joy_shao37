@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   # 後台首頁
   get 'home', :to => 'admin/companies#home'
   get 'article', :to => 'admin/articles#say'
-  devise_for :users 
+  devise_for :users
 
   resources :users do
     resources :resumes, only: [:index, :new, :create, :destroy]

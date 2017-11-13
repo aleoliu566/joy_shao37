@@ -31,11 +31,11 @@
         <%= f.label :password_confirmation, "再次確認密碼" %>
         <%= f.password_field :password_confirmation, autocomplete: "off", :class => "border-radius" %>
 			</div>
-
+      
       <div>
-				<label for="name">姓名</label>
-				<input class="border-radius" id="name" name="name" type="text">
-			</div>
+        <%= f.label :姓名 %>
+        <%= f.text_field :name, :class => "border-radius" %>
+      </div>
 
 			<div>
 				<label for="gender">性別</label>&nbsp;&nbsp;&nbsp;&nbsp;
