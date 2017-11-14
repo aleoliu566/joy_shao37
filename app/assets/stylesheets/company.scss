@@ -142,7 +142,8 @@ label {
 
 .btn-success {
 	color:#fff;
-	background-color:#12BDBC;
+  background-color:#12BDBC;
+  border-color: transparent;
 	border-radius:3px;
 }
 
@@ -199,3 +200,30 @@ input[type="button"] {
 input[type="button"] {float: left;}
 
 .button.medium {padding: 10px 10px; font-size: 14px;}
+
+table {
+  thead {
+    th:last-child {
+      width: 200px;
+    }
+  }
+
+  tbody {
+    tr td:last-child {
+      text-align: center;
+      
+      a {
+        margin: auto 3px;
+      }
+    }
+
+    a {
+      color: #666;
+    }
+
+    a:hover, a:focus {
+      color: #666;
+      text-decoration: underline;
+    }
+  }
+}

@@ -43,12 +43,16 @@ ul {
 }
 
 .enterprise-container {
-  background-color: #f2f3f2;
+  background-color: #ffffff;
   color: #2c2a28;
   height: 100%;
   width: calc(100% - 200px);
   float: left;
   padding: 30px;
+
+  .page-title h2 {
+    color: #666;
+  }
 }
 
 /*.cancel-admin-user{

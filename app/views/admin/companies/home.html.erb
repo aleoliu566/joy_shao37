@@ -1,54 +1,82 @@
-<p>安安這是管理者的後台喔！</p>
+<p>安安這是管理者的後台喔！</p><br>
 
-<%= link_to "新增公司", new_admin_company_path %>
+<div class="col-sm-1"></div>
+<div class="col-sm-10">
+  <div class="page-title">
+    <h2>企業</h2>
+    <div class="bolded-line"></div>
+    <%= link_to "新增企業", new_admin_company_path, :class => "btn btn-success btn-sm" %>
+    <%= link_to new_admin_company_path, :class => "btn btn-success btn-sm" do %>
+      <i class="fa fa-plus"></i>
+      <span>&nbsp;新增企業</span>
+    <% end %>
+  </div>
 
-<br>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th style="width: 200px">名稱</th>
+        <th>狀態</th>
+        <th>瀏覽次數</th>
+        <th>應徵次數</th>
+        <th>收藏次數</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @company.each do |c|%>
+        <tr>
+          <td>
+            <%= link_to admin_company_path(c) do %>
+              <%= c.name%>
+            <%end%>
+          </td>
+          <td><!--紅綠燈--></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <%= link_to edit_admin_company_path(c), :class => "btn btn-success btn-xs" do %>
+              <i class="fa fa-edit"></i>
+              <span>編輯</span>
+            <% end %>
+
+            <!--要做停權，禁止公司可以新增職缺--> 
+
+            <% if c.account_status != 'banned' %>
+              <%= link_to ban_admin_company_path(c), method: :ban, data: {confirm:"您確定要停權該企業嗎？"}, :class => "btn btn-danger btn-xs" do %>
+                <i class="fa fa-ban"></i>
+                <span>停權</span> 
+              <% end %>
+            <% else c.account_status != 'open' %>
+              <%= link_to ban_admin_company_path(c), method: :ban, data: { confirm:"您確定要開放該企業嗎？" }, :class => "btn btn-warning btn-xs" do %>
+                <i class="fa fa-check"></i>
+                <span>開放</span> 
+              <% end %>
+            <% end %>
+
+            <%= link_to admin_company_path(c), method: :delete, data: { confirm:"您確定要刪除該企業嗎？" }, :class => "btn btn-fail btn-xs" do %>
+              <i class="fa fa-trash"></i>
+              <span>刪除</span>
+            <% end %>
+
+            <%#記得要寫path%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>  
+
+</div>
+<div class="col-sm-1"></div>
 
 
+<!--<% @jobs.each do |job| %>
+    <%= job.name %>
+    <% if job.content != nil %>
+      <%= job.content %>
+    <% else %>
+      <span>沒有</span>
+    <% end %>
+    <br>
+  <% end %>-->
 
-<br>
-<% @jobs.each do |job| %>
-  <%= job.name %>
-  <% if job.content != nil %>
-    <%= job.content %>
-  <% else %>
-    <span>沒有</span>
-  <% end %>
-  <br>
-<% end %>
-
-<table class="table table-bordered">
-  <% @company.each do |c|%>
-    <tr>
-      <td>
-        <%= link_to admin_company_path(c) do %>
-          <%= c.name%>
-        <%end%>
-      </td>
-      <td>
-        <%= link_to "編輯公司", edit_admin_company_path(c) %>
-      </td>
-      <td>
-        
-      <%= link_to c.name, edit_admin_company_path(c) %>
-      </td>
-      <td>
-        <!-- 要做停權，禁止公司可以新增職缺 -->
-        <% if c.account_status != 'banned' %>
-          <%= link_to "將此公司停權", ban_admin_company_path(c),
-                                    method: :ban,
-                                    data:{confirm:"您確定要停權嗎？"} %> 
-        <% else c.account_status != 'open' %>
-          <%= link_to "開放此公司", ban_admin_company_path(c),
-                                  method: :ban,
-                                  data: { confirm:"開放此公司" } %> 
-        <% end %>
-      </td>
-      <td>
-        <%= link_to "刪除此家公司", admin_company_path(c),
-                                  method: :delete,
-                                  data: { confirm:"您確定要刪除嗎？" } %> 
-        <%#記得要寫path%>
-    </tr>
-  <% end %>
-</table>
