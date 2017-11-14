@@ -2,8 +2,8 @@
 <ul>
   <li>
     <%= link_to enterprise_companies_path do %>
-      <i class="fa fa-edit"></i>
-      <span>&nbsp;編輯企業資料</span>
+      <i class="fa fa-building"></i>
+      <span>&nbsp;企業資訊</span>
     <% end %>
   </li>
   <li>
@@ -14,14 +14,14 @@
   </li>
    <li>
     <%= link_to enterprise_company_jobs_path(current_user.company) do%>
-      <i class=""></i>
+      <i class="fa fa-suitcase"></i>
       <span>&nbsp;職缺管理</span>
     <% end %>
   </li>
   <li>
     <%= link_to enterprise_company_articles_path(current_user.company) do %>
       <i class="fa fa-newspaper-o"></i>
-      <span>&nbsp;文章</span>
+      <span>&nbsp;文章管理</span>
     <% end %>
   </li>
 </ul>
