@@ -51,8 +51,22 @@ ul {
   padding: 30px;
   overflow-y: auto;
 
-  .page-title h2 {
-    color: #666;
+  .page-title {
+    position: relative;
+
+    h2 {
+      color: #666;
+    }
+
+    a {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    span {
+      color: #ffffff;
+    }
   }
 }
 

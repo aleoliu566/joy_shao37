@@ -1,3 +1,62 @@
+<div class="col-sm-1"></div>
+<div class="col-sm-10">
+  <div class="page-title">
+    <h2>職缺管理</h2>
+    <div class="bolded-line"></div>
+    <%= link_to new_enterprise_company_job_path(@company), :class => "btn btn-success btn-sm" do %>
+      <i class="fa fa-plus"></i>
+      <span>&nbsp;新增職缺</span>
+    <% end %>
+  </div>
+
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>職缺</th>
+        <th>時薪</th>
+        <th>描述</th>
+        <th>刊登日期</th>
+        <th style="width: 270px"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @jobs.each do |job| %>
+        <tr>
+          <td>
+            <%= job.name %>
+          </td>
+          <td>
+            <%= job.hour_salary_floor %> - <%= job.hour_salary_ceiling %>
+          </td>
+          <td>
+            <%= job.content %>
+          </td>
+          <td>
+            <%= job.published_on %>
+          </td>
+          <td>
+            <%= link_to enterprise_company_job_path(@company,job), :class => "btn btn-success btn-xs" do %>
+              <i class="fa fa-eye"></i>
+              <span>查看詳細內容</span>
+            <% end %>
+
+            <%= link_to edit_enterprise_company_job_path(@company,job), :class => "btn btn-warning btn-xs" do %>
+              <i class="fa fa-edit"></i>
+              <span>編輯</span>
+            <% end %>
+
+            <%= link_to enterprise_company_job_path(@company,job), :method => :delete, data: { confirm:"您確定要刪除該職缺嗎？" }, :class => "btn btn-fail btn-xs" do %>
+              <i class="fa fa-trash"></i>
+              <span>刪除</span>
+            <% end %>
+          </td>
+      <% end %>
+    </tbody>
+  </table>  
+
+</div>
+<div class="col-sm-1"></div>
+<!--
 <%= link_to "新增職缺", new_enterprise_company_job_path(@company) %>
 
 <br>
@@ -31,3 +90,4 @@
   </tbody>
 </table>
 
+-->

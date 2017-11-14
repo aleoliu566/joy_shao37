@@ -19,7 +19,7 @@
         <tr>
           <td><%= resumeJobship.resume.user.email %></td>
           <td><%= resumeJobship.job.name%></td>
-          <td><%= resumeJobship.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+          <td><%= resumeJobship.created_at.strftime("%Y/%m/%d %H:%M") %></td>
           <!--resumeJobship.resume.name-->
           <td>
             <%= link_to resumeJobship.resume.attachment_url, target: "_blank", :class => "btn btn-success btn-xs" do %>
