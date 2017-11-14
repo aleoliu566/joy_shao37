@@ -1,13 +1,13 @@
 <h2>企業管理</h2>
 <ul>
   <li>
-    <%= link_to edit_enterprise_company_path(current_user.company) do %>
+    <%= link_to enterprise_companies_path do %>
       <i class="fa fa-edit"></i>
       <span>&nbsp;編輯企業資料</span>
     <% end %>
   </li>
   <li>
-    <%= link_to do %>
+    <%= link_to enterprise_company_record_path(current_user.company) do %>
       <i class="fa fa-paper-plane-o"></i>
       <span>&nbsp;應徵紀錄</span>
     <% end %>

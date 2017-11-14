@@ -5,3 +5,27 @@
 職缺內容: <%=@job.content%>
 <br>
 公司名稱: <%=@job.published_on%>
+
+
+<br>
+
+<h4>投遞此職位的人</h4>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>信箱</td>
+      <td>履歷</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @job.resumes.each do |resume|%>
+      <tr>
+        <td><%= resume.user.email %></td>
+        <td><%= link_to resume.name, resume.attachment_url %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  
+

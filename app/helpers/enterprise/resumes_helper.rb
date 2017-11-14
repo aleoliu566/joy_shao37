@@ -1,0 +1,2 @@
+module Enterprise::ResumesHelper
+end

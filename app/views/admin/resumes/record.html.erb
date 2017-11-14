@@ -1,0 +1,24 @@
+<p>全部投遞紀錄</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>投遞的人</td>
+      <td>投遞職缺</td>
+      <td>投遞日期</td>
+      <td>公司</td>
+      <td>履歷</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @resumeJobships.each do |resumeJobship| %>
+      <tr>
+        <td><%= resumeJobship.resume.user.email %></td>
+        <td><%= resumeJobship.job.name%></td>
+        <td><%= resumeJobship.created_at.strftime("%Y-%m-%d-%H:%M") %></td>
+        <td><%= resumeJobship.job.company.name%></td> 
+        <td><%= link_to resumeJobship.resume.name, resumeJobship.resume.attachment_url %></td>
+      </tr>
+    <% end %>
+  </tbody>  
+</table>
