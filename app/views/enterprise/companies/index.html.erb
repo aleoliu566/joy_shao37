@@ -1,14 +1,45 @@
-<p>企業資料管理</p>
-<p>公司現有資訊： <%= link_to "編輯公司", edit_enterprise_company_path(@company) %></p>
-公司名稱: <%= @company.name %>
-<br>
-電話: <%= @company.phone %>
-<br>
-地址: <%= @company.address %>
-<br>
-信箱: <%= @company.email %>
-<br>
-關於這家公司: <%= @company.about %>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+    <div class="unit">
+        <div class="page-title">
+            <h2>企業資訊</h2>
+            <div class="bolded-line"></div>
+            <%= link_to edit_enterprise_company_path(@company), :class => "btn btn-success btn-sm" do %>
+            <i class="fa fa-edit"></i>
+            <span>&nbsp;編輯資訊</span>
+            <% end %>
+        </div>
 
+        <div class="col-sm-6 company-info">
+            <ul>
+                <li>
+                    <span>名稱</span>
+                    <%= @company.name %>
+                </li>
+                <li>
+                    <span>聯絡電話</span>
+                    <%= @company.phone %>
+                </li>
+                <li>
+                    <span>聯絡地址</span>
+                    <%= @company.address %>
+                </li>
+                <li>
+                    <span>Email</span>
+                    <%= @company.email %>
+                </li>
+                <li>
+                    <span>簡介</span>
+                    <%= @company.about %>
+                </li>
+            </ul>
+        </div>
 
+        <div class="col-sm-6" style="text-align: center">
+            <%= image_tag("https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/12654697_1648897765370914_301851495806811009_n.jpg?oh=50c51566b15aa8dbc11be69e05722051&oe=5A97F70B", :width => '225px', :height => '225px') do %>
+            <% end %>
+        </div>
+    </div>
+</div>
+<div class="col-sm-2"></div>
 <%#= link_to "新增職缺", new_enterprise_company_path %>
