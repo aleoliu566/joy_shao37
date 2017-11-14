@@ -1,22 +1,37 @@
-<h3>投遞紀錄</h3>
+<div class="col-sm-1"></div>
+<div class="col-sm-10">
+  <div class="page-title">
+    <h2>應徵紀錄</h2>
+    <div class="bolded-line"></div>
+  </div>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <td>投遞的人</td>
-      <td>投遞職缺</td>
-      <td>投遞日期</td>
-      <td>履歷</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @resumeJobships.each do |resumeJobship| %>
+  <table class="table table-bordered table-hover">
+    <thead>
       <tr>
-        <td><%= resumeJobship.resume.user.email %></td>
-        <td><%= resumeJobship.job.name%></td>
-        <td><%= resumeJobship.created_at.strftime("%Y-%m-%d-%H:%M") %></td>
-        <td><%= link_to resumeJobship.resume.name, resumeJobship.resume.attachment_url %></td>
+        <th>應徵者</th>
+        <th>應徵職缺</th>
+        <th>應徵日期</th>
+        <th style="width: 120px"></th>
       </tr>
-    <% end %>
-  </tbody>  
-</table>
+    </thead>
+    <tbody>
+      <% @resumeJobships.each do |resumeJobship| %>
+        <tr>
+          <td><%= resumeJobship.resume.user.email %></td>
+          <td><%= resumeJobship.job.name%></td>
+          <td><%= resumeJobship.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+          <!--resumeJobship.resume.name-->
+          <td>
+            <%= link_to resumeJobship.resume.attachment_url, target: "_blank", :class => "btn btn-success btn-xs" do %>
+              <i class="fa fa-file-text-o"></i>
+              <span>查看履歷</span>
+            <% end %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>  
+
+</div>
+<div class="col-sm-1"></div>
