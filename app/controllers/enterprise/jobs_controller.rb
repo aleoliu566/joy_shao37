@@ -15,12 +15,13 @@ class Enterprise::JobsController < ApplicationController
 
   def create
     #@job = current_user.company.jobs.new(job_params)
-    if @job = Job.hr_create_job(params[:company_id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor])
+    if @job = Job.hr_create_job(params[:company_id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor],job_params[:year_salary_ceiling],job_params[:year_salary_floor])
       redirect_to enterprise_company_jobs_path
     else
       render :action => :new
     end
   end
+
 
   def show
 
@@ -31,7 +32,7 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def update
-    if Job.hr_update_job(params[:id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor])
+    if Job.hr_update_job(params[:id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor],job_params[:year_salary_ceiling],job_params[:year_salary_floor])
 
       redirect_to enterprise_company_jobs_path
     else
@@ -55,7 +56,7 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:name, :published_on, :content, :hour_salary_ceiling, :hour_salary_floor )
+    params.require(:job).permit(:name, :published_on, :content, :hour_salary_ceiling, :hour_salary_floor, :year_salary_ceiling, :year_salary_floor )
   end
 
 end

@@ -1,12 +1,36 @@
-職缺名稱: <%=@job.name%>
-<br>
-公司名稱: <%=@job.company.name%>
-<br>
-職缺內容: <%=@job.content%>
-<br>
-公司名稱: <%=@job.published_on%>
+ <div>
+  <ul>
+    <li>
+      <span>職缺名稱</span>
+      <%= @job.name %>
+    </li>
+    <%#li>
+      這裡想要放置職業的Tag，或是將他變成漂亮的標籤～～～
+      <span>Tag</span>
+    </li%>
+    <li>
+      <span>刊登日期</span>
+      <%= @job.published_on %>
+    </li>
+    <li>
+      <span>職位內容</span>
+      <%= @job.content %>
+    </li>
+    <li>
+      <% if @job.hour_salary_floor && @job.hour_salary_ceiling != 0  %>
+      <span>薪資 - 時薪</span>
+      <%= @job.hour_salary_floor %> - <%= @job.hour_salary_ceiling %>
+      <% else %>
+      <span>薪資 - 月薪</span>
+      <%= @job.year_salary_floor %> - <%= @job.year_salary_ceiling %>
+      <% end %>
+    </li>
+  </ul>
+</div>
 
-
+<br>
+<br>
+<br>
 <br>
 
 <h4>投遞此職位的人</h4>
