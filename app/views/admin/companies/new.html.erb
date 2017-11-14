@@ -1,23 +1,41 @@
-<p>新增公司</p>
-
-<%= form_for @company ,:url => admin_companies_path, :method => :post do |j|%>
-  <%= j.label :name %>
-  <%= j.text_field :name%>
-  <br>
-  <%= j.label :phone %>
-  <%= j.text_field :phone %>
-  <br>
-  <%= j.label :email %>
-  <%= j.text_field :email %>
-  <br>
-  <%= j.label :address %>
-  <%= j.text_field :address %>
-  <br>
-  <%= j.label :about %>
-  <%= j.text_field :about %>
-  <br>
-  <%= j.collection_select(:user_ids, User.all, :id, :email) %>
-  <br>
-  <%= j.submit "確認"%>
-  <%= link_to "取消", home_path %>
-<% end %>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <div class="unit">
+    <div class="page-title">
+      <h2>新增企業</h2>
+      <div class="bolded-line"></div>
+    </div>
+    <br>
+    <%= form_for @company ,:url => admin_companies_path, :method => :post do |j|%>
+      <div>
+        <%= j.label :name, "企業名稱" %>
+        <%= j.text_field :name%>
+      </div>
+      <div>
+        <%= j.label :phone, "聯絡電話" %>
+        <%= j.text_field :phone %>
+      </div>
+      <div>
+        <%= j.label :email, "Email" %>
+        <%= j.text_field :email %>
+      </div>
+      <div>
+        <%= j.label :address, "聯絡地址" %>
+        <%= j.text_field :address %>
+      </div>
+      <div>
+        <%= j.label :about, "關於" %>
+        <%= j.text_field :about %>
+      </div>
+      <div>
+        <%= j.label :user_ids, "HR 帳號設定" %>
+        <%= j.collection_select(:user_ids, User.all, :id, :email) %>
+      </div>
+      <div class="login">
+        <%= j.submit "新增", :class => "button btn-success medium" %>
+        <button class="button btn-fail medium">返回</button>
+			</div>
+    <% end %>
+  </div>
+</div>
+<div class="col-sm-2"></div>

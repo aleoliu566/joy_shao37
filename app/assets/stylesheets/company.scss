@@ -1,17 +1,3 @@
-/*.home-company-block{
-  padding: 10px 0;
-  div{
-    margin: 0 5px;
-    padding: 0 10px;
-    border: 1px solid grey;
-    border-radius: 0.2rem;
-    p{
-      font-size: 11pt;
-      color: grey;
-    }
-  }
-}*/
-
 html {
   height: 100%;
 }
@@ -21,6 +7,13 @@ body {
   font-family: "微軟正黑體", Arial, Helvetica, sans-serif;
   font-size: 15px;
   color: #666;
+  overflow: hidden;
+}
+
+.index-container {
+  height: calc(100% - 50px);
+  padding: 30px;
+  overflow-y: auto;
 }
 
 .navbar {
@@ -93,7 +86,7 @@ body {
 	background-color: #fff;
 	border: 1px solid #ddd;
 	overflow:hidden;
-  margin: 40px auto;
+  margin: 20px auto;
   
   a, a:visited { text-decoration: none; -webkit-transition: color 0.1s ease-in-out; -moz-transition: color 0.1s ease-in-out; -o-transition: color 0.1s ease-in-out; -transition: color 0.1s ease-in-out; outline: 0; color: #666; font-family: "微軟正黑體"; font-size: 14px;}
   
@@ -130,6 +123,10 @@ select {
   outline: none;
   background: rgb(255, 255, 255);
   padding: 9px;
+}
+
+select {
+  height: 38px;
 }
 
 label {

@@ -8,10 +8,6 @@
 
 
 Company.create([name: 'Google',phone:'0912345678', email:'google@gmail.com'])
-Company.create([name: 'NCCU',phone:'0912345678', email:'nccu@gmail.com'])
-Company.create([name: 'Yahoo!',phone:'0912345678', email:'Yahoo@gmail.com'])
-Company.create([name: 'NUK',phone:'0912345678', email:'nuk@gmail.com'])
-
 
 User.create([email: 'test1@gmail.com',   password: '12345678', password_confirmation: '12345678', name: '測試帳號'])
 User.create([email: 'admin@gmail.com',   password: '12345678', password_confirmation: '12345678', name: 'admin測試帳號', role: 1])

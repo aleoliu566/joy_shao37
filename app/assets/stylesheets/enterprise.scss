@@ -49,6 +49,7 @@ ul {
   width: calc(100% - 200px);
   float: left;
   padding: 30px;
+  overflow-y: auto;
 
   .page-title h2 {
     color: #666;

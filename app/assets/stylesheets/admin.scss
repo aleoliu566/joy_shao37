@@ -47,6 +47,7 @@ ul {
   width: calc(100% - 200px);
   float: left;
   padding: 30px;
+  overflow-y: auto; 
 
   .page-title {
     position: relative;
