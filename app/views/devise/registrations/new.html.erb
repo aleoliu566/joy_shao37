@@ -31,22 +31,11 @@
         <%= f.label :password_confirmation, "再次確認密碼" %>
         <%= f.password_field :password_confirmation, autocomplete: "off", :class => "border-radius" %>
 			</div>
-
+      
       <div>
-				<label for="name">姓名</label>
-				<input class="border-radius" id="name" name="name" type="text">
-			</div>
-
-			<div>
-				<label for="gender">性別</label>&nbsp;&nbsp;&nbsp;&nbsp;
-				<input id="male" name="gender" type="radio" value="male"> 男&nbsp;&nbsp;&nbsp;&nbsp;
-				<input id="female" name="gender" type="radio" value="female"> 女
-			</div><br/>
-
-			<div>
-				<label for="birthday">生日</label>
-				<input class="border-radius" id="birthday" name="birthday" type="date">
-			</div>
+        <%= f.label :姓名 %>
+        <%= f.text_field :name, :class => "border-radius" %>
+      </div>
       
       <br>
 
