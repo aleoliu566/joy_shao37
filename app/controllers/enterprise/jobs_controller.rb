@@ -4,9 +4,9 @@ class Enterprise::JobsController < ApplicationController
   before_action :job_params, only:[:update,:create]
 
   layout 'enterprise'
-
+  #current_user.company
   def index
-    @jobs = Job.get_all_job(params[:company_id]) #沒有current_user令人擔心
+    @jobs = Job.hr_get_all_job(params[:company_id]) #沒有current_user令人擔心
   end
 
   def new
@@ -14,16 +14,14 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def create
-    @job = current_user.company.jobs.new(job_params)
-    #@job = Job.create_job(:name,:published_on, :content, :hour_salary_ceiling, :hour_salary_floor)
-
-    if @job.save
+    #@job = current_user.company.jobs.new(job_params)
+    if @job = Job.hr_create_job(params[:company_id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor],job_params[:year_salary_ceiling],job_params[:year_salary_floor])
       redirect_to enterprise_company_jobs_path
-
     else
       render :action => :new
     end
   end
+
 
   def show
 
@@ -34,7 +32,8 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def update
-    if @job.update(job_params)
+    if Job.hr_update_job(params[:id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor],job_params[:year_salary_ceiling],job_params[:year_salary_floor])
+
       redirect_to enterprise_company_jobs_path
     else
       render :action => :edit
@@ -42,9 +41,8 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def destroy
-  #@job.destroy
-  Job.delete_job(params[:id])
-  redirect_to enterprise_company_jobs_path
+    Job.hr_delete_job(@job.id)
+    redirect_to enterprise_company_jobs_path
   end
 
   private
@@ -58,7 +56,7 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:name, :published_on, :content, :hour_salary_ceiling, :hour_salary_floor )
+    params.require(:job).permit(:name, :published_on, :content, :hour_salary_ceiling, :hour_salary_floor, :year_salary_ceiling, :year_salary_floor )
   end
 
 end
