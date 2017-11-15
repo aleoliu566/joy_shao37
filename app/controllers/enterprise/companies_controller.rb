@@ -22,12 +22,28 @@ class Enterprise::CompaniesController < ApplicationController
   end
 
   def update
-    if @company.update(company_params)
+    if Company.hr_update_company(@company.id,company_params[:name],company_params[:phone],company_params[:email],company_params[:address],company_params[:about])
+
       redirect_to enterprise_companies_path
     else
-      redirect_to root_path
+      render :action => :edit
     end
   end
+
+  # def update
+  #   query = <<-SQL
+  #   update companies
+  #   set name = '#{company_params[:name]}', 
+  #       phone = '#{company_params[:phone]}',
+  #       email = '#{company_params[:email]}',
+  #       address = '#{company_params[:address]}',
+  #       about = '#{company_params[:about]}'
+  #   where id = '#{@company.id}'
+  #   SQL
+
+  #   Company.connection.execute(query)
+  #   redirect_to enterprise_companies_path
+  # end
 
   def check_resume
     

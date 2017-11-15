@@ -32,7 +32,7 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def update
-    if Job.hr_update_job(params[:id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor],job_params[:year_salary_ceiling],job_params[:year_salary_floor])
+    if Job.hr_update_job(params[:id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor],job_params[:year_salary_ceiling],job_params[:y])
 
       redirect_to enterprise_company_jobs_path
     else
