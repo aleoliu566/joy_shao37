@@ -1,0 +1,22 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th style="width: 200px">職缺名稱</th>
+      <th>公司</th>
+      <th>應徵次數</th>
+      <th>收藏次數</th>
+      <th style="width: 200px"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jobs.each do |job| %>
+      <tr>
+        <td><%= job.name %></td>
+        <td><%= job.company.name %></td>
+        <td><%= job.resumes.count %></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 
