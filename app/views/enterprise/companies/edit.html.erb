@@ -27,6 +27,10 @@
         <%= c.label :about, "關於" %>
         <%= c.text_field :about %>
       </div>
+      <div>
+        <%= c.label :logo, '上傳公司logo'%>
+        <%= c.file_field :logo, accept: 'image/png,image/jpeg'%>
+      </div>
       <div class="login">
         <%= c.submit "修改", :class => "button btn-success medium" %>
         <%= link_to '返回', enterprise_companies_path, :class => "button btn-fail medium" %>
