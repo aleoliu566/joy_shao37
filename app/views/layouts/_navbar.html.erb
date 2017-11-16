@@ -48,7 +48,7 @@
         <li class="dropdown">
           <%= link_to root_path, :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' do %>
             <i class="fa fa-user"></i>
-            <span>&nbsp;<%= current_user.email %></span>
+            <span>&nbsp;<%= current_user.name %></span>
             <b class="caret"></b>
           <% end %>
 
@@ -73,8 +73,8 @@
             </li>
             <li>
               <%= link_to edit_user_registration_path do %>
-                <i class="fa fa-fw fa-user"></i>
-                <span>&nbsp;會員管理</span>
+                <i class="fa fa-fw fa-cog"></i>
+                <span>&nbsp;帳號設定</span>
               <% end %>
             </li>
             <li class="divider"></li>
