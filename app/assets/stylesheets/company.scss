@@ -219,3 +219,17 @@ table {
     }
   }
 }
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  background: transparent;
+}
+
+.dropdown-menu > li > a {
+  color: #666;
+  padding: 10px 20px;
+  font-size: 15px;
+}
+
+.dropdown-menu {
+  min-width: 135px;
+}

@@ -3,7 +3,7 @@
     <div class="navbar-header">
       <%= link_to "FindJobs", root_path, :class => "navbar-brand" %>
     </div>
-
+  
     <ul class="nav navbar-nav">
       <li>
         <%= link_to root_path do %>
@@ -15,6 +15,12 @@
         <%= link_to jobs_path do %>
           <i class="fa fa-suitcase"></i>
           <span>&nbsp;職缺</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to root_path do %>
+          <i class="fa fa-newspaper-o"></i>
+          <span>&nbsp;文章</span>
         <% end %>
       </li>
     </ul>
@@ -39,18 +45,43 @@
       <% end %>
 
       <% if current_user %>
-        <li>
-          <%= link_to edit_user_registration_path do %>
+        <li class="dropdown">
+          <%= link_to root_path, :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' do %>
             <i class="fa fa-user"></i>
-            <span>&nbsp;會員管理</span>
+            <span>&nbsp;<%= current_user.email %></span>
+            <b class="caret"></b>
           <% end %>
-        </li>
-      <% end %>
 
-      <% if current_user %>
-        <li>
-          <%= link_to '<i class="fa fa-sign-out"></i><span>&nbsp;登出</span>'.html_safe, destroy_user_session_path, :method => :delete %>
-        </li>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to new_user_resume_path(current_user) do %>
+                <i class="fa fa-fw fa-edit"></i>
+                <span>&nbsp;編輯履歷</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to root_path do %>
+                <i class="fa fa-fw fa-heart"></i>
+                <span>&nbsp;我的收藏</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to user_record_path(current_user) do %>
+                <i class="fa fa-fw fa-paper-plane-o"></i>
+                <span>&nbsp;應徵紀錄</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to edit_user_registration_path do %>
+                <i class="fa fa-fw fa-user"></i>
+                <span>&nbsp;會員管理</span>
+              <% end %>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <%= link_to '<i class="fa fa-fw fa-sign-out"></i><span>&nbsp;&nbsp;登出</span>'.html_safe, destroy_user_session_path, :method => :delete %>
+            </li>
+          </ul>
       <% else %>
         <li>
           <%= link_to user_session_path do %>
@@ -58,7 +89,6 @@
             <span>&nbsp;登入 / 註冊</span>
           <% end %>
         </li>
-        <!--<li><%= link_to "註冊", new_user_session_path %></li>-->
       <% end %>
     </ul>
   </div>
