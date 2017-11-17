@@ -1,0 +1,2 @@
+class TagJobship < ApplicationRecord
+end
