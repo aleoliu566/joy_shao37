@@ -1,22 +1,37 @@
-<p>編輯公司內容</p>
-
-<%= form_for @company,:url => enterprise_company_path(@company), method: :put do |c| %>
-  <%= c.label "公司名稱: " %>
-  <%= c.text_field :name%>
-  <br>
-  <%= c.label "電話: " %>
-  <%= c.text_field :phone %>
-  <br>
-  <%= c.label "地址: " %>
-  <%= c.text_field :address %>
-  <br>
-  <%= c.label "信箱： " %>
-  <%= c.text_field :email%>
-  <br>
-  <%= c.label "關於這家公司： " %>
-  <%= c.text_field :about %>
-  <br>
-
-  <%= c.submit "確認更改"%>
-  <%= link_to "取消更改", enterprise_companies_path %>
-<% end %>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <div class="unit">
+    <div class="page-title">
+      <h2>編輯企業資訊</h2>
+      <div class="bolded-line"></div>
+    </div>
+    <br>
+    <%= form_for @company,:url => enterprise_company_path(@company), method: :put do |c| %>
+      <div>
+        <%= c.label :name, "企業名稱" %>
+        <%= c.text_field :name%>
+      </div>
+      <div>
+        <%= c.label :phone, "聯絡電話" %>
+        <%= c .text_field :phone %>
+      </div>
+      <div>
+        <%= c.label :email, "Email" %>
+        <%= c.text_field :email %>
+      </div>
+      <div>
+        <%= c.label :address, "聯絡地址" %>
+        <%= c.text_field :address %>
+      </div>
+      <div>
+        <%= c.label :about, "關於" %>
+        <%= c.text_field :about %>
+      </div>
+      <div class="login">
+        <%= c.submit "修改", :class => "button btn-success medium" %>
+        <%= link_to '返回', enterprise_companies_path, :class => "button btn-fail medium" %>
+			</div>
+    <% end %>
+  </div>
+</div>
+<div class="col-sm-2"></div>

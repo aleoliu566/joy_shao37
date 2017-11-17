@@ -67,6 +67,12 @@ ul {
     }
   }
 
+  .login {
+    a, a:visited { text-decoration: none; -webkit-transition: color 0.1s ease-in-out; -moz-transition: color 0.1s ease-in-out; -o-transition: color 0.1s ease-in-out; -transition: color 0.1s ease-in-out; outline: 0; color: #fff; font-family: "微軟正黑體"; font-size: 14px;}
+    
+    a:hover, a:focus { color: #fff; }
+  }
+
 }
 
 /* Clear Float */
