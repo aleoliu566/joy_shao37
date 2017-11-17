@@ -37,7 +37,9 @@
 
         <div class="col-sm-6" style="text-align: center">
             <div style="width: 200px; border:1px solid lightgrey;">
-              <%= image_tag @company.logo_url , width:'100%' %>
+                <% if @company.logo_url %>
+                  <%= image_tag @company.logo_url , width:'100%' %>
+                <% end %>
             </div>
             <%#= image_tag("https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/12654697_1648897765370914_301851495806811009_n.jpg?oh=50c51566b15aa8dbc11be69e05722051&oe=5A97F70B", :width => '225px', :height => '225px')%>
         </div>
