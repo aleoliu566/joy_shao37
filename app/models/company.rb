@@ -3,6 +3,8 @@ class Company < ApplicationRecord
   has_many :users
   has_many :articles
 
+  mount_uploader :logo, LogoUploader
+
   def ban
 
     account_status = self.account_status != "banned" ? "banned" : "open"

@@ -22,7 +22,8 @@ class Enterprise::CompaniesController < ApplicationController
   end
 
   def update
-    if Company.hr_update_company(@company.id,company_params[:name],company_params[:phone],company_params[:email],company_params[:address],company_params[:about])
+    if @company.update(company_params)
+    # if Company.hr_update_company(@company.id,company_params[:name],company_params[:phone],company_params[:email],company_params[:address],company_params[:about])
 
       redirect_to enterprise_companies_path
     else
@@ -56,7 +57,7 @@ class Enterprise::CompaniesController < ApplicationController
   end
 
   def company_params
-    params.require(:company).permit(:name, :phone, :email, :address, :about, :user_ids)
+    params.require(:company).permit(:name, :phone, :email, :address, :about, :user_ids,:logo)
   end
   
 end
