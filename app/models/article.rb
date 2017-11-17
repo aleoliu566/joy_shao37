@@ -37,8 +37,11 @@ class Article < ApplicationRecord
     def self.hr_get_all_article(c)
     # 把sql寫在這邊
       query = <<-SQL
-      SELECT * FROM articles
-      WHERE company_id = "#{c}"
+      SELECT articles.id, articles.title, articles.content, users.email, companies.name 
+      FROM articles
+      JOIN users, companies
+      ON articles.user_id = users.id AND articles.company_id = companies.id
+      WHERE articles.company_id = "#{c}"
       SQL
       all_articles = self.find_by_sql(query)  
     end
