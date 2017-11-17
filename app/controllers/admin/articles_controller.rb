@@ -1,5 +1,5 @@
 class Admin::ArticlesController < ApplicationController
-	before_action :set_article, only:[:show,:edit,:update]
+	before_action :set_article, only:[:show,:edit,:update,:audit]
   before_action :set_company, only:[:new,:create]
   before_action :article_params, only:[:update,:create]
 
@@ -10,7 +10,9 @@ class Admin::ArticlesController < ApplicationController
 	end
 
 	def index
-    @articles = Article.all
+    @articles_auditing = Article.where(article_status:'auditing')
+    @articles_failed = Article.where(article_status:'failed')
+    @articles_pass = Article.where(article_status:'pass')
 	end
 
   def edit
@@ -26,12 +28,8 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def audit
-    print "testttt"
-    print params
-    print "~~~~~~"
-    @article = Article.find(params[:id])
     if @article.audit params[:article_status]
-        redirect_to home_path
+        redirect_to admin_articles_path
     else
     end
   end

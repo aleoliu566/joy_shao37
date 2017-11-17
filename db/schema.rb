@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20171117101140) do
     t.string "resume_password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "logo"
   end
 
   create_table "jobs", force: :cascade do |t|
