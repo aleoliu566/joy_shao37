@@ -43,5 +43,20 @@ class Article < ApplicationRecord
       all_articles = self.find_by_sql(query)  
     end
 
+    def audit(article_status)
+
+      # query = <<-SQL
+      # UPDATE articles
+      # SET article_status="#{article_status}"
+      # WHERE title="#{self.title}"
+      # SQL
+
+      #self.find_by_sql(query)
+      self.update_column("article_status", article_status)
+
+
+
+    end
+
 
 end
