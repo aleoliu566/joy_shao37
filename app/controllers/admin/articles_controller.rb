@@ -25,6 +25,17 @@ class Admin::ArticlesController < ApplicationController
     end
   end
 
+  def audit
+    print "testttt"
+    print params
+    print "~~~~~~"
+    @article = Article.find(params[:id])
+    if @article.audit params[:article_status]
+        redirect_to home_path
+    else
+    end
+  end
+
   private
 
   def article_params

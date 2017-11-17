@@ -15,9 +15,16 @@ Rails.application.routes.draw do
       end
       resources :jobs
     end
+
     
     resources :jobs, only:[:index]
-    resources :articles
+    
+    resources :articles do
+      member do
+        post :audit
+      end
+    end
+
     resources :users
     patch 'set_admin', :to => 'users#set_admin'
 

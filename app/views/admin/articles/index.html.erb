@@ -15,6 +15,27 @@
       <td>
         <%= link_to "編輯文章", edit_admin_article_path(article) %>
       </td>
+      <td>
+
+        <% if article.article_status == 'auditing' %>
+          <span>審核中</span> 
+          <%= link_to audit_admin_article_path(article, :article_status=>"pass"), method: :audit, data: {confirm:"確定要讓此篇文章審核通過嗎？"}, :class => "btn btn-success btn-xs" do %>
+            <i class="fa fa-check"></i>
+            <span>審核通過</span> 
+          <% end %>
+          <%= link_to audit_admin_article_path(article, :article_status=>"failed"), method: :audit, data: { confirm:"此篇文章審核「未」通過" }, :class => "btn btn-danger btn-xs" do %>
+            <i class="fa fa-ban"></i>
+            <span>審核未通過</span> 
+          <% end %>
+        <% elsif  article.article_status == 'pass'%>
+          <span>審核通過</span>
+        <% else %>
+          <span>審核未通過</span>
+
+     
+        <% end %>
+        
+      </td>
     </tr>
   <% end %>
 </table>
