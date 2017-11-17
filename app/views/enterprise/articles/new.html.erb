@@ -1,12 +1,25 @@
-<p>新增文章</p>
-
-<%= form_for @article ,:url => enterprise_company_articles_path(@company), :method => :post do |j|%>
-  <%= j.label "文章標題： " %>
-  <%= j.text_field :title%>
-  <br>
-  <%= j.label "文章內容： " %>
-  <%= j.text_area :content %>
-  <br>
-  <%= j.submit "確認"%>
-  <%= link_to "取消", enterprise_company_articles_path %>
-<% end %>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <div class="unit">
+    <div class="page-title">
+      <h2>新增文章</h2>
+      <div class="bolded-line"></div>
+    </div>
+    <br>
+    <%= form_for @article ,:url => enterprise_company_articles_path(@company), :method => :post do |j|%>
+      <div>
+        <%= j.label :title, "標題" %>
+        <%= j.text_field :title %>
+      </div>
+      <div>
+        <%= j.label :content, "內容" %>
+        <%= j.text_area :content %>
+      </div>
+      <div class="login">
+        <%= j.submit "新增", :class => "button btn-success medium" %>
+        <%= link_to '返回', enterprise_company_articles_path, :class => "button btn-fail medium" %>
+			</div>
+    <% end %>
+  </div>
+</div>
+<div class="col-sm-2"></div>
