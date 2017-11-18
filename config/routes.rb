@@ -42,7 +42,9 @@ Rails.application.routes.draw do
   end
 
   
-  resources :jobs  
+  resources :jobs
+  
+  resources :articles
 
   root 'companies#home'
   resources :companies do
