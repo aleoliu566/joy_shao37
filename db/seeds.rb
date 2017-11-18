@@ -13,4 +13,3 @@ User.create([email: 'test1@gmail.com',   password: '12345678', password_confirma
 User.create([email: 'admin@gmail.com',   password: '12345678', password_confirmation: '12345678', name: 'admin測試帳號', role: 1])
 User.create([email: 'company@gmail.com', password: '12345678', password_confirmation: '12345678', name: 'company測試帳號', company_id: Company.find_by(name:'google').id])
 
-

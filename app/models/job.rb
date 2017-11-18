@@ -16,11 +16,26 @@ class Job < ApplicationRecord
       self.find_by_sql(query)
     end
 
-  	#READ JOB 
+  	# #READ JOB 
+   #  def self.hr_get_all_job(c)
+   #   # 把sql寫在這邊
+   #   query = <<-SQL
+   #   SELECT jobs.id, jobs.name, jobs.published_on, jobs.content, jobs.year_salary_ceiling, jobs.year_salary_floor, jobs.hour_salary_ceiling,jobs.hour_salary_floor, users.email
+   #   FROM jobs
+   #   JOIN users, resumes
+   #   ON resumes.user_id = users.id 
+   #   WHERE jobs.company_id = "#{c}"
+   #   SQL
+   #   all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
+   #  end
+
+    #READ JOB 
     def self.hr_get_all_job(c)
      # 把sql寫在這邊
      query = <<-SQL
-     SELECT * FROM jobs WHERE company_id = "#{c}"
+     SELECT *
+     FROM jobs
+     WHERE jobs.company_id = "#{c}"
      SQL
      all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
     end
