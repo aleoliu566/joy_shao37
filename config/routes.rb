@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :tags
+
     resources :users
     patch 'set_admin', :to => 'users#set_admin'
 
