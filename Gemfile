@@ -37,7 +37,7 @@ gem 'jquery-rails'
 gem 'font-awesome-rails', '~> 4.3'
 
 gem 'carrierwave'
-gem "rmagick", :require => 'RMagick' 
+# gem "rmagick", :require => 'RMagick'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
