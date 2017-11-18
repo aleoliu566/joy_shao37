@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :jobs
       resources :articles
       get 'record', :to => 'resumes#record'
+      post 'ban', :to => 'jobs#ban'
     end
   end
 

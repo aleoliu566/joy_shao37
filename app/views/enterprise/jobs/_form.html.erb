@@ -1,6 +1,11 @@
   <%= j.label :職位名稱%>
   <%= j.text_field :name%>
   <br>
+
+  <%= j.label :職缺標籤%>
+  <%= j.collection_select :tag_ids, Tag.all, :id, :name %>
+
+  <br>
   <%= j.label :發佈日期%>
   <%= j.date_field :published_on %>
   <br>

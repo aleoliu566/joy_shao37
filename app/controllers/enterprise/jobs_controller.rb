@@ -6,7 +6,8 @@ class Enterprise::JobsController < ApplicationController
   layout 'enterprise'
   #current_user.company
   def index
-    @jobs = Job.hr_get_all_job(params[:company_id]) #沒有current_user令人擔心
+    @jobs = Job.hr_get_all_job(params[:company_id]) #只取該公司的資料
+
   end
 
   def new
@@ -15,7 +16,7 @@ class Enterprise::JobsController < ApplicationController
 
   def create
     #@job = current_user.company.jobs.new(job_params)
-    if @job = Job.hr_create_job(params[:company_id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor],job_params[:year_salary_ceiling],job_params[:year_salary_floor])
+    if Job.hr_create_job(params[:company_id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor],job_params[:year_salary_ceiling],job_params[:year_salary_floor])
       redirect_to enterprise_company_jobs_path
     else
       render :action => :new
@@ -28,7 +29,7 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def edit
-    
+    @tag = Tag.get_all_tags()
   end
 
   def update
@@ -43,6 +44,14 @@ class Enterprise::JobsController < ApplicationController
   def destroy
     Job.hr_delete_job(@job.id)
     redirect_to enterprise_company_jobs_path
+  end
+
+    def ban
+        @job = Job.find(params[:id])
+    if @job.ban
+        redirect_to home_path
+    else
+    end
   end
 
   private

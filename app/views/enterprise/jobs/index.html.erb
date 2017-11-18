@@ -16,10 +16,12 @@
         <th>時薪 / 月薪</th>
         <th>標籤</th>  
         <th>刊登日期</th>
+        <th>狀態</th>
         <th style="width: 270px"></th>
       </tr>
     </thead>
     <tbody>
+
       <% @jobs.each do |job| %>
         <tr>
           <td>
@@ -31,11 +33,31 @@
             <% else %>
             月薪 <%= job.year_salary_floor %> - <%= job.year_salary_ceiling %>
             <% end %>
+          </td>       
+          <td>
+ <!--     <% t = job.tag.split(',') %>
+          <% ary = Array.new(t) %> 
+          <%= ary %> --> 
+          <%= job.tag %>
           </td>
-          <td></td>
           <td>
             <%= job.published_on %>
           </td>
+
+          <td>
+           <% if job.status != 'banned' %>
+              <%= link_to enterprise_company_ban_path(@company.id), method: :ban, data: {confirm:"您確定要停權該企業嗎？"}, :class => "btn btn-danger btn-xs" do %>
+                <i class="fa fa-ban"></i>
+                <span>關閉</span> 
+              <% end %>
+            <% else job.status != 'open' %>
+              <%= link_to enterprise_company_ban_path(@company.id), method: :ban, data: { confirm:"您確定要開放該企業嗎？" }, :class => "btn btn-warning btn-xs" do %>
+                <i class="fa fa-check"></i>
+                <span>開放</span> 
+              <% end %>
+            <% end %>
+          </td>
+
           <td>
             <%= link_to enterprise_company_job_path(@company,job), :class => "btn btn-success btn-xs" do %>
               <i class="fa fa-eye"></i>
