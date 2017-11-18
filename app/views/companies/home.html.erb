@@ -11,6 +11,9 @@
 <% @companies.each do |company|%>
   <div class="col-sm-4 home-company-block">
     <div>
+      <% if company.logo_url %>
+        <%= image_tag company.logo_url , width:'50px' %>
+      <% end %>
       <%= company.name %><br>
       <p>
         <%= company.about %>

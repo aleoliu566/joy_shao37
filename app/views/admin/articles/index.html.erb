@@ -1,20 +1,8 @@
-<p>文章管理</p>
+<h3>文章管理</h3>
 
-<table class="table table-bordered">
-  <% @articles.each do |article|%>
-    <tr>
-      <td>
-        <%= article.title %>
-      </td>
-      <td>
-        <%= article.content %>
-      </td>
-      <td>
-        發布公司:<%= article.company.name%>
-      </td>
-      <td>
-        <%= link_to "編輯文章", edit_admin_article_path(article) %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<p>尚未審核文章</p>
+<%= render "form", :articles => @articles_auditing %>
+<p>未通過審核文章</p>
+<%= render "form", :articles => @articles_failed %>
+<p>審核通過文章</p>
+<%= render "form", :articles => @articles_pass %>

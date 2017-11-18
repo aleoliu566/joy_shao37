@@ -3,20 +3,26 @@ class Company < ApplicationRecord
   has_many :users
   has_many :articles
 
+  mount_uploader :logo, LogoUploader
+
   def ban
 
+    account_status = self.account_status != "banned" ? "banned" : "open"
+    # 若account_status="banned"，代表該公司被停權，禁止新增職缺
+
   	# query = <<-SQL
-  	# UPDATE account_status="banned" FROM companies WHERE name="#{self.name}"
+  	# UPDATE companies
+   #  SET account_status="#{account_status}"
+   #  WHERE name="#{self.name}"
   	# SQL
-  	# 若account_status="banned"，代表該公司被停權，禁止新增職缺
-    
-    # 判斷公司是否被停權
-    if self.account_status != "banned"
-    	self.update_column("account_status", "banned")
-    else
-      self.update_column("account_status", "open")
-    end
+
+   #  self.find_by_sql(query)
+  
+   self.update_column("account_status", account_status)
+
+
   end
+
 
     #UPDATE 
   def self.hr_update_company(c,name,phone,email,address,about)
