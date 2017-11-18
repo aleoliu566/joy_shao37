@@ -1,8 +1,15 @@
-<h3>文章管理</h3>
+<div class="col-sm-1"></div>
+<div class="col-sm-10">
+  <div class="page-title">
+    <h2>文章管理</h2>
+    <div class="bolded-line"></div>
+  </div>
 
-<p>尚未審核文章</p>
-<%= render "form", :articles => @articles_auditing %>
-<p>未通過審核文章</p>
-<%= render "form", :articles => @articles_failed %>
-<p>審核通過文章</p>
-<%= render "form", :articles => @articles_pass %>
+  <p>尚未審核文章</p>
+  <%= render "form", :articles => @articles_auditing %>
+  <p>未通過審核文章</p>
+  <%= render "form", :articles => @articles_failed %>
+  <p>審核通過文章</p>
+  <%= render "form", :articles => @articles_pass %>
+</div>
+<div class="col-sm-1"></div>
