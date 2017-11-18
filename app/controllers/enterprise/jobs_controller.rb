@@ -7,11 +7,11 @@ class Enterprise::JobsController < ApplicationController
   #current_user.company
   def index
     @jobs = Job.hr_get_all_job(params[:company_id]) #只取該公司的資料
-
   end
 
   def new
     @job = Job.new
+    @tags = Tag.get_all_tags()
   end
 
   def create
@@ -29,11 +29,12 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def edit
-    @tag = Tag.get_all_tags()
+    @tags = Tag.get_all_tags()
   end
 
   def update
-    if Job.hr_update_job(params[:id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor],job_params[:year_salary_ceiling],job_params[:y])
+
+    if Job.hr_update_job(params[:id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:hour_salary_ceiling],job_params[:hour_salary_floor],job_params[:year_salary_ceiling],job_params[:year_salary_floor])
 
       redirect_to enterprise_company_jobs_path
     else
@@ -46,10 +47,10 @@ class Enterprise::JobsController < ApplicationController
     redirect_to enterprise_company_jobs_path
   end
 
-    def ban
-        @job = Job.find(params[:id])
-    if @job.ban
-        redirect_to home_path
+  #close_open_job
+  def ban
+    if Job.close_open_job(params[:id],params[:close])
+       redirect_to enterprise_company_jobs_path
     else
     end
   end
@@ -65,7 +66,7 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:name, :published_on, :content, :hour_salary_ceiling, :hour_salary_floor, :year_salary_ceiling, :year_salary_floor )
+    params.require(:job).permit(:name, :published_on, :content, :hour_salary_ceiling, :hour_salary_floor, :year_salary_ceiling, :year_salary_floor, meat: [] )
   end
 
 end

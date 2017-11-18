@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   namespace :enterprise do
     resources :companies do
       resources :jobs
+      post 'ban', :to => 'jobs#ban'
       resources :articles
       get 'record', :to => 'resumes#record'
-      post 'ban', :to => 'jobs#ban'
     end
   end
 

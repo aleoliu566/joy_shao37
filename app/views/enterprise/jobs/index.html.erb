@@ -43,21 +43,19 @@
           <td>
             <%= job.published_on %>
           </td>
-
           <td>
-           <% if job.status != 'banned' %>
-              <%= link_to enterprise_company_ban_path(@company.id), method: :ban, data: {confirm:"您確定要停權該企業嗎？"}, :class => "btn btn-danger btn-xs" do %>
+           <% if job.status != 'open' %>
+              <%= link_to enterprise_company_ban_path(@company.id, :id => job.id, :'close' => 'close'), method: :ban, :class => "btn btn-danger btn-xs" do %>
                 <i class="fa fa-ban"></i>
                 <span>關閉</span> 
               <% end %>
-            <% else job.status != 'open' %>
-              <%= link_to enterprise_company_ban_path(@company.id), method: :ban, data: { confirm:"您確定要開放該企業嗎？" }, :class => "btn btn-warning btn-xs" do %>
+            <% else job.status != 'close' %>
+              <%= link_to enterprise_company_ban_path(@company.id, :id => job.id, :'close' => 'open'), method: :ban, :class => "btn btn-warning btn-xs" do %>
                 <i class="fa fa-check"></i>
                 <span>開放</span> 
               <% end %>
             <% end %>
           </td>
-
           <td>
             <%= link_to enterprise_company_job_path(@company,job), :class => "btn btn-success btn-xs" do %>
               <i class="fa fa-eye"></i>

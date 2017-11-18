@@ -3,7 +3,10 @@
   <br>
 
   <%= j.label :職缺標籤%>
-  <%= j.collection_select :tag_ids, Tag.all, :id, :name %>
+  <%  @tags.each do |tag| %>
+  <%= check_box_tag 'tag[name][]', tag.name, false, :id => tag.id %>
+      <%= tag.name %> 
+  <% end %>
 
   <br>
   <%= j.label :發佈日期%>
