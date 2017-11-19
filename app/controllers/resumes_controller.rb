@@ -20,6 +20,20 @@ class ResumesController < ApplicationController
     end
   end
 
+  # def create
+  #   @resume = Resume.new(resume_params)
+  #   @resume.user_id = current_user.id
+
+  #   if @resume = Resume.create_resume(current_user.id,resume_params[:name],resume_params[:content],resume_params[:attachment])
+
+  #     redirect_to new_user_resume_path(current_user.id)
+  #     # , notice: "The resume #{@resume.name} has been uploaded."
+
+  #   else
+  #     render "new"
+  #   end
+  # end
+
   def record
     # Resume.where(user_id: current_user.id).ids
     @resumeJobships = ResumeJobship.where(resume_id:Resume.where(user_id: current_user.id).ids).order(id: :desc)

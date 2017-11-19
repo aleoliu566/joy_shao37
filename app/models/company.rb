@@ -24,7 +24,7 @@ class Company < ApplicationRecord
   end
 
 
-    #UPDATE 
+  #UPDATE 
   def self.hr_update_company(c,name,phone,email,address,about)
     t = DateTime.now
     query = <<-SQL

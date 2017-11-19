@@ -1,0 +1,13 @@
+<h3>公司介紹</h3>
+
+
+<%= @company.name %>
+瀏覽次數：<%= @company.views_count %>
+
+<h3>公司職缺</h3>
+
+<% @company.jobs.each do |job| %>
+  <%= job.name %>
+  <%= link_to "應徵", check_resume_company_job_path(@company,job) %>
+  <br>
+<% end %>

@@ -45,7 +45,7 @@
   <tbody>
     <% @job.resumes.each do |resume|%>
       <tr>
-        <td><%= resume.user.email %></td>
+        <td><%= resume.email %></td>
         <td><%= link_to resume.name, resume.attachment_url %></td>
       </tr>
     <% end %>
