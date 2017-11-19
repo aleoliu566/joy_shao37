@@ -5,11 +5,13 @@
     <div class="bolded-line"></div>
   </div>
 
-  <p>尚未審核文章</p>
+  <span class="label label-default">尚未審核</span>
   <%= render "form", :articles => @articles_auditing %>
-  <p>未通過審核文章</p>
-  <%= render "form", :articles => @articles_failed %>
-  <p>審核通過文章</p>
+  <br>
+  <span class="label label-success">審核通過</span>
   <%= render "form", :articles => @articles_pass %>
+  <br>
+  <span class="label label-danger">審核未通過</span>
+  <%= render "form", :articles => @articles_failed %>
 </div>
 <div class="col-sm-1"></div>
