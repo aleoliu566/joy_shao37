@@ -54,6 +54,7 @@ group :development, :test do
   gem 'hirb-unicode'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
+  gem 'cloudinary'
 end
 
 group :development do
@@ -66,7 +67,7 @@ group :development do
 end
 
 group :production do
-  gem 'mysql2'
+  # gem 'mysql2'
   gem 'cloudinary'
 end
 

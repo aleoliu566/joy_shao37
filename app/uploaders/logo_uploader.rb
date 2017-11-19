@@ -5,18 +5,18 @@ class LogoUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   
-  if Rails.env.production?
+  # if Rails.env.production?
     include Cloudinary::CarrierWave
 
     version :display do
       process :eager => true
       process :resize_to_fill => [200, 200, :north]
     end
-  end
+  # end
 
-  if Rails.env.development?
-    storage :file
-  end
+  # if Rails.env.development?
+  #   storage :file
+  # end
 
   # storage :fog
 
