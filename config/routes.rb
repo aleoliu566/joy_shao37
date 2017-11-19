@@ -17,9 +17,7 @@ Rails.application.routes.draw do
       resources :jobs
     end
 
-    
     resources :jobs, only:[:index]
-    
     resources :articles do
       member do
         post :audit
@@ -36,12 +34,13 @@ Rails.application.routes.draw do
 
   # 後台首頁
   get 'home', :to => 'admin/companies#home'
-  get 'article', :to => 'admin/articles#say'
+  # get 'article', :to => 'admin/articles#say'
   devise_for :users
 
   resources :users do
     resources :resumes, only: [:index, :new, :create, :destroy]
     get 'record', :to => 'resumes#record'
+    get 'collect', :to => 'companies#collect'
   end
 
   
@@ -50,6 +49,7 @@ Rails.application.routes.draw do
   resources :articles
 
   root 'companies#home'
+
   resources :companies do
     resources :jobs do
       member do
@@ -58,6 +58,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :articles, only: [:show, :index]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 

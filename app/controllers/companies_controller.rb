@@ -4,4 +4,8 @@ class CompaniesController < ApplicationController
     @jobs = Job.get_all_job
     @companies = Company.all
   end
+
+  def collect
+    
+  end
 end
