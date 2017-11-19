@@ -4,8 +4,20 @@ class LogoUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
-  # Choose what kind of storage to use for this uploader:
-  storage :file
+  
+  if Rails.env.production?
+    include Cloudinary::CarrierWave
+
+    version :display do
+      process :eager => true
+      process :resize_to_fill => [200, 200, :north]
+    end
+  end
+
+  if Rails.env.development?
+    storage :file
+  end
+
   # storage :fog
 
   # Override the directory where uploaded files will be stored.

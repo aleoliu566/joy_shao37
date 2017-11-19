@@ -37,6 +37,7 @@ gem 'jquery-rails'
 gem 'font-awesome-rails', '~> 4.3'
 
 gem 'carrierwave'
+
 # gem "rmagick", :require => 'RMagick'
 
 # Use Capistrano for deployment
@@ -62,6 +63,7 @@ end
 
 group :production do
   gem 'mysql2'
+  gem 'cloudinary'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
