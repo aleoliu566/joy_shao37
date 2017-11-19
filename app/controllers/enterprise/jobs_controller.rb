@@ -35,9 +35,7 @@ class Enterprise::JobsController < ApplicationController
   end
 
   def update
-
-    if Job.hr_update_job(params[:id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:salary],job_params[:tag_ids => []])
-      binding.pry
+    if Job.hr_update_job(params[:id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:salary],job_params[:tag_ids])
       redirect_to enterprise_company_jobs_path
     else
       render :action => :edit

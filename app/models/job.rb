@@ -7,7 +7,7 @@ class Job < ApplicationRecord
   has_many :tags, :through => :tag_jobships
   #資料驗證
   validates_presence_of :name, :published_on, :content, :hour_salary_ceiling, :hour_salary_floor, :year_salary_floor, :year_salary_ceiling
-
+  
     #CREATE JOB
     def self.hr_create_job(cid,n,p,c,s)
       t = DateTime.now
@@ -17,6 +17,7 @@ class Job < ApplicationRecord
       SQL
       self.find_by_sql(query)
     end
+
 
   	#READ COMPANY'S JOB (取得Job name, salary, tag, published_date)
     #http://ponshanecode.blogspot.tw/2014/08/mysql.html M:N inner join
@@ -43,8 +44,23 @@ class Job < ApplicationRecord
      all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
     end
 
+  	# #READ JOB 
+   #  def self.hr_get_all_job(c)
+   #   # 把sql寫在這邊
+   #   query = <<-SQL
+   #   SELECT jobs.id, jobs.name, jobs.published_on, jobs.content, jobs.year_salary_ceiling, jobs.year_salary_floor, jobs.hour_salary_ceiling,jobs.hour_salary_floor, users.email
+   #   FROM jobs
+   #   JOIN users, resumes
+   #   ON resumes.user_id = users.id 
+   #   WHERE jobs.company_id = "#{c}"
+   #   SQL
+   #   all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
+   #  end
+
+
+  
     #UPDATE
-    def self.hr_update_job(j,n,p,c,s,tid)
+    def self.hr_update_job(j,n,p,c,s,tagid)
       t = DateTime.now
       query = <<-SQL
       UPDATE jobs
@@ -53,13 +69,23 @@ class Job < ApplicationRecord
       SQL
       self.find_by_sql(query)
 
-      # query2 = <<-SQL
-      # UPDATE tag_jobships
-      # SET tag_id = "#{tid}"
-      # WHERE job_id = "#{j}"
-      # SQL
-      # self.find_by_sql(query2)
+      query2 = <<-SQL
+      DELETE FROM tag_jobships
+      WHERE job_id = "#{j}"
+      SQL
+      self.find_by_sql(query2)
 
+      #產生的Arr => ["",2,3] 只勾第二和第三個 
+      #將empty string刪除
+      noEmptyTags = tagid.reject { |tagid| tagid.empty? }
+      #取每個array的值新增TagJobship table的資料
+      noEmptyTags.each do |tagid|
+      query3 = <<-SQL
+      INSERT INTO tag_jobships(tag_id,job_id,created_at,updated_at)
+      VALUES ("#{tagid}","#{j}","#{t}","#{t}")
+      SQL
+      self.find_by_sql(query3)
+      end
 
     end
 

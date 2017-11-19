@@ -8,13 +8,14 @@
 
 
 <p>公司介紹</p>
-<% @companies.each do |company|%>
+<% @companies.each do |company| %>
   <div class="col-sm-4 home-company-block">
     <div>
       <% if company.logo_url %>
         <%= image_tag company.logo_url , width:'50px' %>
       <% end %>
-      <%= company.name %><br>
+      <%= link_to company.name, company_path(company) %>
+      <br>
       <p>
         <%= company.about %>
       </p>
