@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171117101140) do
+ActiveRecord::Schema.define(version: 20171119053748) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20171117101140) do
     t.integer "scale"
     t.integer "views_count", default: 0
     t.string "account_status"
-    t.string "resume_password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "logo"
@@ -47,12 +46,9 @@ ActiveRecord::Schema.define(version: 20171117101140) do
     t.string "status"
     t.integer "views_count", default: 0
     t.integer "company_id"
-    t.integer "year_salary_ceiling"
-    t.integer "year_salary_floor"
-    t.integer "hour_salary_ceiling"
-    t.integer "hour_salary_floor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "salary"
   end
 
   create_table "resume_jobships", force: :cascade do |t|
