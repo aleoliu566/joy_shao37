@@ -19,30 +19,26 @@
     <tbody>
 
       <% @jobInfos.each do |jobInfo| %>
-
         <% resumesStr = "" %>
-        
         <% jobResume = @jobResumes[jobInfo.id.to_s.to_sym] %>
-
         <% if jobResume != nil %>
-          <% print("@@@@@@@@@@@@@@---"+jobResume.to_s+"---@@@@@@@@@@@@@@@@@@") %>
-          
           <% jobResume.each do |resume| %>
-            <%#= resume.name %>
             <% resumesStr += resume.name.to_s  %>
           <% end %>
-          <% resumeCount = jobResume.count %>
-        <% else%>
-          <% resumeCount = 0 %>
-        <% end %>
-      
+        <% end %>      
       <tr>
         <td><%= jobInfo.name %></td>
         <td><%= jobInfo.content %></td>
         <td><%= jobInfo.companyName  %></td>
-        <td><%= resumeCount %></td>
+        <td><%= jobInfo.resumes.count %></td>
         <td><%=  %></td>
         <td><%= resumesStr %></td>
+
+        <!-- <td> -->
+          <%# jobInfo.resumes.each do |resume|%>
+            <%#= resume.user.name %>
+          <%# end %>
+        <!-- </td> -->
       </tr>
       <% end %>
     </tbody>
