@@ -17,13 +17,8 @@
       <%= @job.content %>
     </li>
     <li>
-      <% if @job.hour_salary_floor && @job.hour_salary_ceiling != 0  %>
-      <span>薪資 - 時薪</span>
-      <%= @job.hour_salary_floor %> - <%= @job.hour_salary_ceiling %>
-      <% else %>
-      <span>薪資 - 月薪</span>
-      <%= @job.year_salary_floor %> - <%= @job.year_salary_ceiling %>
-      <% end %>
+      <span>待遇</span>
+      <%= @job.salary %>
     </li>
   </ul>
 </div>

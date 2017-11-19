@@ -1,5 +1,5 @@
 <div>
-  <%= j.label :name, "職位名稱" %>
+  <%= j.label :name, "職缺名稱" %>
   <%= j.text_field :name %>
 </div>
 <div>
@@ -7,16 +7,12 @@
   <%= j.date_field :published_on %>
 </div>
 <div>
-  <%= j.label :content, "職位內容" %>
+  <%= j.label :content, "職缺內容" %>
   <%= j.text_area :content %>
 </div>
 <div>
-  <%= j.label :時薪%>
-  <%= j.number_field :hour_salary_floor %> - <%= j.number_field :hour_salary_ceiling %>
-  <br>
-  <%= j.label :月薪%>
-  <%= j.number_field :year_salary_floor %> - <%= j.number_field :year_salary_ceiling %>
-  <br>
+  <%= j.label :salary, "待遇" %>
+  <%= j.text_field :salary %>
 </div>
   
   
