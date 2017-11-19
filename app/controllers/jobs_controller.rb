@@ -8,7 +8,7 @@ class JobsController < ApplicationController
   end
 
   def show
-    
+    @tag = TagJobship.get_job_tag(params[:id])
   end
 
   def check_resume

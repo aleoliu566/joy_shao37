@@ -7,6 +7,7 @@ class Enterprise::JobsController < ApplicationController
   #current_user.company
   def index
     @jobs = Job.hr_get_all_job(params[:company_id]) #只取該公司的資料
+    @tag = TagJobship.get_job_tag(params[:id])
 
   end
 
@@ -26,7 +27,7 @@ class Enterprise::JobsController < ApplicationController
 
 
   def show
-
+     @tag = TagJobship.get_job_tag(params[:id])
   end
 
   def edit

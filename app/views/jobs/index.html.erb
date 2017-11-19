@@ -1,6 +1,9 @@
 <p>職缺</p>
 
 <% @jobs.each do |job| %>
+  <% job.tags.each do |d| %>
+     <%= d.name %>
+  <% end %>
   <%= link_to job_path(job) do %>
     <div class="panel panel-default">
       <div class="panel-body">

@@ -1,3 +1,4 @@
+<% if current_user.company.account_status == "open" %>
 <h2><%= current_user.company.name %></h2>
 <ul>
   <li>
@@ -25,3 +26,33 @@
     <% end %>
   </li>
 </ul>
+<% else %>
+  <h2><%= current_user.company.name %></h2>
+  <ul>
+    <li>
+      <%= link_to  do %>
+        <i class="fa fa-building"></i>
+        <span>&nbsp;企業資訊</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to  do %>
+        <i class="fa fa-paper-plane-o"></i>
+        <span>&nbsp;應徵紀錄</span>
+      <% end %>
+    </li>
+     <li>
+      <%= link_to  do%>
+        <i class="fa fa-suitcase"></i>
+        <span>&nbsp;職缺管理</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to  do %>
+        <i class="fa fa-newspaper-o"></i>
+        <span>&nbsp;文章管理</span>
+      <% end %>
+    </li>
+  </ul>
+  <h2>停權中</h2>
+<% end %>

@@ -3,11 +3,13 @@
     <li>
       <span>職缺名稱</span>
       <%= @job.name %>
+    <li>
+    <li>
+      <span>這裡讓你改標籤喔～～～～～～～</span>
+        <% @tag.each do |d| %>
+        <%= d.name %>
+        <% end %>
     </li>
-    <%#li>
-      這裡想要放置職業的Tag，或是將他變成漂亮的標籤～～～
-      <span>Tag</span>
-    </li%>
     <li>
       <span>刊登日期</span>
       <%= @job.published_on %>
