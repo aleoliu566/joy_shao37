@@ -64,6 +64,19 @@ class Job < ApplicationRecord
      all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
     end
 
+     def self.get_job(c)
+     # 把sql寫在這邊
+     query = <<-SQL
+     SELECT jobs.*, GROUP_CONCAT (tags.name) AS tag
+     FROM tags,tag_jobships,jobs
+     WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND company_id = '#{c}' AND status = "open"
+     GROUP BY jobs.id
+     SQL
+     all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
+    end
+
+
+
   	# #READ JOB 
    #  def self.hr_get_all_job(c)
    #   # 把sql寫在這邊

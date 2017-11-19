@@ -31,10 +31,12 @@
             <%= job.salary %>
           </td>       
           <td>
- <!--     <% t = job.tag.split(',') %>
-          <% ary = Array.new(t) %> 
-          <%= ary %> --> 
-          <%= job.tag %>
+
+          <% tag = job.tag.split(',') %>
+          <% tag.each do |tag| %>
+            <%= tag %>
+          <% end %> 
+
           </td>
           <td>
             <%= job.published_on %>
