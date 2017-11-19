@@ -2,39 +2,48 @@
   <% articles.each do |article|%>
     <tr>
       <th>文章標題</th>
-      <th>文章內容</th>
       <th>發佈企業</th>
-      <th></th>
+      <th>發佈日期</th>
+      <% if article.article_status == 'auditing' %>
+        <th style="width: 160px">審核</th>
+      <% end %>
+      <th style="width: 150px"></th>
     </tr>
     <tr>
       <td>
         <%= article.title %>
       </td>
-      <td>
+   <!--   <td>
         <%= truncate(article.content, length: 17) %>
-      </td>
+      </td>-->
       <td>
         <%= article.company.name%>
       </td>
       <td>
-        <%= link_to "編輯文章", edit_admin_article_path(article) %>
-
-        <% if article.article_status == 'auditing' %>
-          <span>審核中</span> 
-          <%= link_to audit_admin_article_path(article, :article_status=>"pass"), method: :audit, data: {confirm:"確定要讓此篇文章審核通過嗎？"}, :class => "btn btn-success btn-xs" do %>
-            <i class="fa fa-check"></i>
-            <span>審核通過</span> 
-          <% end %>
-          <%= link_to audit_admin_article_path(article, :article_status=>"failed"), method: :audit, data: { confirm:"此篇文章審核「未」通過" }, :class => "btn btn-danger btn-xs" do %>
-            <i class="fa fa-ban"></i>
-            <span>審核未通過</span> 
-          <% end %>
-        <% elsif  article.article_status == 'pass'%>
-          <span>審核通過</span>
-        <% else %>
-          <span>審核未通過</span>
+        <%= article.created_at.localtime.strftime("%Y/%m/%d")%>
+      </td>
+      <% if article.article_status == 'auditing' %>
+      <td class="article-status">
+        <%= link_to audit_admin_article_path(article, :article_status=>"pass"), method: :audit, data: {confirm:"您確定要讓此篇文章審核通過嗎？"}, :class => "btn btn-warning btn-xs" do %>
+          <i class="fa fa-check"></i>
+          <span>通過</span> 
         <% end %>
-        
+        <%= link_to audit_admin_article_path(article, :article_status=>"failed"), method: :audit, data: { confirm:"您確定要讓此篇文章審核「未」通過嗎？" }, :class => "btn btn-danger btn-xs" do %>
+          <i class="fa fa-ban"></i>
+          <span>不通過</span> 
+        <% end %>
+      </td>
+      <% end %>
+      <td>
+        <%= link_to article_path(article), target: "_blank" , :class => "btn btn-success btn-xs" do %>
+          <i class="fa fa-file-text-o"></i>
+          <span>查看</span>
+        <% end %>
+
+        <%= link_to edit_admin_article_path(article), :class => "btn btn-primary btn-xs" do %>
+          <i class="fa fa-edit"></i>
+          <span>編輯</span>
+        <% end %>
       </td>
     </tr>
   <% end %>

@@ -73,6 +73,22 @@ ul {
     a:hover, a:focus { color: #fff; }
   }
 
+  h5 {
+    color: #12BDBC;
+  }
+
+  span.label {
+    font-size: 14px;
+    margin-bottom: 15px;
+    display: inline-block;
+    padding: 6px 8px;
+    font-weight: initial;
+  } 
+
+  .label-success {
+    background-color: #12BDBC;
+  }
+
 }
 
 /* Clear Float */
