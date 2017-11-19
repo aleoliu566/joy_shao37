@@ -13,7 +13,7 @@
     <thead>
       <tr>
         <th>職缺</th>
-        <th>時薪 / 月薪</th>
+        <th>薪資待遇</th>
         <th>標籤</th>  
         <th>刊登日期</th>
         <th>狀態</th>
@@ -28,11 +28,7 @@
             <%= job.name %>
           </td>
           <td>
-            <% if job.hour_salary_floor&&job.hour_salary_ceiling != 0  %>
-            時薪 <%= job.hour_salary_floor %> - <%= job.hour_salary_ceiling %>
-            <% else %>
-            月薪 <%= job.year_salary_floor %> - <%= job.year_salary_ceiling %>
-            <% end %>
+            <%= job.salary %>
           </td>       
           <td>
  <!--     <% t = job.tag.split(',') %>

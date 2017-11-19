@@ -9,11 +9,11 @@ class Job < ApplicationRecord
   validates_presence_of :name, :published_on, :content, :hour_salary_ceiling, :hour_salary_floor, :year_salary_floor, :year_salary_ceiling
 
     #CREATE JOB
-    def self.hr_create_job(cid,n,p,c,hc,hf,yc,yf)
+    def self.hr_create_job(cid,n,p,c,s)
       t = DateTime.now
       query = <<-SQL
-      INSERT INTO jobs(company_id,name,published_on,content,hour_salary_ceiling,hour_salary_floor,year_salary_ceiling,year_salary_floor,created_at,updated_at,status)
-      VALUES ("#{cid}","#{n}","#{p}","#{c}","#{hc}","#{hf}","#{yc}","#{yf}","#{t}" ,"#{t}","open")
+      INSERT INTO jobs(company_id,name,published_on,content,salary,created_at,updated_at,status)
+      VALUES ("#{cid}","#{n}","#{p}","#{c}","#{s}","#{t}" ,"#{t}","open")
       SQL
       self.find_by_sql(query)
     end
@@ -44,21 +44,21 @@ class Job < ApplicationRecord
     end
 
     #UPDATE
-    def self.hr_update_job(j,n,p,c,hc,hf,yc,yf,tid)
+    def self.hr_update_job(j,n,p,c,s,tid)
       t = DateTime.now
       query = <<-SQL
       UPDATE jobs
-      SET name = "#{n}", published_on = "#{p}", content = "#{c}", hour_salary_ceiling = "#{hc}", hour_salary_floor = "#{hf}", updated_at = "#{t}", year_salary_ceiling = "#{yc}", year_salary_floor = "#{yf}"
+      SET name = "#{n}", published_on = "#{p}", content = "#{c}", salary = "#{s}", updated_at = "#{t}"
       WHERE id = "#{j}"
       SQL
       self.find_by_sql(query)
 
-      query2 = <<-SQL
-      UPDATE tag_jobships
-      SET tag_id = "#{tid}"
-      WHERE job_id = "#{j}"
-      SQL
-      self.find_by_sql(query2)
+      # query2 = <<-SQL
+      # UPDATE tag_jobships
+      # SET tag_id = "#{tid}"
+      # WHERE job_id = "#{j}"
+      # SQL
+      # self.find_by_sql(query2)
 
 
     end
