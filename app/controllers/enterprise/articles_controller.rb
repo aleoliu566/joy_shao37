@@ -12,8 +12,6 @@ class Enterprise::ArticlesController < ApplicationController
   def index
     # @articles = current_user.articles
     @articles = Article.hr_get_all_article(params[:company_id])
-    # count=@article.view_count+1
-    # @article.update_attributes(:view_count=> count)
   end
 
   def new
@@ -83,7 +81,7 @@ class Enterprise::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content,:view_count)
+    params.require(:article).permit(:title, :content)
   end
 
   def set_company
