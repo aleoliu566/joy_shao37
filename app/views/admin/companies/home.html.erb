@@ -15,27 +15,26 @@
     <thead>
       <tr>
         <th style="width: 200px">名稱</th>
-        <th>狀態</th>
         <th>瀏覽次數</th>
         <th>應徵次數</th>
         <th>收藏次數</th>
-        <th style="width: 200px"></th>
+        <th style="width: 320px"></th>
       </tr>
     </thead>
     <tbody>
       <% @company.each do |c|%>
         <tr>
-          <td>
-            <%= link_to admin_company_path(c) do %>
-              <%= c.name%>
-            <%end%>
-          </td>
-          <td><!--紅綠燈--></td>
+          <td><%= c.name %></td>
           <td></td>
           <td></td>
           <td></td>
           <td>
-            <%= link_to edit_admin_company_path(c), :class => "btn btn-success btn-xs" do %>
+            <%= link_to admin_company_path(c), :class => "btn btn-success btn-xs" do %>
+              <i class="fa fa-edit"></i>
+              <span>查看詳細資訊</span>
+            <% end %>
+
+            <%= link_to edit_admin_company_path(c), :class => "btn btn-primary btn-xs" do %>
               <i class="fa fa-edit"></i>
               <span>編輯</span>
             <% end %>
@@ -67,15 +66,4 @@
 
 </div>
 <div class="col-sm-1"></div>
-
-
-<!--<% @jobs.each do |job| %>
-    <%= job.name %>
-    <% if job.content != nil %>
-      <%= job.content %>
-    <% else %>
-      <span>沒有</span>
-    <% end %>
-    <br>
-  <% end %>-->
 

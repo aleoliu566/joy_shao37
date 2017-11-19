@@ -1,6 +1,12 @@
 <table class="table table-bordered">
   <% articles.each do |article|%>
     <tr>
+      <th>文章標題</th>
+      <th>文章內容</th>
+      <th>發佈企業</th>
+      <th></th>
+    </tr>
+    <tr>
       <td>
         <%= article.title %>
       </td>
@@ -8,12 +14,10 @@
         <%= truncate(article.content, length: 17) %>
       </td>
       <td>
-        發布公司:<%= article.company.name%>
+        <%= article.company.name%>
       </td>
       <td>
         <%= link_to "編輯文章", edit_admin_article_path(article) %>
-      </td>
-      <td>
 
         <% if article.article_status == 'auditing' %>
           <span>審核中</span> 
@@ -35,8 +39,3 @@
     </tr>
   <% end %>
 </table>
-<style type="text/css">
-  table>tbody>tr>td{
-    width: 20%;
-  }
-</style>

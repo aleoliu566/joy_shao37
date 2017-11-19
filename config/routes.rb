@@ -26,6 +26,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :tags
+
     resources :users
     patch 'set_admin', :to => 'users#set_admin'
 
@@ -43,7 +45,9 @@ Rails.application.routes.draw do
   end
 
   
-  resources :jobs  
+  resources :jobs
+  
+  resources :articles
 
   root 'companies#home'
   resources :companies do
