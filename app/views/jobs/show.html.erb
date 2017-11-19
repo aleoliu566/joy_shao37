@@ -1,3 +1,10 @@
 <%= @job.name %>
 <br>
 <%= @job.content %>
+<br>
+Tag~~~~~~~~~
+<br>
+     <% @tag.each do |d| %>
+        <%= d.name %>
+        <br>
+      <% end %>

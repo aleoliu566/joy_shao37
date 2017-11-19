@@ -5,9 +5,10 @@
       <%= @job.name %>
     <li>
     <li>
-      這裡想要放置職業的Tag，或是將他變成漂亮的標籤～～～
-      <span>Tag</span>
-          <%= @job.tags.to_param %>
+      <span>這裡讓你改標籤喔～～～～～～～</span>
+        <% @tag.each do |d| %>
+        <%= d.name %>
+        <% end %>
     </li>
     <li>
       <span>刊登日期</span>

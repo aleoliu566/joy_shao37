@@ -32,6 +32,7 @@
       <tr>
         <th>公司名稱</th>
         <th>職缺</th>
+        <th>標籤</th>
         <th>應徵</th>
       </tr>
     </thead>
@@ -40,6 +41,14 @@
         <tr>
           <th><%= j.company.name%></th>
           <th><%= j.name%></th>
+          <th>
+
+          <% tag = j.tag.split(',') %>
+          <% tag.each do |tag| %>
+          <%= tag %>
+          <% end %> 
+
+          </th>
           <th><%= link_to "應徵", check_resume_company_job_path(j.company,j) %></th> 
         </tr>
       <% end %>
