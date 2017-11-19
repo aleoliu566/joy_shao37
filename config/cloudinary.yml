@@ -1,6 +1,13 @@
+# development:
+#   cloud_name: "leoliu"
+#   api_key: "126231321837991"
+#   api_secret: "QJGWv_eMywjNpOAsc2oTY5zpIVY"
+#   enhance_image_tag: true
+#   static_image_support: true
+
 production:
   cloud_name: "leoliu"
   api_key: "126231321837991"
   api_secret: "QJGWv_eMywjNpOAsc2oTY5zpIVY"
-  enhance_image_tag: true
-  static_image_support: true
+  # enhance_image_tag: true
+  # static_image_support: true
