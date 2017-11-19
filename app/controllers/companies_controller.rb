@@ -3,4 +3,8 @@ class CompaniesController < ApplicationController
     @jobs = Job.all
     @companies = Company.all
   end
+
+  def collect
+    
+  end
 end
