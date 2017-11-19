@@ -21,10 +21,11 @@
     </thead>
     <tbody>
       <% @company.each do |c|%>
+    
         <tr>
           <td><%= c.name %></td>
           <td><%= c.views_count %></td>
-          <td></td>
+          <td><%= c.resume_count%> </td>
           <td></td>
           <td>
             <%= link_to admin_company_path(c), :class => "btn btn-success btn-xs" do %>

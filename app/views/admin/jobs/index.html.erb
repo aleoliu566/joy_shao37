@@ -9,26 +9,41 @@
     <thead>
       <tr>
         <th>職缺名稱</th>
+        <th>職缺內容</th>
         <th>所屬企業</th>
         <th>應徵次數</th>
         <th>收藏次數</th>
-        <th style="width: 140px"></th>
+        <th>應徵人員</th>
       </tr>
     </thead>
     <tbody>
-      <% @jobs.each do |job| %>
-        <tr>
-          <td><%= job.name %></td>
-          <td><%= job.company.name %></td>
-          <td><%= job.resumes.count %></td>
-          <td></td>
-          <td>
-            <%= link_to admin_jobs_path, :class => "btn btn-success btn-xs" do %>
-              <i class="fa fa-file-text-o"></i>
-              <span>查看詳細資訊</span>
-            <% end %>
-          </td>
-        </tr>
+
+      <% @jobInfos.each do |jobInfo| %>
+
+        <% resumesStr = "" %>
+        
+        <% jobResume = @jobResumes[jobInfo.id.to_s.to_sym] %>
+
+        <% if jobResume != nil %>
+          <% print("@@@@@@@@@@@@@@---"+jobResume.to_s+"---@@@@@@@@@@@@@@@@@@") %>
+          
+          <% jobResume.each do |resume| %>
+            <%#= resume.name %>
+            <% resumesStr += resume.name.to_s  %>
+          <% end %>
+          <% resumeCount = jobResume.count %>
+        <% else%>
+          <% resumeCount = 0 %>
+        <% end %>
+      
+      <tr>
+        <td><%= jobInfo.name %></td>
+        <td><%= jobInfo.content %></td>
+        <td><%= jobInfo.companyName  %></td>
+        <td><%= resumeCount %></td>
+        <td><%=  %></td>
+        <td><%= resumesStr %></td>
+      </tr>
       <% end %>
     </tbody>
   </table>

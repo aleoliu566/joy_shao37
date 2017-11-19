@@ -59,4 +59,42 @@ class Job < ApplicationRecord
       self.find_by_sql(query)
     end
 
+    def self.getJobInfos
+        
+        query = <<-SQL
+        SELECT J.id, J.name, J.content, J.views_count, C.name AS companyName
+        FROM jobs AS J JOIN companies AS C ON J.company_id=C.id
+        SQL
+        
+        return find_by_sql(query)
+
+    end
+
+
+    def self.getJobResumes
+        
+        query = <<-SQL
+        SELECT J.id AS jId, U.name, R.attachment
+        FROM (jobs AS J JOIN resume_jobships AS RJ ON J.id=RJ.job_id) JOIN resumes AS R ON RJ.resume_id=R.id JOIN users AS U ON R.user_id=U.id 
+        SQL
+        
+        rsArr = find_by_sql(query)
+
+        rsHash = {}
+        for resume in rsArr do
+
+          jId = resume.jId.to_s.to_sym
+
+          if rsHash[jId] == nil
+            rsHash[jId] = [resume]
+          else
+            rsHash[jId] << resume
+          end
+
+        end
+
+        return rsHash
+
+    end
+
 end

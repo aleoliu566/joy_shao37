@@ -8,7 +8,8 @@ class Admin::CompaniesController < ApplicationController
 
   def home
     @jobs = Job.all
-    @company = Company.all
+    @company = Company.adminGetCompanyList
+    # @company = Company.all
   end
 
   def index
