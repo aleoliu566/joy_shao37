@@ -1,5 +1,5 @@
 <div>
-  <%= j.label :name, "職位名稱" %>
+  <%= j.label :name, "職缺名稱" %>
   <%= j.text_field :name %>
 </div>
 <div>
@@ -16,17 +16,18 @@
     <% end %> -->
 </div>
 <div>
-  <%= j.label :published_on, "發佈日期" %>
+  <%= j.label :published_on, "刊登日期" %>
   <%= j.date_field :published_on %>
 </div>
 <div>
-  <%= j.label :content, "職位內容" %>
-  <%= j.text_area :content %>
+  <%= j.label :salary, "待遇" %>
+  <%= j.text_field :salary %>
 </div>
 <div>
-  <%= j.label :薪資待遇%>
-  <%= j.text_field :salary %> 
-  <br>
+
+  <%= j.label :content, "職缺內容" %>
+  <%= j.text_area :content %>
+
 </div>
   
   

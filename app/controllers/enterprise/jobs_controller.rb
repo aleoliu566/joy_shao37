@@ -17,7 +17,7 @@ class Enterprise::JobsController < ApplicationController
 
   def create
     #@job = current_user.company.jobs.new(job_params)
-    if Job.hr_create_job(params[:company_id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:salary])
+    if Job.hr_create_job(params[:company_id],job_params[:name],job_params[:published_on],job_params[:content],job_params[:salary],job_params[:tag_ids])
       redirect_to enterprise_company_jobs_path
     else
       render :action => :new

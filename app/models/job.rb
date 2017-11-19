@@ -6,16 +6,36 @@ class Job < ApplicationRecord
   has_many :tag_jobships
   has_many :tags, :through => :tag_jobships
   #資料驗證
-  validates_presence_of :name, :published_on, :content, :hour_salary_ceiling, :hour_salary_floor, :year_salary_floor, :year_salary_ceiling
-  
+  validates_presence_of :name, :published_on, :content, :salary
+
     #CREATE JOB
-    def self.hr_create_job(cid,n,p,c,s)
+    def self.hr_create_job(cid,n,p,c,s,tagid)
       t = DateTime.now
       query = <<-SQL
       INSERT INTO jobs(company_id,name,published_on,content,salary,created_at,updated_at,status)
       VALUES ("#{cid}","#{n}","#{p}","#{c}","#{s}","#{t}" ,"#{t}","open")
       SQL
-      self.find_by_sql(query)
+      a = self.find_by_sql(query)
+   
+
+      query2 = <<-SQL
+      SELECT jobs.id
+      FROM jobs
+      WHERE company_id = "#{cid}" AND name = "#{n}"
+      SQL
+      j = self.find_by_sql(query2).to_param
+
+
+      noEmptyTags = tagid.reject { |tagid| tagid.empty? }
+      noEmptyTags.each do |tagid|
+      query3= <<-SQL
+      INSERT INTO tag_jobships(tag_id,job_id,created_at,updated_at)
+      VALUES ("#{tagid}","#{j}","#{t}","#{t}")
+      SQL
+      self.find_by_sql(query3)
+      end
+
+
     end
 
 
@@ -114,4 +134,43 @@ class Job < ApplicationRecord
       end
         self.find_by_sql(query)
     end
+
+    def self.getJobInfos
+        
+        query = <<-SQL
+        SELECT J.id, J.name, J.content, J.views_count, C.name AS companyName
+        FROM jobs AS J JOIN companies AS C ON J.company_id=C.id
+        SQL
+        
+        return find_by_sql(query)
+
+    end
+
+
+    def self.getJobResumes
+        
+        query = <<-SQL
+        SELECT J.id AS jId, U.name, R.attachment
+        FROM (jobs AS J JOIN resume_jobships AS RJ ON J.id=RJ.job_id) JOIN resumes AS R ON RJ.resume_id=R.id JOIN users AS U ON R.user_id=U.id 
+        SQL
+        
+        rsArr = find_by_sql(query)
+
+        rsHash = {}
+        for resume in rsArr do
+
+          jId = resume.jId.to_s.to_sym
+
+          if rsHash[jId] == nil
+            rsHash[jId] = [resume]
+          else
+            rsHash[jId] << resume
+          end
+
+        end
+
+        return rsHash
+
+    end
+
 end

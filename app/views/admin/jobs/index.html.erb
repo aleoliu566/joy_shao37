@@ -9,21 +9,37 @@
     <thead>
       <tr>
         <th>職缺名稱</th>
+        <th>職缺內容</th>
         <th>所屬企業</th>
         <th>應徵次數</th>
         <th>收藏次數</th>
-        <th></th>
+        <th>應徵人員</th>
       </tr>
     </thead>
     <tbody>
-      <% @jobs.each do |job| %>
-        <tr>
-          <td><%= job.name %></td>
-          <td><%= job.company.name %></td>
-          <td><%= job.resumes.count %></td>
-          <td></td>
-          <td></td>
-        </tr>
+
+      <% @jobInfos.each do |jobInfo| %>
+        <% resumesStr = "" %>
+        <% jobResume = @jobResumes[jobInfo.id.to_s.to_sym] %>
+        <% if jobResume != nil %>
+          <% jobResume.each do |resume| %>
+            <% resumesStr += resume.name.to_s  %>
+          <% end %>
+        <% end %>      
+      <tr>
+        <td><%= jobInfo.name %></td>
+        <td><%= jobInfo.content %></td>
+        <td><%= jobInfo.companyName  %></td>
+        <td><%= jobInfo.resumes.count %></td>
+        <td><%=  %></td>
+        <td><%= resumesStr %></td>
+
+        <!-- <td> -->
+          <%# jobInfo.resumes.each do |resume|%>
+            <%#= resume.user.name %>
+          <%# end %>
+        <!-- </td> -->
+      </tr>
       <% end %>
     </tbody>
   </table>

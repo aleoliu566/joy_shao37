@@ -1,5 +1,17 @@
-<h3>Admin User</h3>
+<div class="col-sm-1"></div>
+<div class="col-sm-10">
+  <div class="page-title">
+    <h2>管理者管理</h2>
+    <div class="bolded-line"></div>
+    <%= link_to admin_users_path, :class => "btn btn-success btn-sm" do %>
+      <i class="fa fa-plus"></i>
+      <span>&nbsp;新增管理者</span>
+    <% end %>
+</div>
+<div class="col-sm-1"></div>
 
+
+<br>
 <% @admin_users.each do |u| %>
   <%= u.email%>
   <%= u.role %>
