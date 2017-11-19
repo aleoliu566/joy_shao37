@@ -37,6 +37,7 @@ gem 'jquery-rails'
 gem 'font-awesome-rails', '~> 4.3'
 
 gem 'carrierwave'
+gem 'mysql2'
 
 # gem "rmagick", :require => 'RMagick'
 
@@ -49,7 +50,6 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  gem 'sqlite3'
   gem 'hirb'
   gem 'hirb-unicode'
   gem 'pry-byebug'
