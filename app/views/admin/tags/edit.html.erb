@@ -1,0 +1,7 @@
+<h2>編輯標籤</h2>
+
+<%= form_for @tag, url: admin_tag_path(@tag), method: :PATCH do |j| %>
+  <%= render :partial => 'form', :locals => { :j => j } %>
+  <br>
+  <%= j.submit "更改" %>
+<% end %>

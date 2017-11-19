@@ -3,12 +3,43 @@
   <div class="page-title">
     <h2>標籤管理</h2>
     <div class="bolded-line"></div>
-    <%= link_to admin_tags_path, :class => "btn btn-success btn-sm" do %>
+    <%= link_to new_admin_tag_path, :class => "btn btn-success btn-sm" do %>
       <i class="fa fa-plus"></i>
       <span>&nbsp;新增標籤</span>
     <% end %>
-
-
   </div>
+
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>標籤ID</th>
+        <th>標籤名稱</th>
+        <th style="width: 270px"></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% @tags.each do |tag| %>
+        <tr>
+          <td>
+            <%= tag.id %>
+          </td>
+          <td>
+            <%= tag.name %>
+          </td>       
+          <td>
+            <%= link_to edit_admin_tag_path(tag), :class => "btn btn-warning btn-xs" do %>
+              <i class="fa fa-edit"></i>
+              <span>編輯</span>
+            <% end %>
+
+            <%= link_to admin_tag_path(tag), :method => :delete, data: { confirm:"您確定要刪除該標籤嗎？" }, :class => "btn btn-fail btn-xs" do %>
+              <i class="fa fa-trash"></i>
+              <span>刪除</span>
+            <% end %>
+          </td>
+      <% end %>
+    </tbody>
+  </table>  
 </div>
 <div class="col-sm-1"></div>

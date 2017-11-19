@@ -4,12 +4,16 @@
 </div>
 <div>
     <%= j.label "職缺標籤 [可複選]" %><br />
-    <%= j.collection_check_boxes :tag_ids, @tags, :id, :name do |b| %>
+    <%= j.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
       <div class="collection-check-box">
         <%= b.check_box %>
         <%= b.label  %>
       </div>
     <% end %>
+<!--      <% @tags.each do |tag| %> 
+       <%= check_box_tag "tag_ids[#{tag.id}]", tag.id  %>
+       <%= j.label tag.name %><br />
+    <% end %> -->
 </div>
 <div>
   <%= j.label :published_on, "發佈日期" %>
