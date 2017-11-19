@@ -1,7 +1,21 @@
-<h2>編輯職缺</h2>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <div class="unit">
+    <div class="page-title">
+      <h2>編輯職缺資訊</h2>
+      <div class="bolded-line"></div>
+    </div>
+    <br>
+    <%= form_for @job,url: enterprise_company_job_path(@company,@job), method: :PATCH do |j| %>
+      <%= render :partial => 'form', :locals => { :j => j } %>
+      <br>
+      <div class="login">
+        <%= j.submit "修改", :class => "button btn-success medium" %>
+        <%= link_to '返回', enterprise_company_jobs_path(current_user.company), :class => "button btn-fail medium" %>
+			</div>
+    <% end %>
+  </div>
+</div>
+<div class="col-sm-2"></div>
 
-<%= form_for @job,url: enterprise_company_job_path(@company,@job), method: :PATCH do |j| %>
-  <%= render :partial => 'form', :locals => { :j => j } %>
-  <br>
-  <%= j.submit "更改" %>
-<% end %>
+
