@@ -12,7 +12,7 @@
         <th>所屬企業</th>
         <th>應徵次數</th>
         <th>收藏次數</th>
-        <th></th>
+        <th style="width: 140px"></th>
       </tr>
     </thead>
     <tbody>
@@ -22,7 +22,12 @@
           <td><%= job.company.name %></td>
           <td><%= job.resumes.count %></td>
           <td></td>
-          <td></td>
+          <td>
+            <%= link_to admin_jobs_path, :class => "btn btn-success btn-xs" do %>
+              <i class="fa fa-file-text-o"></i>
+              <span>查看詳細資訊</span>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

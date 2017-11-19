@@ -1,10 +1,10 @@
 <p>哈囉，這是首頁！</p>
 <%#= link_to "New Resume", new_resume_path, class: "btn btn-primary" %>
-<% if current_user %>
+<%# if current_user %>
   <%#= link_to "Download Resume", current_user.resumes.find(1).attachment_url %>
-  <%= link_to "寫履歷", new_user_resume_path(current_user) %>
-  <%= link_to "投遞紀錄", user_record_path(current_user) %>
-<% end %>
+  <%#= link_to "寫履歷", new_user_resume_path(current_user) %>
+  <%#= link_to "投遞紀錄", user_record_path(current_user) %>
+<%# end %>
 
 
 <p>公司介紹</p>
