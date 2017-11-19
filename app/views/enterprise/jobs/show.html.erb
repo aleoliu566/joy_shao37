@@ -1,4 +1,4 @@
- <div>
+<div>
   <ul>
     <li>
       <span>職缺名稱</span>
@@ -17,7 +17,7 @@
       <%= @job.content %>
     </li>
     <li>
-      <span>待遇</span>
+      <span>薪資待遇</span>
       <%= @job.salary %>
     </li>
   </ul>
@@ -40,7 +40,7 @@
   <tbody>
     <% @job.resumes.each do |resume|%>
       <tr>
-        <td><%= resume.email %></td>
+        <td><%= resume.user.email %></td>
         <td><%= link_to resume.name, resume.attachment_url %></td>
       </tr>
     <% end %>

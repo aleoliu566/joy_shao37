@@ -37,6 +37,7 @@ class Article < ApplicationRecord
     def self.hr_get_all_article(c)
     # 把sql寫在這邊
       query = <<-SQL
+
       SELECT articles.id, articles.title, articles.content, users.email, companies.name, articles.view_count 
       FROM articles
       JOIN users, companies

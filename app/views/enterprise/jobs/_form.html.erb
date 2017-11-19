@@ -3,16 +3,31 @@
   <%= j.text_field :name %>
 </div>
 <div>
-  <%= j.label :content, "職缺內容" %>
-  <%= j.text_area :content %>
+    <%= j.label "職缺標籤 [可複選]" %><br />
+    <%= j.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+      <div class="collection-check-box">
+        <%= b.check_box %>
+        <%= b.label  %>
+      </div>
+    <% end %>
+<!--      <% @tags.each do |tag| %> 
+       <%= check_box_tag "tag_ids[#{tag.id}]", tag.id  %>
+       <%= j.label tag.name %><br />
+    <% end %> -->
+</div>
+<div>
+  <%= j.label :published_on, "刊登日期" %>
+  <%= j.date_field :published_on %>
 </div>
 <div>
   <%= j.label :salary, "待遇" %>
   <%= j.text_field :salary %>
 </div>
 <div>
-  <%= j.label :published_on, "刊登日期" %>
-  <%= j.date_field :published_on %>
+
+  <%= j.label :content, "職缺內容" %>
+  <%= j.text_area :content %>
+
 </div>
   
   

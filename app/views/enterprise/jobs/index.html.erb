@@ -1,7 +1,5 @@
 <div class="col-sm-1"></div>
 <div class="col-sm-10">
-  <p>關閉/開放職缺的按鈕我做好了，再麻煩寫這部分程式的人去控制何時要顯示哪一個</p><br>
-
   <div class="page-title">
     <h2>職缺管理</h2>
     <div class="bolded-line"></div>
@@ -14,27 +12,45 @@
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
-        <th>職缺名稱</th>
-        <th>職缺內容</th>
-        <th>待遇</th>
+        <th>職缺</th>
+        <th>薪資待遇</th>
+        <th>標籤</th>  
         <th>刊登日期</th>
-        <th style="width: 320px"></th>
+        <th>狀態</th>
+        <th style="width: 270px"></th>
       </tr>
     </thead>
     <tbody>
+
       <% @jobs.each do |job| %>
         <tr>
           <td>
             <%= job.name %>
           </td>
           <td>
-            <%= job.content %>
-          </td>
-          <td>
             <%= job.salary %>
+          </td>       
+          <td>
+ <!--     <% t = job.tag.split(',') %>
+          <% ary = Array.new(t) %> 
+          <%= ary %> --> 
+          <%= job.tag %>
           </td>
           <td>
             <%= job.published_on %>
+          </td>
+          <td>
+           <% if job.status != 'open' %>
+              <%= link_to enterprise_company_ban_path(@company.id, :id => job.id, :'close' => 'close'), method: :ban, :class => "btn btn-danger btn-xs" do %>
+                <i class="fa fa-ban"></i>
+                <span>關閉</span> 
+              <% end %>
+            <% else job.status != 'close' %>
+              <%= link_to enterprise_company_ban_path(@company.id, :id => job.id, :'close' => 'open'), method: :ban, :class => "btn btn-warning btn-xs" do %>
+                <i class="fa fa-check"></i>
+                <span>開放</span> 
+              <% end %>
+            <% end %>
           </td>
           <td>
             <%= link_to enterprise_company_job_path(@company,job), :class => "btn btn-success btn-xs" do %>
@@ -47,16 +63,6 @@
               <span>編輯</span>
             <% end %>
 
-            <%= link_to enterprise_company_jobs_path(current_user.company), :class => "btn btn-danger btn-xs" do %>
-              <i class="fa fa-ban"></i>
-              <span>關閉</span>
-            <% end %>
-
-            <%= link_to enterprise_company_jobs_path(current_user.company), :class => "btn btn-warning btn-xs" do %>
-              <i class="fa fa-check"></i>
-              <span>開放</span>
-            <% end %>
-
             <%= link_to enterprise_company_job_path(@company,job), :method => :delete, data: { confirm:"您確定要刪除該職缺嗎？" }, :class => "btn btn-fail btn-xs" do %>
               <i class="fa fa-trash"></i>
               <span>刪除</span>
@@ -65,6 +71,5 @@
       <% end %>
     </tbody>
   </table>  
-
 </div>
 <div class="col-sm-1"></div>
