@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
   # 後台首頁
   get 'home', :to => 'admin/companies#home'
-  get 'article', :to => 'admin/articles#say'
+  # get 'article', :to => 'admin/articles#say'
   devise_for :users
 
   resources :users do
@@ -58,6 +58,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :articles, only: [:show, :index]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
