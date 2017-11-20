@@ -1,7 +1,18 @@
-<h2>編輯標籤</h2>
-
-<%= form_for @tag, url: admin_tag_path(@tag), method: :PATCH do |j| %>
-  <%= render :partial => 'form', :locals => { :j => j } %>
-  <br>
-  <%= j.submit "更改" %>
-<% end %>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <div class="unit">
+    <div class="page-title">
+      <h2>編輯標籤</h2>
+      <div class="bolded-line"></div>
+    </div>
+    <br>
+    <%= form_for @tag, url: admin_tag_path(@tag), method: :PATCH do |j| %>
+      <%= render :partial => 'form', :locals => { :j => j } %>
+      <div class="login">
+        <%= j.submit "修改", :class => "button btn-success medium" %>
+        <%= link_to '返回', admin_tags_path, :class => "button btn-fail medium" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="col-sm-2"></div>
