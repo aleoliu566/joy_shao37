@@ -39,7 +39,6 @@ gem 'font-awesome-rails', '~> 4.3'
 gem 'carrierwave'
 gem 'mysql2'
 
-
 # gem "rmagick", :require => 'RMagick'
 
 # Use Capistrano for deployment
@@ -68,7 +67,6 @@ group :development do
 end
 
 group :production do
-  #gem 'mysql2'
   gem 'cloudinary'
 end
 
