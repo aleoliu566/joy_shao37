@@ -8,6 +8,8 @@ class CompaniesController < ApplicationController
   end
 
   def show
+    @jobs = Job.get_job(params[:id])
+    #(和hr的方法一樣，取特定公司)
     @company.views_count += 1
     @company.save
   end

@@ -11,4 +11,15 @@ class TagJobship < ApplicationRecord
   	self.find_by_sql(query)
   end
 
+  #DELETE TagJobship
+  def self.delete_tagjob(id)
+     query = <<-SQL
+      DELETE FROM tag_jobships
+      WHERE tag_id = "#{id}"
+     SQL
+     self.find_by_sql(query)
+  end 
+
+
+
 end

@@ -9,9 +9,18 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
+# development:
+#   <<: *default
+#   database: db/development.sqlite3
 development:
-  <<: *default
-  database: db/development.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  database: xklpdund5ghruj04
+  pool: 5
+  username: f04jcnlffo29xb6x
+  password: f60nt6sv6j2sj1au
+  port: 3306
+  host: vvfv20el7sb2enn3.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
