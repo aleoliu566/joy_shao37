@@ -9,13 +9,13 @@ class Job < ApplicationRecord
   validates_presence_of :name, :published_on, :content, :salary
 
     #CREATE JOB
-    def self.hr_create_job(cid,n,p,c,s,tagid)
-      t = DateTime.now
+    def self.hr_create_job(cid,n,p,c,s,tagid)    
+      t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
       query = <<-SQL
       INSERT INTO jobs(company_id,name,published_on,content,salary,created_at,updated_at,status)
       VALUES ("#{cid}","#{n}","#{p}","#{c}","#{s}","#{t}" ,"#{t}","open")
       SQL
-      a = self.find_by_sql(query)
+      a = ActiveRecord::Base.connection.exec_query(query)
    
 
       query2 = <<-SQL
@@ -23,18 +23,16 @@ class Job < ApplicationRecord
       FROM jobs
       WHERE company_id = "#{cid}" AND name = "#{n}"
       SQL
-      j = self.find_by_sql(query2).to_param
-
+      job = ActiveRecord::Base.connection.exec_query(query2).rows.to_param
 
       noEmptyTags = tagid.reject { |tagid| tagid.empty? }
       noEmptyTags.each do |tagid|
       query3= <<-SQL
       INSERT INTO tag_jobships(tag_id,job_id,created_at,updated_at)
-      VALUES ("#{tagid}","#{j}","#{t}","#{t}")
+      VALUES ("#{tagid}","#{job}","#{t}","#{t}")
       SQL
-      self.find_by_sql(query3)
+      ActiveRecord::Base.connection.exec_query(query3)
       end
-
 
     end
 
@@ -44,7 +42,7 @@ class Job < ApplicationRecord
     def self.hr_get_all_job(c)
      # 把sql寫在這邊
      query = <<-SQL
-     SELECT jobs.*, GROUP_CONCAT (tags.name) AS tag
+     SELECT jobs.*, GROUP_CONCAT(tags.name) AS tag
      FROM tags,tag_jobships,jobs
      WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND company_id = '#{c}' 
      GROUP BY jobs.id
@@ -56,7 +54,7 @@ class Job < ApplicationRecord
     def self.get_all_job
      # 把sql寫在這邊
      query = <<-SQL
-     SELECT jobs.*, GROUP_CONCAT (tags.name) AS tag
+     SELECT jobs.*, GROUP_CONCAT(tags.name) AS tag
      FROM tags,tag_jobships,jobs
      WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND status = "open"
      GROUP BY jobs.id
@@ -67,7 +65,7 @@ class Job < ApplicationRecord
      def self.get_job(c)
      # 把sql寫在這邊
      query = <<-SQL
-     SELECT jobs.*, GROUP_CONCAT (tags.name) AS tag
+     SELECT jobs.*, GROUP_CONCAT(tags.name) AS tag
      FROM tags,tag_jobships,jobs
      WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND company_id = '#{c}' AND status = "open"
      GROUP BY jobs.id
@@ -94,19 +92,19 @@ class Job < ApplicationRecord
   
     #UPDATE
     def self.hr_update_job(j,n,p,c,s,tagid)
-      t = DateTime.now
+      t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
       query = <<-SQL
       UPDATE jobs
       SET name = "#{n}", published_on = "#{p}", content = "#{c}", salary = "#{s}", updated_at = "#{t}"
       WHERE id = "#{j}"
       SQL
-      self.find_by_sql(query)
+      ActiveRecord::Base.connection.exec_query(query)
 
       query2 = <<-SQL
       DELETE FROM tag_jobships
       WHERE job_id = "#{j}"
       SQL
-      self.find_by_sql(query2)
+      ActiveRecord::Base.connection.exec_query(query2)
 
       #產生的Arr => ["",2,3] 只勾第二和第三個 
       #將empty string刪除
@@ -117,7 +115,7 @@ class Job < ApplicationRecord
       INSERT INTO tag_jobships(tag_id,job_id,created_at,updated_at)
       VALUES ("#{tagid}","#{j}","#{t}","#{t}")
       SQL
-      self.find_by_sql(query3)
+      ActiveRecord::Base.connection.exec_query(query3)
       end
 
     end

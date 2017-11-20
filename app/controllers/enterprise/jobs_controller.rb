@@ -23,11 +23,12 @@ class Enterprise::JobsController < ApplicationController
     else
       render :action => :new
     end
+
   end
 
 
   def show
-     @tag = TagJobship.get_job_tag(params[:id])
+    @tag = TagJobship.get_job_tag(params[:id])
   end
 
   def edit
@@ -50,9 +51,13 @@ class Enterprise::JobsController < ApplicationController
 
   #close_open_job
   def ban
-    if Job.close_open_job(params[:id],params[:close])
-       redirect_to enterprise_company_jobs_path
-    else
+    begin
+     Job.close_open_job(params[:id],params[:close]) 
+    rescue NoMethodError => e
+     if 
+      redirect_to enterprise_company_jobs_path
+     else
+     end
     end
   end
 
