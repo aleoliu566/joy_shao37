@@ -241,3 +241,37 @@ table {
 .article-status a {
   margin: auto 3px;
 }
+
+.panel-default > .panel-heading {
+  color: #fff;
+  background-color: #12BDBC;
+}
+
+.follow-item li {
+  margin-bottom: 10px;
+
+  .collect {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    color: #EA5249;
+    font-size: 17px;
+    display: inline;
+  }
+
+  a {
+    border-radius: 4px;
+    position: relative;
+    display: block;
+    padding: 10px 15px 10px 40px;
+    border: 1px solid #ddd;
+    color: #666;
+  }
+
+  a:hover {
+    color: #666;
+    text-decoration: none;
+    background-color: #f5f5f5;
+  }
+}
+

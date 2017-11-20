@@ -1,3 +1,79 @@
-<h3>收藏頁面</h3>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <div class="page-title">
+    <h2>我的收藏</h2>
+    <div class="bolded-line"></div>
+  </div>
 
-<p>要等邵家怡！</p>
+  <div class="panel-group follow-item">
+    <div class="panel panel-default">
+        <div class="panel-heading">企業</div>
+        <div class="panel-body">
+            尚未收藏企業，立即點選
+            <%= link_to root_path do %>所有企業<% end %>
+            將有興趣的企業加入收藏。
+
+            <!--如果有收藏的企業就顯示以下這段code-->
+            <!--
+            <ul>
+                <li>
+                    <%= link_to jobs_path do %>
+                        <div class="collect">
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        Google
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to jobs_path do %>
+                        <div class="collect">
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        Yahoo!
+                    <% end %>
+                </li>
+            </ul>
+            -->
+        </div>
+    </div>
+  </div>
+
+  <div class="panel-group follow-item">
+    <div class="panel panel-default">
+        <div class="panel-heading">職缺</div>
+        <div class="panel-body">
+            <!--如果沒有收藏的職缺就顯示以下這段code-->
+
+            <!--
+            尚未收藏職缺，立即點選
+            <%= link_to jobs_path do %>所有職缺<% end %>
+            將有興趣的職缺加入收藏。
+            -->
+
+            <!-- 點擊該愛心可以取消收藏該職業，並重整看不到該收藏(? -->
+
+            <ul>
+                <li>
+                    <%= link_to jobs_path do %>
+                        <div class="collect">
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        前端工程師
+                        <span class="pull-right">Google</span>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to jobs_path do %>
+                        <div class="collect">
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        PM
+                        <span class="pull-right">Yahoo!</span>
+                    <% end %>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-2"></div>
