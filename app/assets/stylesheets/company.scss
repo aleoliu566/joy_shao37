@@ -314,3 +314,24 @@ table {
   }
 }
 
+.article-info {
+  margin-bottom: 20px;
+
+  span, a {
+    font-size: 14px;
+    color: #999;
+  }
+
+  i {
+    margin-right: 20px;
+  }
+
+  i:last-child {
+    margin: 0;
+  }
+}
+
+.article-page-content {
+  padding: 10px;
+  text-align: justify;
+}

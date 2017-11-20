@@ -1,5 +1,33 @@
-<p>^___^ 文章</p>
 
-<p><%= @article.title %></p>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <div class="page-title">
+    <h2><%= @article.title %></h2>
+    <div class="bolded-line"></div>
+  </div>
 
-<p><%= @article.content %></p>
+  <div class="article-info">
+    <span>
+        <i class="fa fa-pencil">&nbsp;
+            <%= link_to company_path(@article.company) do %>
+                <%= @article.company.name %>
+            <% end %>
+        </i>
+        <i class="fa fa-calendar">&nbsp;
+            <%= @article.created_at.localtime.strftime("%Y/%m/%d") %>
+        </i>
+    </span>
+
+    <span class="pull-right">
+        <i class="fa fa-eye">&nbsp;
+            這裡放瀏覽次數
+        </i>
+    </span>
+  </div>
+
+  <div class="article-page-content">
+    <%= @article.content %>
+  </div>
+
+</div>
+<div class="col-sm-2"></div>
