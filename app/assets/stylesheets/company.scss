@@ -275,3 +275,42 @@ table {
   }
 }
 
+.article li {
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  border-radius: 3px;
+  width: 47%;
+  float: left;
+  margin: 11px;
+  padding: 15px;
+  height: 163px;
+
+  .article-title {
+    margin-bottom: 20px;
+    text-align: justify;
+    height: 48px;
+
+    a {
+      font-size: 17px;
+      color: black;
+      line-height: 24px;
+      display: -webkit-box;  
+      overflow:hidden;
+      text-overflow : ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .article-content {
+    font-size: 14px;
+    text-align: justify;
+    color: #6c6c6c;
+    display: -webkit-box;  
+    overflow:hidden;
+    text-overflow : ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+}
+
