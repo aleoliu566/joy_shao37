@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20171119053748) do
 
-  create_table "articles", force: :cascade do |t|
+  create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string "title"
     t.text "content"
     t.integer "view_count", default: 0
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20171119053748) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
-  create_table "companies", force: :cascade do |t|
+  create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string "name"
     t.string "phone"
     t.string "email"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20171119053748) do
     t.string "logo"
   end
 
-  create_table "jobs", force: :cascade do |t|
+  create_table "jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string "name"
     t.date "published_on"
     t.text "content"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20171119053748) do
     t.string "salary"
   end
 
-  create_table "resume_jobships", force: :cascade do |t|
+  create_table "resume_jobships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.text "recommend_letter"
     t.integer "resume_id"
     t.integer "job_id"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20171119053748) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "resumes", force: :cascade do |t|
+  create_table "resumes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string "name"
     t.string "content"
     t.string "attachment"
@@ -69,20 +69,20 @@ ActiveRecord::Schema.define(version: 20171119053748) do
     t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 
-  create_table "tag_jobships", force: :cascade do |t|
+  create_table "tag_jobships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "job_id"
     t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "tags", force: :cascade do |t|
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

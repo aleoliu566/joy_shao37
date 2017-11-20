@@ -4,9 +4,9 @@ class Admin::TagsController < ApplicationController
     layout 'admin'
 
 
-    def index
+  def index
     	@tags = Tag.get_all_tags
-    end
+  end
 
 
 	def new
@@ -14,40 +14,51 @@ class Admin::TagsController < ApplicationController
 	end
 	
 	def create
-		if Tag.create_tag(tag_params[:name])
-	      redirect_to admin_tags_path
-	    else
-	      render :action => :new
-	    end
+    begin 
+      Tag.create_tag(tag_params[:name])
+    rescue NoMethodError => e
+      if 
+      redirect_to admin_tags_path
+      else
+      render :action => :new
+      end
+    end  
 	end
 
-
-    def destroy
+  def destroy 
+    begin 
 	    Tag.delete_tag(params[:id])
+      TagJobship.delete_tagjob(params[:id])
+    rescue NoMethodError => e
 	    redirect_to admin_tags_path
-  	end
+    end
+  end
 
-  	def edit
+  def edit
   		
-  	end
+  end
 
-  	def update
-  		if Tag.update_tag(tag_params[:name],params[:id])
-	      redirect_to admin_tags_path
-	    else
-	      render :action => :edit
-	    end
-  	end
+  def update
+    begin
+      Tag.update_tag(tag_params[:name],params[:id])
+    rescue NoMethodError => e
+      if
+      redirect_to admin_tags_path
+      else
+      render :action => :edit
+      end
+    end  
+  end
 
-  	private
+  private
 
-  	def set_tag
+  def set_tag
     @tag = Tag.find(params[:id])
-  	end
+  end
 
-  	def tag_params
+  def tag_params
     params.require(:tag).permit(:name)
-  	end
+  end
 
     
 end
