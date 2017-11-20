@@ -1,32 +1,30 @@
-<p>哈囉，這是首頁！</p>
-<%#= link_to "New Resume", new_resume_path, class: "btn btn-primary" %>
-<%# if current_user %>
-  <%#= link_to "Download Resume", current_user.resumes.find(1).attachment_url %>
-  <%#= link_to "寫履歷", new_user_resume_path(current_user) %>
-  <%#= link_to "投遞紀錄", user_record_path(current_user) %>
-<%# end %>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
 
-
-<p>公司介紹</p>
-<% @companies.each do |company| %>
-  <div class="col-sm-4 home-company-block">
-    <div>
-      <% if company.logo_url %>
-        <%= image_tag company.logo_url , width:'50px' %>
-      <% end %>
-      <%= link_to company.name, company_path(company) %>
-      <br>
-      <p>
-        <%= company.about %>
-      </p>
-    </div>
+  <div class="page-title">
+    <h2>熱門企業</h2>
+    <div class="bolded-line"></div>
   </div>
-<%end%>
+  <% @companies.each do |company| %>
+    <div class="col-sm-4 home-company-block">
+      <div>
+        <% if company.logo_url %>
+          <%= image_tag company.logo_url , width:'50px' %>
+        <% end %>
+        <%= link_to company.name, company_path(company) %>
+        <br>
+        <p>
+          <%= company.about %>
+        </p>
+      </div>
+    </div>
+  <%end%>
+  <br><br>
+  <div class="page-title">
+    <h2>熱門職缺</h2>
+    <div class="bolded-line"></div>
+  </div>
 
-
-
-<div class="col-xs-12">
-  <p>職缺介紹</p> 
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -54,5 +52,10 @@
       <% end %>
     </tbody>
   </table>  
+  <br><br>
+  <div class="page-title">
+    <h2>熱門文章</h2>
+    <div class="bolded-line"></div>
+  </div>
 </div>
-
+<div class="col-sm-2"></div>

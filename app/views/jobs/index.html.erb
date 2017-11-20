@@ -1,15 +1,23 @@
-<p>職缺</p>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <div class="page-title">
+    <h2>職缺總覽</h2>
+    <div class="bolded-line"></div>
+  </div>
 
-<% @jobs.each do |job| %>
-  <% job.tags.each do |d| %>
-     <%= d.name %>
-  <% end %>
-  <%= link_to job_path(job) do %>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= job.name %><br>
-        <%= job.company.name %>
+  <% @jobs.each do |job| %>
+    <% job.tags.each do |d| %>
+      <%= d.name %>
+    <% end %>
+    <%= link_to job_path(job) do %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= job.name %><br>
+          <%= job.company.name %>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>
+
+</div>
+<div class="col-sm-2"></div>

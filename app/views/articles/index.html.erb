@@ -1,8 +1,15 @@
-<p>文章總覽</p>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <div class="page-title">
+    <h2>文章總覽</h2>
+    <div class="bolded-line"></div>
+  </div>
 
-<% @articles.each do |article| %>
-  標題：<%= link_to article.title , article_path(article) %>
-  <br>
-  文章內容：<%= article.content %>
-  <br>
-<% end %>
+  <% @articles.each do |article| %>
+    標題：<%= link_to article.title , article_path(article) %>
+    <br>
+    文章內容：<%= article.content %>
+    <br>
+  <% end %>
+</div>
+<div class="col-sm-2"></div>
