@@ -13,16 +13,13 @@ class Admin::TagsController < ApplicationController
 	    @tag = Tag.new   
 	end
 	
-	def create
-    begin 
+	def create     
       Tag.create_tag(tag_params[:name])
-    rescue NoMethodError => e
       if 
       redirect_to admin_tags_path
       else
       render :action => :new
-      end
-    end  
+      end 
 	end
 
   def destroy 
@@ -39,15 +36,12 @@ class Admin::TagsController < ApplicationController
   end
 
   def update
-    begin
       Tag.update_tag(tag_params[:name],params[:id])
-    rescue NoMethodError => e
       if
       redirect_to admin_tags_path
       else
       render :action => :edit
       end
-    end  
   end
 
   private

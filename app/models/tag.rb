@@ -11,7 +11,7 @@ class Tag < ApplicationRecord
       INSERT INTO tags(name,created_at,updated_at)
       VALUES ("#{name}","#{t}","#{t}")
       SQL
-      self.find_by_sql(query)
+      ActiveRecord::Base.connection.exec_query(query)
   end
 
   #READ TAG
@@ -29,7 +29,7 @@ class Tag < ApplicationRecord
   	 	DELETE FROM tags
   	 	WHERE tags.id = "#{id}"
   	 SQL
-  	 self.find_by_sql(query)
+  	 ActiveRecord::Base.connection.exec_query(query)
   end	
 
   #UPDATE
@@ -40,7 +40,7 @@ class Tag < ApplicationRecord
       SET name = "#{name}", updated_at = "#{t}"
       WHERE id = "#{id}"
       SQL
-      self.find_by_sql(query)
+      ActiveRecord::Base.connection.exec_query(query)
   end
 
   ##### ADMIN #######
