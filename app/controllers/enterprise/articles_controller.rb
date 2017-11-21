@@ -19,14 +19,18 @@ class Enterprise::ArticlesController < ApplicationController
   end
 
   def create
-    if @article = Article.hr_create_article(params[:company_id],current_user.id,article_params[:title],article_params[:content])
+      @article = Article.hr_create_article(params[:company_id],current_user.id,article_params[:title],article_params[:content])
 
       redirect_to enterprise_company_articles_path(current_user.company)
 
-    else
-      render :action => :new
-    end
+    # else
+    #   render :action => :new
+    # end
   end
+
+  # def show
+    
+  # end
 
   # def create 
   #   query = <<-SQL
@@ -43,12 +47,12 @@ class Enterprise::ArticlesController < ApplicationController
   end
 
   def update
-    if Article.hr_update_article(params[:id],article_params[:title],article_params[:content])
+      Article.hr_update_article(params[:id],article_params[:title],article_params[:content])
 
       redirect_to enterprise_company_articles_path(@company)
-    else
-      render :action => :edit
-    end
+    # else
+    #   render :action => :edit
+    # end
   end
 
   # def update

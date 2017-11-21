@@ -5,13 +5,13 @@ class Article < ApplicationRecord
 
     #UPDATE 
     def self.hr_update_article(a,title,content)
-      t = DateTime.now
+      t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
       query = <<-SQL
       UPDATE articles 
       SET title = "#{title}", content = "#{content}", updated_at="#{t}"
       WHERE id = "#{a}"
       SQL
-      self.find_by_sql(query)
+      h_u_article = ActiveRecord::Base.connection.exec_query(query)
     end
 
     #DELETE
@@ -20,30 +20,42 @@ class Article < ApplicationRecord
       DELETE FROM articles
       WHERE id = "#{a}"
       SQL
-      self.find_by_sql(query)
+      h_d_article = ActiveRecord::Base.connection.exec_query(query)
     end
 
     #CREATE
     def self.hr_create_article(cid,uid,title,content)
-      t = DateTime.now
+      t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
       query = <<-SQL
       INSERT INTO articles(company_id,user_id,title,content,created_at,updated_at)
       VALUES ("#{cid}","#{uid}","#{title}","#{content}","#{t}","#{t}")
       SQL
-      self.find_by_sql(query)
+      h_c_article = ActiveRecord::Base.connection.exec_query(query)
     end
 
-	  #顯示
+	  # #顯示
+   #  def self.hr_get_all_article(c)
+   #  # 把sql寫在這邊
+   #    query = <<-SQL
+   #    SELECT articles.id, articles.title, articles.content, users.email, companies.name, articles.view_count 
+   #    FROM articles
+   #    JOIN users, companies
+   #    ON articles.user_id = users.id AND articles.company_id = companies.id
+   #    WHERE articles.company_id = "#{c}"
+   #    SQL
+   #    h_get_article = ActiveRecord::Base.connection.exec_query(query)
+   #  end
+
+    #顯示
     def self.hr_get_all_article(c)
     # 把sql寫在這邊
       query = <<-SQL
       SELECT articles.id, articles.title, articles.content, users.email, companies.name, articles.view_count 
-      FROM articles
-      JOIN users, companies
-      ON articles.user_id = users.id AND articles.company_id = companies.id
-      WHERE articles.company_id = "#{c}"
+      FROM articles,users, companies
+      WHERE articles.user_id = users.id AND articles.company_id = companies.id AND articles.company_id = "#{c}"
+      GROUP BY articles.id
       SQL
-      all_articles = self.find_by_sql(query)  
+      all_artilces = self.find_by_sql(query)  
     end
 
     def audit(article_status)
