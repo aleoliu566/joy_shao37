@@ -347,3 +347,12 @@ table {
   padding: 10px;
   text-align: justify;
 }
+
+textarea {
+  resize: none;
+}
+
+.collection-check-box label {
+  font-size: 13px;
+  font-weight: initial;
+}
