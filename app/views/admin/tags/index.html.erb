@@ -12,8 +12,8 @@
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
-        <th>標籤 ID</th>
         <th>標籤名稱</th>
+        <th>標籤次數</th>
         <th style="width: 150px"></th>
       </tr>
     </thead>
@@ -22,11 +22,9 @@
       <% @tags.each do |tag| %>
         <tr>
           <td>
-            <%= tag.id %>
-          </td>
-          <td>
             <%= tag.name %>
-          </td>       
+          </td>
+          <td></td>         
           <td>
             <%= link_to edit_admin_tag_path(tag), :class => "btn btn-warning btn-xs" do %>
               <i class="fa fa-edit"></i>

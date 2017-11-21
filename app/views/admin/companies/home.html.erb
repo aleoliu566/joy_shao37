@@ -16,7 +16,8 @@
         <th>瀏覽次數</th>
         <th>應徵次數</th>
         <th>收藏次數</th>
-        <th style="width: 320px"></th>
+        <th style="width: 90px">狀態</th>
+        <th style="width: 260px"></th>
       </tr>
     </thead>
     <tbody>
@@ -27,6 +28,19 @@
           <td><%= c.views_count %></td>
           <td><%= c.resume_count%> </td>
           <td></td>
+          <td class="company-status">
+            <% if c.account_status == 'open' %>
+              <%= link_to ban_admin_company_path(c), method: :ban, data: {confirm:"您確定要停權該企業嗎？"}, :class => "btn btn-warning btn-xs" do %>
+                <i class="fa fa-check"></i>
+                <span>開放</span>  
+              <% end %>
+            <% else c.account_status == 'banned' %>
+              <%= link_to ban_admin_company_path(c), method: :ban, data: { confirm:"您確定要開放該企業嗎？" }, :class => "btn btn-danger btn-xs" do %>
+                <i class="fa fa-ban"></i>
+                <span>停權</span>
+              <% end %>
+            <% end %>
+          </td>
           <td>
             <%= link_to admin_company_path(c), :class => "btn btn-success btn-xs" do %>
               <i class="fa fa-file-text-o"></i>
@@ -39,18 +53,6 @@
             <% end %>
 
             <!--要做停權，禁止公司可以新增職缺--> 
-
-            <% if c.account_status != 'open' %>
-              <%= link_to ban_admin_company_path(c), method: :ban, data: {confirm:"您確定要停權該企業嗎？"}, :class => "btn btn-danger btn-xs" do %>
-                <i class="fa fa-ban"></i>
-                <span>停權</span> 
-              <% end %>
-            <% else c.account_status != 'banned' %>
-              <%= link_to ban_admin_company_path(c), method: :ban, data: { confirm:"您確定要開放該企業嗎？" }, :class => "btn btn-warning btn-xs" do %>
-                <i class="fa fa-check"></i>
-                <span>開放</span> 
-              <% end %>
-            <% end %>
 
             <%= link_to admin_company_path(c), method: :delete, data: { confirm:"您確定要刪除該企業嗎？" }, :class => "btn btn-fail btn-xs" do %>
               <i class="fa fa-trash"></i>

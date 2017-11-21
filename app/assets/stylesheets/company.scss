@@ -234,7 +234,7 @@ table {
   min-width: 135px;
 }
 
-.article-status {
+.article-status, .job-status, .company-status {
   text-align: center;
 }
 
@@ -245,6 +245,14 @@ table {
 .panel-default > .panel-heading {
   color: #fff;
   background-color: #12BDBC;
+}
+
+.panel a {
+  color: #12BDBC;
+}
+
+.panel a:hover {
+  color: #12BDBC;
 }
 
 .follow-item li {
