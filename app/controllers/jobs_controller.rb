@@ -9,6 +9,8 @@ class JobsController < ApplicationController
 
   def show
     @tag = TagJobship.get_job_tag(params[:id])
+    @job.views_count += 1
+    @job.save
   end
 
   def check_resume

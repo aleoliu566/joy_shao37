@@ -125,7 +125,7 @@ class Job < ApplicationRecord
       query = <<-SQL
       DELETE FROM jobs WHERE id = "#{j}"
       SQL
-      self.find_by_sql(query)
+      h_d_job = ActiveRecord::Base.connection.exec_query(query)
     end
 
     #Close_Open_Job

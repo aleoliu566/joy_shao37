@@ -25,6 +25,10 @@
                     <%= @job.published_on %>
                 </li>
                 <li>
+                    <span>瀏覽次數</span>
+                    <%= @job.views_count %>
+                </li>
+                <li>
                     <span>標籤</span>
                     <% @tag.each do |d| %>
                       <%= d.name %>
