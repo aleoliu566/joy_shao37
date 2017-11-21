@@ -21,9 +21,9 @@
         <tr>
           <td><%= job.name %></td>
           <td><%= job.company.name %></td>
-          <td><%= job.resumes.count %></td>
-          <td></td>
-          <td></td>
+          <td class="count"><%= job.resumes.count %></td>
+          <td class="count"></td>
+          <td class="count"></td>
           <td>
             <%= link_to admin_jobs_path, :class => "btn btn-success btn-xs" do %>
               <i class="fa fa-file-text-o"></i>

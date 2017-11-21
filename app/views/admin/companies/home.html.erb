@@ -25,9 +25,9 @@
     
         <tr>
           <td><%= c.name %></td>
-          <td><%= c.views_count %></td>
-          <td><%= c.resume_count%> </td>
-          <td></td>
+          <td class="count"><%= c.views_count %></td>
+          <td class="count"><%= c.resume_count%> </td>
+          <td class="count"></td>
           <td class="company-status">
             <% if c.account_status == 'open' %>
               <%= link_to ban_admin_company_path(c), method: :ban, data: {confirm:"您確定要停權該企業嗎？"}, :class => "btn btn-warning btn-xs" do %>
