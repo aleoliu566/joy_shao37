@@ -1,10 +1,56 @@
-<%= @job.name %>
-<br>
-<%= @job.content %>
-<br>
-Tag~~~~~~~~~
-<br>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <div class="page-title">
+    <h2><%= @job.name %></h2>
+    <div class="bolded-line"></div>
+    <%= link_to check_resume_company_job_path(@job.company,@job), :class => "btn btn-success btn-sm" do %>
+      <i class="fa fa-paper-plane-o"></i>
+      <span>&nbsp;應徵</span>
+    <% end %>
+    <!--
+    <%= link_to check_resume_company_job_path(@job.company,@job), :class => "btn btn-success btn-sm" do %>
+      <i class="fa fa-heart"></i>
+      <span>&nbsp;收藏</span>
+    <% end %>
+    -->
+  </div>
+
+  <div class="article-info">
+    <span>
+        <i class="fa fa-building">&nbsp;
+            <%= link_to company_path(@job.company) do %>
+                <%= @job.company.name %>
+            <% end %>
+        </i>
+        <i class="fa fa-calendar">&nbsp;
+            <%= @job.published_on %>
+        </i>
+    </span>
+
+    <span class="pull-right">
+        <i class="fa fa-eye">&nbsp;
+            總瀏覽次數
+        </i>
+        <i class="fa fa-paper-plane-o">&nbsp;
+            總應徵次數
+        </i>
+        <i class="fa fa-heart">&nbsp;
+            總收藏次數
+        </i>
+    </span>
+  </div>
+
+  <div class="article-page-content">
+    <%= @job.content %>
+    <br><br>
+    Tag~~~~~~~~~
+    <br>
      <% @tag.each do |d| %>
         <%= d.name %>
         <br>
       <% end %>
+  </div>
+
+</div>
+<div class="col-sm-2"></div>
+
