@@ -1,52 +1,67 @@
-<div>
-  <ul>
-    <li>
-      <span>職缺名稱</span>
-      <%= @job.name %>
-    <li>
-    <li>
-      <span>這裡讓你改標籤喔～～～～～～～</span>
-        <% @tag.each do |d| %>
-        <%= d.name %>
-        <% end %>
-    </li>
-    <li>
-      <span>刊登日期</span>
-      <%= @job.published_on %>
-    </li>
-    <li>
-      <span>職位內容</span>
-      <%= @job.content %>
-    </li>
-    <li>
-      <span>薪資待遇</span>
-      <%= @job.salary %>
-    </li>
-  </ul>
-</div>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+    <div class="unit">
+        <div class="page-title">
+            <h2>職缺資訊</h2>
+            <div class="bolded-line"></div>
+        </div>
 
-<br>
-<br>
-<br>
-<br>
+        <div class="col-sm-12 company-info">
+            <ul>
+                <li>
+                    <span>職缺名稱</span>
+                    <%= @job.name %>
+                </li>
+                <li>
+                    <span>職缺內容</span>
+                    <%= @job.content %>
+                </li>
+                <li>
+                    <span>薪資待遇</span>
+                    <%= @job.salary %>
+                </li>
+                <li>
+                    <span>刊登日期</span>
+                    <%= @job.published_on %>
+                </li>
+                <li>
+                    <span>標籤</span>
+                    <% @tag.each do |d| %>
+                      <%= d.name %>
+                    <% end %>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br>
+    <div class="page-title">
+      <h2>應徵紀錄</h2>
+      <div class="bolded-line"></div>
+    </div>
 
-<h4>投遞此職位的人</h4>
-
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <td>信箱</td>
-      <td>履歷</td>
-    </tr>
-  </thead>
-  <tbody>
+    <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>應徵者</th>
+        <th>應徵日期</th>
+        <th style="width: 120px"></th>
+      </tr>
+    </thead>
+    <tbody>
     <% @job.resumes.each do |resume|%>
       <tr>
         <td><%= resume.user.email %></td>
-        <td><%= link_to resume.name, resume.attachment_url %></td>
+        <td><%= resume.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+        <td>
+          <%= link_to resume.attachment_url, target: "_blank", :class => "btn btn-success btn-xs" do %>
+            <i class="fa fa-file-text-o"></i>
+            <span>查看履歷</span>
+          <% end %>
+        </td>
       </tr>
     <% end %>
-  </tbody>
-</table>
-  
+    </tbody>
+  </table>
+</div>
+<div class="col-sm-2"></div>
 
