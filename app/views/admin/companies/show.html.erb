@@ -1,25 +1,86 @@
-<h3>公司介紹</h3>
-<%= @company.name %>
-<br>
-<%= @company.phone %>
-<br>
-<%= @company.email %>
-<br>
-<%= @company.address %>
-<br>
-<%= @company.about %>
-<br>
-<br>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+    <div class="unit">
+        <div class="page-title">
+            <h2>企業資訊</h2>
+            <div class="bolded-line"></div>
+        </div>
 
-<h4>人資</h4>
+        <div class="col-sm-7 company-info">
+            <ul>
+                <li>
+                    <span>名稱</span>
+                    <%= @company.name %>
+                </li>
+                <li>
+                    <span>聯絡電話</span>
+                    <%= @company.phone %>
+                </li>
+                <li>
+                    <span>聯絡地址</span>
+                    <%= @company.address %>
+                </li>
+                <li>
+                    <span>Email</span>
+                    <%= @company.email %>
+                </li>
+                <li>
+                    <span>簡介</span>
+                    <%= @company.about %>
+                </li>
+                <li>
+                    <span>人資</span>
+                    <% @company.users.each do |u|%>
+                      <%= u.email %>
+                    <% end%>
+                </li>
+            </ul>
+        </div>
 
-<% @company.users.each do |u|%>
-  <%= u.email %>
-<% end%>
+        <div class="col-sm-5">
+            <div style="width: 225px; border:1px solid lightgrey;">
+                <% if @company.logo_url %>
+                  <%= image_tag @company.logo_url , width:'100%' %>
+                <% else %>
+                  <p>尚未上傳公司 Logo 喔～</p>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="page-title">
+      <h2>職缺總覽</h2>
+      <div class="bolded-line"></div>
+    </div>
 
+    <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>職缺名稱</th>
+        <th>瀏覽次數</th>
+        <th>應徵次數</th>
+        <th>收藏次數</th>
+        <th style="width: 140px"></th>
+      </tr>
+    </thead>
+    <tbody>
 
-<h4>職缺</h4>
-
-<% @company.jobs.each do |j|%>
-  <%= j.name %>
-<% end %>
+    <% @company.jobs.each do |j|%>
+        <tr>
+          <td>
+            <%= j.name %>
+          </td>
+          <td class="count"></td>
+          <td class="count"></td>
+          <td class="count"></td>
+          <td>
+            <%= link_to enterprise_company_job_path(@company,j), :class => "btn btn-success btn-xs" do %>
+              <i class="fa fa-eye"></i>
+              <span>查看詳細內容</span>
+            <% end %>
+          </td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="col-sm-2"></div>
