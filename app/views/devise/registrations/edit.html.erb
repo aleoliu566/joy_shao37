@@ -1,56 +1,56 @@
-<div class="col-sm-2"></div>
-<div class="col-sm-8">
-  <div class="page-title">
-    <h2>帳號設定</h2>
-    <div class="bolded-line"></div>
+<div class="col-sm-3"></div>
+<div class="col-sm-6">
+  <div class="unit">
+    <div class="page-title">
+      <h2>帳號設定</h2>
+      <div class="bolded-line"></div>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div>
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, :class => "border-radius" %>
+      </div>
+
+      <div>
+        <%= f.label :name, "姓名" %>
+        <%= f.text_field :name, :class => "border-radius" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div>
+        <%= f.label :password, "密碼" %> <i>(leave blank if you don't want to change it)</i>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off", :class => "border-radius" %>
+      </div>
+
+      <div>
+        <%= f.label :password_confirmation, "密碼確認" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off", :class => "border-radius" %>
+      </div>
+
+      <div>
+        <%= f.label :current_password, "當前密碼" %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "off", :class => "border-radius" %>
+      </div>
+
+      <div class="login">
+        <%= f.submit "修改", :class => "button btn-success medium" %>
+				<button type="reset" class="button btn-fail medium">清除</button>
+			</div>
+      <br><br><br><br>
+			<div class="page-title"></div>
+
+      Unhappy？&nbsp;<u><%= link_to "刪除此帳號", registration_path(resource_name), data: { confirm: "您確定要刪除此帳號嗎？" }, method: :delete %></u>
+    <% end %>
   </div>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= devise_error_messages! %>
-
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true %>
-    </div>
-
-    <div>
-      <%= f.label :姓名 %>
-      <%= f.text_field :name, :class => "border-radius" %>
-    </div>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
-    <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-      <% if @minimum_password_length %>
-        <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password, autocomplete: "off" %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Update" %>
-    </div>
-  <% end %>
-
-  <h3>Cancel my account</h3>
-
-  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-  <%= link_to "Back", :back %>
-
 </div>
-<div class="col-sm-2"></div>
+<div class="col-sm-3"></div>
