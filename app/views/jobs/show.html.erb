@@ -38,19 +38,28 @@
             總收藏次數
         </i>
     </span>
+
+    <div class="job-page-tag">
+      <i class="fa fa-tag">&nbsp;
+        <% @tag.each do |d| %>
+          <%= link_to do %><%= d.name %><% end %>&nbsp;&nbsp;  
+        <% end %>
+      </i>
+    </div>
   </div>
 
   <div class="article-page-content">
     <h3>工作內容</h3>
-    <%= @job.content %>
-    <div>
-      <i class="fa fa-building"></i>
-      <% @tag.each do |d| %>
-        <%= d.name %>
-        <br>
-      <% end %>
-    </div>
-    <h3>此公司職缺</h3>
+    <%= @job.content %><br>
+    <%= @job.salary %>
+  </div>
+
+  <br><br>
+  <div class="page-title">
+    <h2>此企業其他職缺</h2>
+    <div class="bolded-line"></div>
+  </div>
+
     <div>
       <% @job.company.jobs.each do |job| %>
         <div class="col-md-6">
@@ -65,7 +74,7 @@
             </h4>
             <p><%= job.company.name %></p>
             <div class="company-job-content">
-              <p><%= job.content %></p>  
+              <p><%= job.content %></p>
             </div>
             <i class="fa fa-building"></i>
             <% tag.each do |tag| %>

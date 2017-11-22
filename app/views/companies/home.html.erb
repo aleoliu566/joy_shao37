@@ -9,20 +9,22 @@
       <span>&nbsp;查看全部</span>
     <% end %>
   </div>
-  <% @companies.each do |company| %>
-    <div class="col-sm-4 home-company-block">
-      <div>
-        <% if company.logo_url %>
-          <%= image_tag company.logo_url , width:'50px' %>
+
+  <ul class="company clearfix">
+    <% @companies.each do |company| %>
+    <li>
+      <%= image_tag company.logo_url ,class: 'pull-left' if company.logo_url %>
+      <div class="company-title">
+        <%= link_to company_path(company) do %>
+          <%= company.name %>
         <% end %>
-        <%= link_to company.name, company_path(company) %>
-        <br>
-        <p>
-          <%= company.about %>
-        </p>
       </div>
-    </div>
-  <%end%>
+      <div class="company-content">
+        <%= company.about %>
+      </div>
+    </li>
+    <% end %>
+  </ul>
   <br><br>
   <div class="page-title">
     <h2>熱門職缺</h2>
