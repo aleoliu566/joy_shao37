@@ -1,17 +1,24 @@
-<h3>公司介紹</h3>
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <h3>
+    <%= image_tag @company.logo_url, width: '50px' %>
+    <%= @company.name %>
+    <div class="pull-right" style="font-size: 12px;">
+      <i class="fa fa-eye" aria-hidden="true"></i>：<%= @company.views_count %>
+    </div>
+  </h3>
+  <hr>
+  <div>
+    <p>關於：<%= @company.about %></p>
+    <p>地址：<%= @company.address %></p>
+    <p>公司電話：<%= @company.phone %></p>
+    <p>公司規模：<%= @company.scale %>人</p>
+  </div>
+  <hr>
+  <h4>目前職缺</h4>
 
-
-<%= @company.name %>
-瀏覽次數：<%= @company.views_count %>
-
-<h3>公司職缺</h3>
-
-<% @jobs.each do |job| %>
-  <%= job.name %>
-    <% tag = job.tag.split(',') %>
-          <% tag.each do |tag| %>
-            <%= tag %>
-          <% end %> 
-  <%= link_to "應徵", check_resume_company_job_path(@company,job) %>
-  <br>
-<% end %>
+  <% @jobs.each do |job| %>
+    <%= render 'job', :job => job %>
+  <% end %>
+</div>
+<div class="col-sm-2"></div>

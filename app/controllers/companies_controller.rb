@@ -5,6 +5,17 @@ class CompaniesController < ApplicationController
   	#更改呼叫 Job Model 中的 get_all_job 方法 （和開放/關閉職缺有關）
     @jobs = Job.get_all_job
     @companies = Company.all
+    @articles = Article.order(view_count: :desc)
+  end
+
+  def index
+    # @companies = Company.all
+
+    if params[:search]
+      @companies = Company.where('name LIKE ?', "%#{params[:search]}%")
+    else
+      @companies = Company.all
+    end
   end
 
   def show

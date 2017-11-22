@@ -368,3 +368,30 @@ textarea {
 .page-title a span {
   color: #ffffff;
 }
+
+
+
+
+.company-job-block{
+  border-radius: 0.3rem;
+  border: 1px solid lightgrey;
+  border-left-color: #12BDBC;
+  border-left-style: solid;
+  border-left-width: 10px;
+  padding: 15px 15px;
+  margin-bottom: 15px;
+  .heart-icon-like{
+    color: red;
+  }
+  .company-job-content{
+    max-height: 40px;
+    overflow: hidden;
+    margin-bottom: 13px;
+  }
+}
+
+.company-search-block{
+  .company-search-btn{
+    // width: 100%;
+  }
+}
