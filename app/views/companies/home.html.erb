@@ -4,6 +4,10 @@
   <div class="page-title">
     <h2>熱門企業</h2>
     <div class="bolded-line"></div>
+    <%= link_to companies_path, :class => "btn btn-success btn-sm" do %>
+      <i class="fa fa-th-list"></i>
+      <span>&nbsp;查看全部</span>
+    <% end %>
   </div>
   <% @companies.each do |company| %>
     <div class="col-sm-4 home-company-block">
@@ -23,6 +27,10 @@
   <div class="page-title">
     <h2>熱門職缺</h2>
     <div class="bolded-line"></div>
+    <%= link_to jobs_path, :class => "btn btn-success btn-sm" do %>
+      <i class="fa fa-th-list"></i>
+      <span>&nbsp;查看全部</span>
+    <% end %>
   </div>
 
   <table class="table table-bordered">
@@ -56,13 +64,22 @@
   <div class="page-title">
     <h2>熱門文章</h2>
     <div class="bolded-line"></div>
-  </div>
-  <div>
-    <% @articles.each do |article| %>
-      <%= article.title %> :
-      <%= article.content %>
-      <%= article.view_count %><br>
+    <%= link_to articles_path, :class => "btn btn-success btn-sm" do %>
+      <i class="fa fa-th-list"></i>
+      <span>&nbsp;查看全部</span>
     <% end %>
   </div>
+  <ul class="article">
+    <% @articles.each do |article| %>
+    <li>
+      <div class="article-title">
+        <%= link_to article.title , article_path(article) %>
+      </div>
+      <div class="article-content">
+        <%= article.content %> 
+      </div>
+    </li>
+    <% end %>
+  </ul>
 </div>
 <div class="col-sm-2"></div>
