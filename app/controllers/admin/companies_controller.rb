@@ -24,26 +24,37 @@ class Admin::CompaniesController < ApplicationController
     @company = Company.new
   end
 
-  def create
-    @company = Company.new(company_params)
+  # def create
+  #   @company = Company.new(company_params)
 
-    if @company.save
-      redirect_to home_path
-    else
-    end
+  #   if @company.save
+  #     redirect_to home_path
+  #   else
+  #   end
+  # end
+
+  def create
+    @company = Company.admin_create_company(company_params[:name],company_params[:phone],company_params[:email],company_params[:address],company_params[:about])
+
+    redirect_to home_path
   end
 
   def edit
     
   end
 
-  # 刪除寫在這
+  # # 刪除寫在這
+  # def destroy
+  #   @company = Company.find(params[:id])
+  #   if @company.destroy
+  #     redirect_to home_path
+  #   else
+  #   end
+  # end
+
   def destroy
-    @company = Company.find(params[:id])
-    if @company.destroy
-      redirect_to home_path
-    else
-    end
+    Company.admin_delete_company(params[:id])
+    redirect_to home_path
   end
 
   def ban
@@ -54,12 +65,19 @@ class Admin::CompaniesController < ApplicationController
     end
   end
 
+  # def update
+  #   if @company.update(company_params)
+  #     redirect_to home_path
+  #   else
+  #     redirect_to root_path
+  #   end
+  # end
+
   def update
-    if @company.update(company_params)
+    # if @company.update(company_params)
+      Company.admin_update_company(@company.id,company_params[:name],company_params[:phone],company_params[:email],company_params[:address],company_params[:about])
+
       redirect_to home_path
-    else
-      redirect_to root_path
-    end
   end
 
   private
@@ -69,7 +87,7 @@ class Admin::CompaniesController < ApplicationController
   end
 
   def company_params
-    params.require(:company).permit(:name, :phone, :email, :address, :about, :user_ids)
+    params.require(:company).permit(:name, :phone, :email, :address, :about,:user_ids)
   end
 
 end

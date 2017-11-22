@@ -23,7 +23,7 @@ class Enterprise::CompaniesController < ApplicationController
 
   def update
     if @company.update(company_params)
-    # if Company.hr_update_company(@company.id,company_params[:name],company_params[:phone],company_params[:email],company_params[:address],company_params[:about])
+      # if Company.hr_update_company(@company.id,company_params[:name],company_params[:phone],company_params[:email],company_params[:address],company_params[:about],company_params[:scale],company_params[:logo])
 
       redirect_to enterprise_companies_path
     else
