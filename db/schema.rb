@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119053748) do
+ActiveRecord::Schema.define(version: 20171122154533) do
 
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "title"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20171119053748) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "salary"
+    t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
   create_table "resume_jobships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
@@ -57,6 +58,8 @@ ActiveRecord::Schema.define(version: 20171119053748) do
     t.integer "job_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_resume_jobships_on_job_id"
+    t.index ["resume_id"], name: "index_resume_jobships_on_resume_id"
   end
 
   create_table "resumes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
@@ -74,6 +77,8 @@ ActiveRecord::Schema.define(version: 20171119053748) do
     t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_tag_jobships_on_job_id"
+    t.index ["tag_id"], name: "index_tag_jobships_on_tag_id"
   end
 
   create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
