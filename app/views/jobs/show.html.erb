@@ -29,7 +29,7 @@
 
     <span class="pull-right">
         <i class="fa fa-eye">&nbsp;
-            總瀏覽次數
+            <%= @job.views_count %>
         </i>
         <i class="fa fa-paper-plane-o">&nbsp;
             總應徵次數
@@ -41,14 +41,41 @@
   </div>
 
   <div class="article-page-content">
+    <h3>工作內容</h3>
     <%= @job.content %>
-    <br><br>
-    Tag~~~~~~~~~
-    <br>
-     <% @tag.each do |d| %>
+    <div>
+      <i class="fa fa-building"></i>
+      <% @tag.each do |d| %>
         <%= d.name %>
         <br>
       <% end %>
+    </div>
+    <h3>此公司職缺</h3>
+    <div>
+      <% @job.company.jobs.each do |job| %>
+        <div class="col-md-6">
+          <div class="company-job-block">
+            <h4>
+              <%= link_to job_path(job) do %>
+                <%= job.name %>
+              <% end %>
+              <div class="pull-right" style="font-size: 16px;">
+                <i class="fa fa-heart heart-icon-like" aria-hidden="true"></i>
+              </div>  
+            </h4>
+            <p><%= job.company.name %></p>
+            <div class="company-job-content">
+              <p><%= job.content %></p>  
+            </div>
+            <i class="fa fa-building"></i>
+            <% tag.each do |tag| %>
+              <%= tag %>
+            <% end %> 
+            <%= link_to "應徵", check_resume_company_job_path(job.company,job) %>  
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 
 </div>

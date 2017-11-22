@@ -9,7 +9,13 @@ class CompaniesController < ApplicationController
   end
 
   def index
-    @companies = Company.all
+    # @companies = Company.all
+
+    if params[:search]
+      @companies = Company.where('name LIKE ?', "%#{params[:search]}%")
+    else
+      @companies = Company.all
+    end
   end
 
   def show

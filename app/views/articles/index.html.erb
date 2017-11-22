@@ -10,9 +10,11 @@
     <li>
       <div class="article-title">
         <%= link_to article.title , article_path(article) %>
+        發佈公司：<%= article.company.name %>
       </div>
       <div class="article-content">
-        <%= article.content %>
+        <p><%= truncate( article.content, :length => 40 ) %></p> 
+        <p><i class="fa fa-eye"></i>  <%= article.view_count %></p> 
       </div>
     </li>
     <% end %>

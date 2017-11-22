@@ -4,6 +4,16 @@
     <h2>企業總覽</h2>
     <div class="bolded-line"></div>
   </div>
+  <div class="company-search-block">
+    <%= form_tag companies_path, method: :get do %>
+      <div class="col-sm-11">
+        <%= text_field_tag :search, params[:search], placeholder: "Search..." %>        
+      </div>
+      <div class="col-sm-1 company-search-btn">
+        <%= submit_tag "Search", name: nil , class:'btn btn-success btn-sm'%>
+      </div>
+    <% end %>
+  </div>
   <div>
     <% @companies.each do |company| %>
       <div class="col-sm-4">

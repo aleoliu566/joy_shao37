@@ -18,21 +18,7 @@
   <h4>目前職缺</h4>
 
   <% @jobs.each do |job| %>
-    <div class="col-md-6 company-job-block">
-      <h4>
-        <%= job.name %>
-        <div class="pull-right" style="font-size: 16px;">
-          <i class="fa fa-heart heart-icon-like" aria-hidden="true"></i>
-        </div>  
-      </h4>
-      <p><%= job.content %></p>
-      <% tag = job.tag.split(',') %>
-      <i class="fa fa-building"></i>
-      <% tag.each do |tag| %>
-        <%= tag %>
-      <% end %> 
-      <%= link_to "應徵", check_resume_company_job_path(@company,job) %>
-    </div>
+    <%= render 'job', :job => job %>
   <% end %>
 </div>
 <div class="col-sm-2"></div>
