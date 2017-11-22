@@ -4,5 +4,16 @@
     <h2>企業總覽</h2>
     <div class="bolded-line"></div>
   </div>
+  <div>
+    <% @companies.each do |company| %>
+      <div class="col-sm-4">
+        <%= link_to company_path(company) do %>
+            <%= image_tag company.logo_url , width:'50px' if company.logo_url %>
+            <h3><%= company.name %></h3>
+            <%= company.about %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
 <div class="col-sm-2"></div>

@@ -368,3 +368,18 @@ textarea {
 .page-title a span {
   color: #ffffff;
 }
+
+
+
+
+.company-job-block{
+  border-radius: 0.3rem;
+  border: 1px solid lightgrey;
+  border-left-color: #12BDBC;
+  border-left-style: solid;
+  border-left-width: 10px;
+  padding: 20px 15px;
+  .heart-icon-like{
+    color: red;
+  }
+}
