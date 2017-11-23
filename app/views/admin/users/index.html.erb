@@ -10,24 +10,39 @@
 </div>
 <div class="col-sm-1"></div>
 
+<div class="col-sm-12">
+  <h3>新增Admin User</h3>
+  <%= form_tag admin_set_admin_path, method: :patch do %>
+    <% cities_array = User.where(role: nil).map { |city| [city.email, city.id] } %>
+    <%= select_tag "user_id", options_for_select(cities_array) %>
+    <%= submit_tag "確認" %>
+  <% end %>
+</div>
 
-<br>
-<% @admin_users.each do |u| %>
-  <%= u.email%>
-  <%= u.role %>
-  <div class="cancel-admin-user">
-    <%= form_for u,:url => admin_user_path(u), method: :patch do |f| %>
-      <%= f.text_field :role%>
-      <%= f.submit %>
-    <% end %>
-  </div>
-
-  <br>
-<% end %>
-
-<h3>新增Admin User</h3>
-<%= form_tag admin_set_admin_path, method: :patch do %>
-  <% cities_array = User.where(role: nil).map { |city| [city.email, city.id] } %>
-  <%=select_tag "user_id", options_for_select(cities_array) %>
-  <%=submit_tag "確認" %>
-<% end %>
+<div class="col-sm-12">
+  <h3>Admin 使用者</h3>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>admin email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @admin_users.each do |u| %>
+        <tr>
+          <th><%= u.id %></th>
+          <th><%= u.email %></th>
+          <th style="text-align: center;">
+            <%= link_to admin_remove_admin_path(u), method: :patch ,
+                                                    class:'btn btn-danger btn-xs' do %>
+              <i class="fa fa-ban"></i>
+              <span>踢出admin</span>
+            <% end %>
+          </th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
