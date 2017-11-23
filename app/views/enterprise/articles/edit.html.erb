@@ -15,6 +15,10 @@
         <%= f.label :content, "內容" %>
         <%= f.text_area :content %>
       </div>
+      <div>
+        <%= f.label :banner, "上傳圖片" %>
+        <%= f.file_field :banner %>
+      </div>
       <div class="login">
         <%= f.submit "修改", :class => "button btn-success medium" %>
         <%= link_to '返回', enterprise_company_articles_path, :class => "button btn-fail medium" %>

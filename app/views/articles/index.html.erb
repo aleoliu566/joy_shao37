@@ -18,6 +18,7 @@
   <ul class="article clearfix">
     <% @articles.each do |article| %>
     <li>
+      <%= image_tag article.banner_url if article.banner_url %>
       <div class="article-title">
         <%= link_to article.title , article_path(article) %>
       </div>

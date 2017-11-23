@@ -15,6 +15,10 @@
         <%= j.label :content, "內容" %>
         <%= j.text_area :content %>
       </div>
+      <div>
+        <%= j.label :banner, "上傳圖片" %>
+        <%= j.file_field :banner %>
+      </div>
       <div class="login">
         <%= j.submit "修改", :class => "button btn-success medium" %>
         <%= link_to '返回', admin_articles_path, :class => "button btn-fail medium" %>
