@@ -10,7 +10,7 @@
         <div class="panel-heading">企業</div>
         <div class="panel-body">
             尚未收藏企業，立即點選
-            <%= link_to root_path do %>所有企業<% end %>
+            <%= link_to companies_path do %>所有企業<% end %>
             將有興趣的企業加入收藏。
 
             <!--如果有收藏的企業就顯示以下這段code-->
@@ -75,5 +75,20 @@
         </div>
     </div>
   </div>
+
+  <div class="panel-group follow-item">
+    <div class="panel panel-default">
+        <div class="panel-heading">文章</div>
+        <div class="panel-body">
+            尚未收藏文章，立即點選
+            <%= link_to articles_path do %>所有文章<% end %>
+            將有興趣的文章加入收藏。
+
+            <!--以此類推 如果有收藏的文章就顯示那段code-->
+            
+        </div>
+    </div>
+  </div>
+
 </div>
 <div class="col-sm-2"></div>
