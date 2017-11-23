@@ -98,6 +98,9 @@
   <ul class="article">
     <% @articles.each do |article| %>
     <li>
+      <div>
+        <%= image_tag article.banner_url(:image), style:"width:100%;" if article.banner_url %>
+      </div>
       <div class="article-title">
         <%= link_to article.title , article_path(article) %>
       </div>

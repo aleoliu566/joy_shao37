@@ -11,6 +11,11 @@ class BannerUploader < CarrierWave::Uploader::Base
     process :eager => true
     process :resize_to_fill => [200, 200, :north]
   end
+
+  version :image do
+    process :eager => true
+    process :resize_to_fill => [500, 280, :north]
+  end
   # storage :file
   # storage :fog
 

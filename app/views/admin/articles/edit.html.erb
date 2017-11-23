@@ -12,12 +12,13 @@
         <%= j.text_field :title %>
       </div>
       <div>
-        <%= j.label :content, "內容" %>
-        <%= j.text_area :content %>
+        <%= j.label :banner, "上傳封面圖片" %>
+        <%= j.file_field :banner %>
       </div>
       <div>
-        <%= j.label :banner, "上傳圖片" %>
-        <%= j.file_field :banner %>
+        <%= j.label :content, "內容" %>
+        <%= j.cktext_area :content, :ckeditor => {:language => 'zh-tw'} %>
+        <%#= j.text_area :content %>
       </div>
       <div class="login">
         <%= j.submit "修改", :class => "button btn-success medium" %>
