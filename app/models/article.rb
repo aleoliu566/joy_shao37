@@ -3,7 +3,7 @@ class Article < ApplicationRecord
   belongs_to :user
   belongs_to :company
 
-    #UPDATE 
+    #UPDATE_hr
     def self.hr_update_article(a,title,content)
       t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
       query = <<-SQL
@@ -46,7 +46,7 @@ class Article < ApplicationRecord
    #    h_get_article = ActiveRecord::Base.connection.exec_query(query)
    #  end
 
-    #顯示
+    #顯示_hr
     def self.hr_get_all_article(c)
     # 把sql寫在這邊
       query = <<-SQL
@@ -56,6 +56,29 @@ class Article < ApplicationRecord
       GROUP BY articles.id
       SQL
       all_artilces = self.find_by_sql(query)  
+    end
+
+    #顯示_admin
+    def self.admin_get_all_article(c)
+    # 把sql寫在這邊
+      query = <<-SQL
+      SELECT articles.id, articles.title, articles.content, users.email, companies.name, articles.view_count 
+      FROM articles,users, companies
+      WHERE articles.user_id = users.id AND articles.company_id = companies.id AND articles.company_id = "#{c}"
+      GROUP BY articles.id
+      SQL
+      all_artilces = self.find_by_sql(query)  
+    end
+
+    #UPDATE_admin
+    def self.admin_update_article(a,title,content)
+      t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
+      query = <<-SQL
+      UPDATE articles 
+      SET title = "#{title}", content = "#{content}", updated_at="#{t}"
+      WHERE id = "#{a}"
+      SQL
+      a_u_article = ActiveRecord::Base.connection.exec_query(query)
     end
 
     def audit(article_status)

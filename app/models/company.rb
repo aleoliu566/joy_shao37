@@ -24,15 +24,45 @@ class Company < ApplicationRecord
   end
 
 
-  #UPDATE 
-  def self.hr_update_company(c,name,phone,email,address,about)
-    t = DateTime.now
+  #UPDATE_hr
+  def self.hr_update_company(c,name,phone,email,address,about,scale,logo)
+    t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
+    query = <<-SQL
+    UPDATE companies
+    SET name = "#{name}", phone = "#{phone}", email = "#{email}",address = "#{address}",about = "#{about}",scale = "#{scale}",logo = "#{logo}",updated_at="#{t}"
+    WHERE id = "#{c}"
+    SQL
+    h_u_company = ActiveRecord::Base.connection.exec_query(query)
+  end
+
+  #CREATE_admin
+  def self.admin_create_company(name,phone,email,address,about)
+    t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
+    query = <<-SQL
+    INSERT INTO companies(name,phone,email,address,about,created_at,updated_at)
+    VALUES ("#{name}","#{phone}","#{email}","#{address}","#{about}","#{t}","#{t}")
+    SQL
+    a_c_article = ActiveRecord::Base.connection.exec_query(query)
+  end
+
+  #UPDATE_admin
+  def self.admin_update_company(c,name,phone,email,address,about)
+    t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
     query = <<-SQL
     UPDATE companies
     SET name = "#{name}", phone = "#{phone}", email = "#{email}",address = "#{address}",about = "#{about}",updated_at="#{t}"
     WHERE id = "#{c}"
     SQL
-    self.find_by_sql(query)
+    a_u_company = ActiveRecord::Base.connection.exec_query(query)
+  end
+
+  #DELETE_admin
+  def self.admin_delete_company(c)
+    query = <<-SQL
+    DELETE FROM companies
+    WHERE id = "#{c}"
+    SQL
+    a_d_company = ActiveRecord::Base.connection.exec_query(query)
   end
 
 

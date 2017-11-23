@@ -13,17 +13,27 @@ class Admin::ArticlesController < ApplicationController
     @articles_auditing = Article.where(article_status:'auditing')
     @articles_failed = Article.where(article_status:'failed')
     @articles_pass = Article.where(article_status:'pass')
+    @articles = Article.admin_get_all_article(params[:company_id])
 	end
 
   def edit
     
   end
 
+  # def update
+  #   if @article.update(article_params)
+  #     redirect_to admin_articles_path
+  #   else
+  #     redirect_to root_path
+  #   end
+  # end
+
   def update
-    if @article.update(article_params)
+    if Article.admin_update_article(params[:id],article_params[:title],article_params[:content])
+
       redirect_to admin_articles_path
     else
-      redirect_to root_path
+     redirect_to root_path
     end
   end
 
