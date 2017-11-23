@@ -1,5 +1,44 @@
 <div class="col-sm-2"></div>
 <div class="col-sm-8">
+  <div class="page-title">
+    <h2>
+      <%= image_tag @company.logo_url, width: '50px' %>
+      <%= @company.name %>
+    </h2>
+    <div class="bolded-line"></div>
+    <%= link_to root_path, :class => "btn btn-danger btn-sm" do %>
+      <i class="fa fa-heart"></i>
+      <span>&nbsp;收藏</span>
+    <% end %>
+  </div>
+
+  <div class="article-info">
+    <span>
+        <i class="fa fa-pencil">&nbsp;
+            <%= link_to company_path(@article.company) do %>
+                <%= @article.company.name %>
+            <% end %>
+        </i>
+        <i class="fa fa-calendar">&nbsp;
+            <%= @article.created_at.localtime.strftime("%Y/%m/%d") %>
+        </i>
+    </span>
+
+    <span class="pull-right">
+        <i class="fa fa-eye">&nbsp;
+            <%= @article.view_count %>
+        </i>
+    </span>
+  </div>
+
+  <div class="article-page-content">
+    <%= @article.content %>
+  </div>
+
+</div>
+<div class="col-sm-2"></div>
+
+<div class="col-sm-8">
   <h3>
     <%= image_tag @company.logo_url, width: '50px' %>
     <%= @company.name %>

@@ -27,6 +27,14 @@
       <div class="company-content">
         <%= company.about %>
       </div>
+      <span class="company-view">
+        <i class="fa fa-eye"></i>&nbsp;
+        <%= company.views_count %>
+      </span>
+      <%= link_to root_path, :class => "btn btn-danger btn-xs pull-right" do %>
+        <i class="fa fa-heart"></i>
+        <span>&nbsp;收藏</span>
+      <% end %>
     </li>
     <% end %>
   </ul>

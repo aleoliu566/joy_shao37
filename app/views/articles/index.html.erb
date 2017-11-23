@@ -4,8 +4,18 @@
     <h2>文章總覽</h2>
     <div class="bolded-line"></div>
   </div>
+  <div class="company-search-block clearfix">
+    <%= form_tag articles_path, method: :get, class:'clearfix' do %>
+      <div class="col-sm-5">
+        <%= text_field_tag :search, params[:search], placeholder: "Search..." %>
+      </div>
+      <div class="col-sm-2 company-search-btn">
+        <%= submit_tag "搜尋", name: nil , class:'button btn-success small' %>
+      </div>
+    <% end %>
+  </div>
 
-  <ul class="article">
+  <ul class="article clearfix">
     <% @articles.each do |article| %>
     <li>
       <div class="article-title">
@@ -13,8 +23,15 @@
       </div>
       <div class="article-content">
         <%= article.content %> 
-       <!-- <p><i class="fa fa-eye"></i>  <%= article.view_count %></p> -->
       </div>
+      <span class="article-view">
+        <i class="fa fa-eye"></i>&nbsp;
+        <%= article.view_count %>
+      </span>
+      <%= link_to root_path, :class => "btn btn-danger btn-xs pull-right" do %>
+        <i class="fa fa-heart"></i>
+        <span>&nbsp;收藏</span>
+      <% end %>
     </li>
     <% end %>
   </ul>

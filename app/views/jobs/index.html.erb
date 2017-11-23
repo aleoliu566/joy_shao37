@@ -4,20 +4,56 @@
     <h2>職缺總覽</h2>
     <div class="bolded-line"></div>
   </div>
-
-  <% @jobs.each do |job| %>
-    <% job.tags.each do |d| %>
-      <%= d.name %>
-    <% end %>
-    <%= link_to job_path(job) do %>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <%= job.name %><br>
-          <%= job.company.name %>
-        </div>
+  <div class="company-search-block clearfix">
+    <%= form_tag jobs_path, method: :get, class:'clearfix' do %>
+      <div class="col-sm-5">
+        <%= text_field_tag :search, params[:search], placeholder: "Search..." %>
+      </div>
+      <div class="col-sm-2 company-search-btn">
+        <%= submit_tag "搜尋", name: nil , class:'button btn-success small' %>
       </div>
     <% end %>
-  <% end %>
+  </div>
 
+<ul class="job clearfix">
+    <% @jobs.each do |j| %>
+    <li>
+      <div class="job-company">
+        <%= image_tag j.company.logo_url ,class: 'pull-left' if j.company.logo_url %>
+        <%= link_to company_path(j.company) do %><%= j.company.name %><% end %> 
+      </div>
+      <div class="job-title">
+        <%= link_to job_path(j) do %>
+          <%= j.name %>
+        <% end %>
+      </div>
+      <div class="job-content">
+        <%= j.content %>
+      </div>
+      <div class="job-tag">
+        <i class="fa fa-tag">&nbsp;
+          <% tag = j.tag.split(',') %>
+          <% tag.each do |tag| %>
+            <%= link_to do %><%= tag %><% end %>&nbsp;  
+          <% end %>
+        </i>
+      </div>
+      <span class="job-view">
+        <i class="fa fa-eye"></i>&nbsp;
+        <%= j.views_count %>
+      </span>
+      <div class="job-submenu">
+        <%= link_to check_resume_company_job_path(j.company,j), :class => "btn btn-success btn-xs pull-right" do %>
+          <i class="fa fa-paper-plane-o"></i>
+          <span>&nbsp;應徵</span>
+        <% end %>
+        <%= link_to root_path, :class => "btn btn-danger btn-xs pull-right" do %>
+          <i class="fa fa-heart"></i>
+          <span>&nbsp;收藏</span>
+        <% end %>
+      </div>
+    </li>
+    <% end %>
+  </ul>
 </div>
 <div class="col-sm-2"></div>
