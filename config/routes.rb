@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
     resources :users
     patch 'set_admin', :to => 'users#set_admin'
+    patch ':id/remove_admin', :to => 'users#remove_admin', :as => 'remove_admin'
 
     get 'record', :to => 'resumes#record'
   end

@@ -20,6 +20,12 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def remove_admin
+    if User.find(params[:id]).update(role:nil)
+      redirect_to admin_users_path
+    else
+    end    
+  end
 
   def set_admin
     if User.find(params[:user_id]).update(role:1)
