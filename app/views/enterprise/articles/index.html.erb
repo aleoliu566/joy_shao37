@@ -9,24 +9,46 @@
     <% end %>
   </div>
 
-  <% @articles.each do |article| %>
-  <div class="col-sm-4 col-xs-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        標題： <%= article.title %>
-        <%= link_to "編輯文章", edit_enterprise_company_article_path(@company,article), class:'pull-right' %>
-      </div>
-      <div class="panel-body">
-        內容：<%= simple_format(article.content) %><br>
-        點擊率：<%= article.view_count %><br>
-        撰文者:<%= article.email%><br>
-        所屬公司:<%= article.name %>
-        <%= link_to "刪除文章", enterprise_company_article_path(@company,article), class:'pull-right',:method => :delete, :data => { :confirm => "確定要刪除文章嗎?" }%>  
-      </div>
-    </div>    
-  </div>
+    <table class="table table-bordered">
+    <tr>
+        <th style="width: 300px">文章標題</th>
+        <th>發佈日期</th>
+        <th>瀏覽次數</th>
+        <th>收藏次數</th>
+        <th style="width: 210px"></th>
+    </tr>
+    <% @articles.each do |article| %>
+    <tr>
+      <td>
+        <%= truncate(article.title, length: 20) %>
+      </td>
+      <td>
+        <%= article.created_at.localtime.strftime("%Y/%m/%d")%>
+      </td>
+      <td class="count">
+        <%= article.view_count %>
+      </td>
+      <td class="count"></td>
+      <td>
+        <%= link_to article_path(article), target: "_blank" , :class => "btn btn-success btn-xs" do %>
+          <i class="fa fa-file-text-o"></i>
+          <span>查看</span>
+        <% end %>
 
-<% end %>
+        <%= link_to edit_enterprise_company_article_path(@company,article), :class => "btn btn-primary btn-xs" do %>
+          <i class="fa fa-edit"></i>
+          <span>編輯</span>
+        <% end %>
+
+        <%= link_to enterprise_company_article_path(@company,article), :class => "btn btn-fail btn-xs", :method => :delete, :data => { :confirm => "您確定要刪除此文章嗎？" } do %>
+          <i class="fa fa-trash"></i>
+          <span>刪除</span>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+    </table>
+  
 
 </div>
 <div class="col-sm-1"></div>

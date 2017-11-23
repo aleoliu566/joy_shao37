@@ -50,7 +50,7 @@ class Article < ApplicationRecord
     def self.hr_get_all_article(c)
     # 把sql寫在這邊
       query = <<-SQL
-      SELECT articles.id, articles.title, articles.content, users.email, companies.name, articles.view_count 
+      SELECT articles.id, articles.title, articles.content, users.email, companies.name, articles.view_count, articles.created_at 
       FROM articles,users, companies
       WHERE articles.user_id = users.id AND articles.company_id = companies.id AND articles.company_id = "#{c}"
       GROUP BY articles.id
