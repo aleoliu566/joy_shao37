@@ -114,3 +114,21 @@ ul {
 .clearfix {
 *zoom: 1; /* For IE 6&7 only */
 }
+
+.mask {
+  background-color: rgba(40,40,40,0.9);
+  position: absolute;
+  left: 200px;
+  top: 50px;
+  width: calc( 100vw - 200px );
+  height: calc( 100vh - 50px );
+  z-index: 10;
+  text-align: center;
+}
+.mask > p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 80pt;
+}
