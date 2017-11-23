@@ -297,7 +297,6 @@ table {
   float: left;
   margin: 11px;
   padding: 15px;
-  height: 163px;
 
   .article-title {
     margin-bottom: 20px;
@@ -326,6 +325,12 @@ table {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     height: 60px;
+    margin-bottom: 15px;    
+  }
+
+  .article-view {
+    font-size: 14px;
+    color: #999;
   }
 }
 
@@ -412,6 +417,11 @@ input[type="submit"] {
     height: 35px;
   }
 
+  .company-view {
+    font-size: 14px;
+    color: #999;
+  }
+
   .company-title {
     margin-bottom: 20px;
     text-align: justify;
@@ -440,6 +450,7 @@ input[type="submit"] {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     height: 60px;
+    margin-bottom: 15px;
   }
 }
 
@@ -457,14 +468,23 @@ input[type="submit"] {
   padding: 15px;
 
   img {
-    width: 35px;
-    height: 35px;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  .job-company {
+    margin-bottom: 10px;
+    color: #999;
+
+    a {
+      color: #999;
+    }
   }
 
   .job-title {
     margin-bottom: 20px;
     text-align: justify;
-    margin-left: 50px;
     margin-top: 5px;
 
     a {
@@ -489,6 +509,31 @@ input[type="submit"] {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     height: 60px;
+  }
+
+  .job-tag {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+
+    a {
+      font-size: 14px;
+      color: #999;
+      line-height: 24px;
+    }
+  }
+
+  .job-submenu {
+    display: inline;
+
+    a {
+      margin-left: 5px;
+    }
+  }
+
+  .job-view {
+    font-size: 14px;
+    color: #999;
   }
 }
 

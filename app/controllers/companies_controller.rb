@@ -2,9 +2,10 @@ class CompaniesController < ApplicationController
   before_action :set_company, only:[:show]
 
   def home
-  	#更改呼叫 Job Model 中的 get_all_job 方法 （和開放/關閉職缺有關）
+    #更改呼叫 Job Model 中的 get_all_job 方法 （和開放/關閉職缺有關）
+    #第一筆尚未寫Order By，第二、三筆尚未轉 Raw SQL
     @jobs = Job.get_all_job
-    @companies = Company.all
+    @companies = Company.order(views_count: :desc).limit(3)
     @articles = Article.order(view_count: :desc).limit(2)
   end
 
