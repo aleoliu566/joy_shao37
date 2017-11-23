@@ -18,11 +18,12 @@
   <ul class="article clearfix">
     <% @articles.each do |article| %>
     <li>
+      <%= image_tag article.banner_url(:image), style:"width:100%;" if article.banner_url %>
       <div class="article-title">
         <%= link_to article.title , article_path(article) %>
       </div>
       <div class="article-content">
-        <%= article.content %> 
+        <%= truncate( simple_format(article.content),escape:false, :length => 50) %> 
       </div>
       <span class="article-view">
         <i class="fa fa-eye"></i>&nbsp;
