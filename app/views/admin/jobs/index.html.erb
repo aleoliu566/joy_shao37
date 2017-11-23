@@ -8,17 +8,11 @@
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
-     <!--    <th>職缺名稱</th>
+        <th>職缺名稱</th>
         <th>所屬企業</th>
         <th>瀏覽次數</th>
         <th>應徵次數</th>
-        <th>收藏次數</th> -->
-        <th>職缺名稱</th>
-        <!-- <th>職缺內容</th> -->
-        <th>所屬企業</th>
-        <!--<th>應徵次數</th> -->
-        <!-- <th>收藏次數</th> -->
-        <!-- <th>應徵人員</th> -->
+        <th>收藏次數</th>
         <th style="width: 140px"></th>      
       </tr>
     </thead>
@@ -34,11 +28,10 @@
         <% end %>      
       <tr>
         <td><%= jobInfo.name %></td>
-     <!--    <td><%= jobInfo.content %></td> -->
         <td><%= jobInfo.companyName  %></td>
-        <!--  <td><%= jobInfo.resumes.count %></td> -->
-        <!-- <td><%=  %></td> -->
-        <!-- <td><%= resumesStr %></td> -->
+        <td class="count"><%= jobInfo.resumes.count %></td>
+        <td class="count"><%=  %></td>
+        <td class="count"><%=  %></td>
         <td>
             <%= link_to admin_jobs_path, :class => "btn btn-success btn-xs" do %>
               <i class="fa fa-file-text-o"></i>
