@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20171124010813) do
 
-
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "title"
     t.text "content"
