@@ -4,6 +4,9 @@
 
 [ER model](https://drive.google.com/file/d/1JMJ7KX2RuAfdIa2wOI_k9BFusvt-ZN86/view?usp=sharing)
 
+[TO DO LIST](https://goo.gl/nzayN9)
+
+
 主要分成三個架構
 - User端
 - Enterprise端
