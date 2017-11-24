@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
     #更改呼叫 Job Model 中的 get_all_job 方法 （和開放/關閉職缺有關）
     @jobs = Job.get_limit_job #已orderby+limit3
     @companies = Company.get_limit_company
-    @articles = Article.order(view_count: :desc).limit(2)
+    @articles = Article.get_limit_article
   end
 
   def index
