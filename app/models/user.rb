@@ -15,7 +15,6 @@ class User < ApplicationRecord
   def is_company_fan_of?(group)
     favorite_usercompanies.include?(group)
   end
-
   
   def is_fan_of?(group)
     favorite_userjobs.include?(group)

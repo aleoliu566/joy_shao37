@@ -97,7 +97,8 @@
           <span>&nbsp;收藏</span>
         <% end %> -->
 
-          <% if current_user %>
+        <%# 收藏 %>
+        <% if current_user %>
            <% if !current_user.is_fan_of?(j) %>
              <%= link_to favorite_job_path(j), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
                <i class="fa fa-heart-o"></i>
@@ -115,8 +116,6 @@
                 <span>&nbsp;收藏</span>
              <% end %>
          <% end %>
-
-
       </div>
     </li>
     <% end %>
