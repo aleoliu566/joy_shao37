@@ -296,8 +296,6 @@ table {
   width: 47%;
   float: left;
   margin: 11px;
-  padding: 15px;
-  height: 400px;
 
   .article-title {
     margin-bottom: 20px;
@@ -326,7 +324,7 @@ table {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     height: 60px;
-    margin-bottom: 15px;    
+    margin-bottom: 15px;
   }
 
   .article-view {
@@ -355,6 +353,7 @@ table {
 .article-page-content {
   padding: 10px;
   text-align: justify;
+  line-height: 24px;
 }
 
 textarea {
