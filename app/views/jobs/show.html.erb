@@ -48,12 +48,18 @@
     </div>
   </div>
 
-  <div class="article-page-content">
-    <h3>工作內容</h3>
-    <%= @job.content %><br>
-    <p>待遇</p>
-    <%= @job.salary %>
-  </div>
+  <ul class="article-page-content">
+    <li>
+      <i class="fa fa-info-circle fa-fw"></i><span>&nbsp;&nbsp;工作內容：
+      <div style="line-height: 30px; margin-top: 10px; margin-left: 28px;">
+        <%= @job.content %></span>
+      </div>
+    </li>
+
+    <li>
+      <i class="fa fa-dollar fa-fw"></i><span>&nbsp;&nbsp;薪資待遇：<%= @job.salary %></span>
+    </li>
+  </ul>
 
   <br><br>
   <div class="page-title">

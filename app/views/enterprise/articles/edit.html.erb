@@ -12,14 +12,13 @@
         <%= f.text_field :title %>
       </div>
       <div>
-        <%= f.label :banner, "上傳封面圖片" %>
-        <%= f.file_field :banner %>
-      </div>
-      <div>
         <%= f.label :content, "內容" %>
         <%= f.cktext_area :content, :ckeditor => {:language => 'zh-tw'} %>
-        <%#= f.text_area :content %>
-      </div>
+      </div><br>
+      <div>
+        <%= f.label :banner, "上傳封面圖片" %>
+        <%= f.file_field :banner %>
+      </div><br>
       <div class="login">
         <%= f.submit "修改", :class => "button btn-success medium" %>
         <%= link_to '返回', enterprise_company_articles_path, :class => "button btn-fail medium" %>
