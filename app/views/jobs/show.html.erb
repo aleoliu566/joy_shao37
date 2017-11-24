@@ -34,9 +34,9 @@
         <i class="fa fa-paper-plane-o">&nbsp;
             總應徵次數
         </i>
-        <i class="fa fa-heart">&nbsp;
+        <!--<i class="fa fa-heart">&nbsp;
             總收藏次數
-        </i>
+        </i>-->
     </span>
 
     <div class="job-page-tag">
@@ -51,6 +51,7 @@
   <div class="article-page-content">
     <h3>工作內容</h3>
     <%= @job.content %><br>
+    <p>待遇</p>
     <%= @job.salary %>
   </div>
 
@@ -60,31 +61,45 @@
     <div class="bolded-line"></div>
   </div>
 
-    <div>
+    <ul class="job">
       <% @job.company.jobs.each do |job| %>
-        <div class="col-md-6">
-          <div class="company-job-block">
-            <h4>
+          <li class="company-job-block col-md-6">
+            <div class="job-company">
+              <%= image_tag job.company.logo_url ,class: 'pull-left' if job.company.logo_url %>
+              <%= link_to company_path(job.company) do %><%= job.company.name %><% end %> 
+            </div>
+            <div class="job-title">
               <%= link_to job_path(job) do %>
                 <%= job.name %>
               <% end %>
-              <div class="pull-right" style="font-size: 16px;">
-                <i class="fa fa-heart heart-icon-like" aria-hidden="true"></i>
-              </div>  
-            </h4>
-            <p><%= job.company.name %></p>
-            <div class="company-job-content">
-              <p><%= job.content %></p>
             </div>
-            <i class="fa fa-building"></i>
-            <% tag.each do |tag| %>
-              <%= tag %>
-            <% end %> 
-            <%= link_to "應徵", check_resume_company_job_path(job.company,job) %>  
-          </div>
-        </div>
+            <div class="job-content">
+              <%= job.content %>
+            </div>
+            <div class="job-tag">
+              <i class="fa fa-tag">&nbsp;
+                <% tag.each do |tag| %>
+                  <%= link_to do %><%= tag %><% end %>&nbsp;  
+                <% end %>
+              </i>
+            </div>
+            <span class="job-view">
+              <i class="fa fa-eye"></i>&nbsp;
+              <%= job.views_count %>
+            </span>
+            <div class="job-submenu clearfix">
+              <%= link_to check_resume_company_job_path(job.company,job), :class => "btn btn-success btn-xs pull-right" do %>
+                <i class="fa fa-paper-plane-o"></i>
+                <span>&nbsp;應徵</span>
+              <% end %>
+              <%= link_to root_path, :class => "btn btn-danger btn-xs pull-right" do %>
+                <i class="fa fa-heart"></i>
+                <span>&nbsp;收藏</span>
+              <% end %>
+            </div>
+          </li>
       <% end %>
-    </div>
+    </ul>
   </div>
 
 </div>
