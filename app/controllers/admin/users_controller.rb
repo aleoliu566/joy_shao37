@@ -32,14 +32,17 @@ class Admin::UsersController < ApplicationController
   end
 
   def set_admin
-    if User.find(params[:user_id]).update(role:1)
+    if User.find_by(email: params[:email])
+      User.find_by(email: params[:email]).update(role:1)
       redirect_to admin_users_path
     else
+      flash[:notice] = "無此使用者"
+      redirect_to new_admin_user_path
     end
   end
 
   private
   def user_params
-    params.require(:user).permit(:role)
+    params.require(:user).permit(:role, :email)
   end
 end

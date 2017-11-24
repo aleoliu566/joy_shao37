@@ -1,3 +1,4 @@
+<p style="color:red;"><%= notice %></p>
 <div class="col-sm-2"></div>
 <div class="col-sm-8">
   <div class="unit">
@@ -6,11 +7,15 @@
       <div class="bolded-line"></div>
     </div>
     <br>
-      <div class="login">
-        <%#= j.submit "新增", :class => "button btn-success medium" %>
-        <%= link_to '返回', admin_users_path, :class => "button btn-fail medium" %>
-      </div>
-    <%# end %>
+    <div>
+      <%= form_tag admin_set_admin_path, method: :patch do %>
+        <%= text_field_tag :email %>
+        <div class="login">
+          <%= submit_tag "確認" , class:'button btn-success medium' %>
+          <%= link_to '返回', admin_users_path, :class => "button btn-fail medium" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 <div class="col-sm-2"></div>
