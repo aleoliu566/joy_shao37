@@ -27,13 +27,13 @@ class CompaniesController < ApplicationController
 
   def favorite
     CompanyFavorite.new_company_fav(current_user.id,params[:company_id])
-    flash[:notice] = "您已收藏寶貝"
+    flash[:notice] = "您已收藏此公司"
     redirect_back fallback_location: root_path
   end
 
   def unfavorite
     CompanyFavorite.delete_company_fav(current_user.id,params[:company_id])
-    flash[:notice] = "您已取消收藏寶貝"
+    flash[:notice] = "您已取消收藏此公司"
     redirect_back fallback_location: root_path
   end
 
