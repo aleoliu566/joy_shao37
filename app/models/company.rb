@@ -97,9 +97,11 @@ class Company < ApplicationRecord
   def self.adminGetCompanyList
 
     query = <<-SQL
-    SELECT C.id, C.name, C.views_count, C.account_status, COUNT(RJ.id) AS resume_count
-    FROM (companies AS C LEFT JOIN jobs AS J ON C.id=J.company_id) LEFT JOIN resume_jobships AS RJ ON J.id=RJ.resume_id
-    GROUP BY (C.id) 
+    SELECT C.id, C.name, C.views_count, C.account_status, COUNT(CF.user_id) AS fav_count,
+    (SELECT COUNT(RJ.resume_id) FROM resume_jobships AS RJ, jobs AS J WHERE RJ.job_id = J.id AND C.id = J.id) AS resume_count
+    FROM companies AS C 
+    LEFT JOIN company_favorites AS CF ON  CF.company_id = C.id 
+    GROUP BY C.id
     SQL
 
     return find_by_sql(query)
