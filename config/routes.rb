@@ -8,6 +8,10 @@ Rails.application.routes.draw do
       resources :articles
       get 'record', :to => 'resumes#record'
     end
+
+    patch ':company_id/set_hr', :to => 'companies#set_hr', :as => 'set_hr'
+    patch ':id/:user_id/remove_hr', :to => 'companies#remove_hr', :as => 'remove_hr'
+
   end
 
   namespace :admin do

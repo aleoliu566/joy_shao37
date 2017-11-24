@@ -50,6 +50,25 @@ class Enterprise::CompaniesController < ApplicationController
     
   end
 
+  def set_hr
+    if User.find_by(id: params[:user])
+      User.find_by(id: params[:user]).update(company_id: params[:company_id])
+      redirect_to home_path
+    else
+      redirect_to home_path
+    end
+  end
+
+  def remove_hr
+    if User.find_by(id: params[:user_id])
+      User.find_by(id: params[:user_id]).update(company_id: nil)
+      redirect_to home_path
+    else
+      redirect_to home_path
+    end    
+  end
+
+
   private
   
   def set_company

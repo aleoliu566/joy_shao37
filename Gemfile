@@ -41,6 +41,8 @@ gem 'mysql2'
 
 gem 'ckeditor'
 
+gem 'select2-rails', '~> 4.0', '>= 4.0.3'
+
 # gem "rmagick", :require => 'RMagick'
 
 # Use Capistrano for deployment

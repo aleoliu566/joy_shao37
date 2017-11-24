@@ -562,3 +562,10 @@ input[disabled] {
   background-color: #eee;
   border: 1px solid #ccc;
 }
+
+
+.set-hr-box{
+  .select2-selection{
+    border:1px solid lightgrey;
+  }
+}

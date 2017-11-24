@@ -43,6 +43,21 @@ class Admin::CompaniesController < ApplicationController
     
   end
 
+  # def update
+  #   if @company.update(company_params)
+  #     redirect_to home_path
+  #   else
+  #     redirect_to root_path
+  #   end
+  # end
+
+  def update
+    @company.update(company_params)
+      # Company.admin_update_company(@company.id,company_params[:name],company_params[:phone],company_params[:email],company_params[:address],company_params[:about])
+
+    redirect_to home_path
+  end
+
   # # 刪除寫在這
   # def destroy
   #   @company = Company.find(params[:id])
@@ -65,20 +80,7 @@ class Admin::CompaniesController < ApplicationController
     end
   end
 
-  # def update
-  #   if @company.update(company_params)
-  #     redirect_to home_path
-  #   else
-  #     redirect_to root_path
-  #   end
-  # end
 
-  def update
-    # if @company.update(company_params)
-      Company.admin_update_company(@company.id,company_params[:name],company_params[:phone],company_params[:email],company_params[:address],company_params[:about])
-
-      redirect_to home_path
-  end
 
   private
 
