@@ -57,11 +57,24 @@ class Job < ApplicationRecord
      # 把sql寫在這邊
      query = <<-SQL
      SELECT jobs.*, GROUP_CONCAT(tags.name) AS tag
-     FROM tags,tag_jobships,jobs
-     WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND status = "open"
+     FROM tags,tag_jobships,jobs,companies
+     WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND companies.id = jobs.company_id AND companies.account_status = "open" AND status = "open"
      GROUP BY jobs.id
      SQL
      all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
+    end
+
+     def self.get_limit_job
+     # 把sql寫在這邊
+     query = <<-SQL
+     SELECT jobs.*, GROUP_CONCAT(tags.name) AS tag
+     FROM tags,tag_jobships,jobs,companies
+     WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND companies.id = jobs.company_id AND companies.account_status = "open" AND status = "open"
+     GROUP BY jobs.id
+     ORDER BY jobs.views_count DESC
+     LIMIT 3
+     SQL
+     limit_jobs = self.find_by_sql(query)  # 最後一行是回傳值
     end
 
      def self.get_job(c)
@@ -72,7 +85,7 @@ class Job < ApplicationRecord
      WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND company_id = '#{c}' AND status = "open"
      GROUP BY jobs.id
      SQL
-     all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
+     job = self.find_by_sql(query)  # 最後一行是回傳值
     end
 
 
@@ -153,6 +166,7 @@ class Job < ApplicationRecord
         query = <<-SQL
         SELECT J.id, J.name, J.content, J.views_count, C.name AS companyName
         FROM jobs AS J JOIN companies AS C ON J.company_id=C.id
+        WHERE C.account_status = "open"
         SQL
         
         return find_by_sql(query)

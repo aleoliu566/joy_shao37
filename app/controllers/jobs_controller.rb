@@ -35,15 +35,11 @@ class JobsController < ApplicationController
   end
 
   def favorite
-    # @job = Job.find(params[:id])
-    # current_user.favorite_userjobs << @job
     JobFavorite.new_job_fav(current_user.id,params[:id])
     flash[:notice] = "您已收藏宝贝"
     redirect_back fallback_location: root_path
   end
   def unfavorite
-    # @job = Job.find(params[:id])
-    # current_user.favorite_userjobs.delete(@job)
     JobFavorite.delete_job_fav(current_user.id,params[:id])
     flash[:notice] = "您已取消收藏宝贝"
     redirect_back fallback_location: root_path
