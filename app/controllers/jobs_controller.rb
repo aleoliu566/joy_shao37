@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   before_action :set_job, except:[:index]
   before_action :set_company, only:[:apply,:check_resume]
+  before_action :authenticate_user!, only: [:favorite, :unfavorite]
 
   def index
     #更改呼叫 Job Model 中的 get_all_job 方法 （和開放/關閉職缺有關）
@@ -31,6 +32,21 @@ class JobsController < ApplicationController
     else
       render 'check_resume'
     end
+  end
+
+  def favorite
+    # @job = Job.find(params[:id])
+    # current_user.favorite_userjobs << @job
+    JobFavorite.new_job_fav(current_user.id,params[:id])
+    flash[:notice] = "您已收藏宝贝"
+    redirect_back fallback_location: root_path
+  end
+  def unfavorite
+    # @job = Job.find(params[:id])
+    # current_user.favorite_userjobs.delete(@job)
+    JobFavorite.delete_job_fav(current_user.id,params[:id])
+    flash[:notice] = "您已取消收藏宝贝"
+    redirect_back fallback_location: root_path
   end
 
   private

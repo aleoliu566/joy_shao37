@@ -44,8 +44,13 @@ Rails.application.routes.draw do
     get 'collect', :to => 'companies#collect'
   end
 
-  
-  resources :jobs
+  resources :favorites
+  resources :jobs do
+    member do
+       post :favorite
+       post :unfavorite
+    end
+  end
   
   resources :articles
 
