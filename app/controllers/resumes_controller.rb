@@ -6,7 +6,8 @@ class ResumesController < ApplicationController
   def new
     @resume = Resume.new
 
-    @resumes = Resume.where(user_id: current_user.id).order(id: :desc)
+    # @resumes = Resume.where(user_id: current_user.id).order(id: :desc)
+    @new_resume = Resume.last
   end
 
   def create

@@ -3,10 +3,15 @@
   <div class="page-title">
     <h2>個人履歷</h2>
     <div class="bolded-line"></div>
-    <%= link_to root_path, :class => "btn btn-success btn-sm" do %>
+
+    <%= form_for @resume,:url => user_resumes_path(current_user.id), method: :post do |f| %>
+      <%= f.file_field :attachment , class:'choose-pdf hidden'%>
+      <%= f.submit "Save", class:'hidden upload-pdf hidden' %>
+    <% end %>
+    <a class="btn btn-success btn-sm upload" >
       <i class="fa fa-plus"></i>
       <span>&nbsp;上傳履歷</span>
-    <% end %>
+    </a>
   </div>
   <% if !@resume.errors.empty? %>
     <div class="alert alert-error">
@@ -20,34 +25,52 @@
 
   <!--你再控制一下只顯示最新的那份履歷，以及幫偶連一下upload的上傳頁面，感恩-->
 
-  <% @resumes.each do |resume| %>
-    <%= content_tag(:iframe,'', width: "100%", height: "800px", src: resume.attachment_url) %>
+  <%# @resumes.each do |resume| %>
+    <%#= content_tag(:iframe,'', width: "100%", height: "800px", src: resume.attachment_url) %>
+  <%# end %>
+  <% if current_user.resumes.present? %>
+    <%= content_tag(:iframe,'', width: "100%", height: "800px", src: @new_resume.attachment_url) %>
+  <% else %>
+    <a class="btn btn-success btn-sm upload" >
+      <i class="fa fa-plus"></i>
+      <span>&nbsp;上傳履歷</span>
+    </a>
   <% end %>
-
 <!--
   <p>上傳履歷</p>
   <%# if current_user.resumes.count <= 3 %>
     <div class="well">
-      <%= form_for @resume,:url => user_resumes_path(current_user.id), method: :post do |f| %>
-        <%= f.label :履歷名稱 %>
-        <%= f.text_field :name %>
-        <%= f.label :關於自己 %>
-        <%= f.text_field :content %>
-        <%= f.label :履歷 %>
-        <%= f.file_field :attachment %>
-        <%= f.submit "Save", class: "btn btn-primary" %>
-      <% end %>
+      <%#= form_for @resume,:url => user_resumes_path(current_user.id), method: :post do |f| %>
+        <%#= f.label :履歷名稱 %>
+        <%#= f.text_field :name %>
+        <%#= f.label :關於自己 %>
+        <%#= f.text_field :content %>
+        <%#= f.label :履歷 %>
+        <%#= f.file_field :attachment %>
+        <%#= f.submit "Save", class: "btn btn-primary" %>
+      <%# end %>
     </div>
-  <%# end %>
+  <%## end %>
 
   <div>
     <p>個人履歷</p>
-    <% @resumes.each do |resume| %>
-      <h3><%= link_to resume.name, resume.attachment_url %></h3>
-      <%= resume.content %>
+    <%# @resumes.each do |resume| %>
+      <h3><%#= link_to resume.name, resume.attachment_url %></h3>
+      <%#= resume.content %>
       <br>
-    <% end %>
+    <%# end %>
   </div>
 -->
 </div>
 <div class="col-sm-2"></div>
+
+<script type="text/javascript">
+  $('.upload').click(function(){
+    console.log("aaa");
+    $('.choose-pdf').click();
+  });
+  $('.choose-pdf').change(function(){
+      $('.upload-pdf').click();
+  });
+
+</script>

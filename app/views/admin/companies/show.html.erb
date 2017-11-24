@@ -71,8 +71,8 @@
             <%= j.name %>
           </td>
           <td class="count"><%= j.views_count %></td>
-          <td class="count"></td>
-          <td class="count"></td>
+          <td class="count"><%= j.resume_jobships.count %></td>
+          <td class="count"><%= j.job_favorites.count %></td>
           <td>
             <%= link_to admin_job_path(j), :class => "btn btn-success btn-xs" do %>
               <i class="fa fa-eye"></i>

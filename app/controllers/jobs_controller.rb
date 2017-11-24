@@ -5,7 +5,14 @@ class JobsController < ApplicationController
 
   def index
     #更改呼叫 Job Model 中的 get_all_job 方法 （和開放/關閉職缺有關）
-    @jobs = Job.get_all_job 
+    
+
+    @jobs = Job.get_all_job
+    # if params[:search]
+    #   @jobs = Job.where('name LIKE ?', "%#{params[:search]}%")
+    # else
+    #   @jobs = Job.get_all_job
+    # end
   end
 
   def show
@@ -17,6 +24,8 @@ class JobsController < ApplicationController
   def check_resume
     @resume = Resume.first
     @resumeJobship = ResumeJobship.new
+    @company = Company.find(params[:company_id])
+    @job = Job.find(params[:id])
   end
 
   def apply
