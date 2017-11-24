@@ -2,6 +2,8 @@ class Company < ApplicationRecord
   has_many :jobs
   has_many :users
   has_many :articles
+  has_many :company_favorites
+  has_many :company_fans, :through => :company_favorites, :source => :user
 
   mount_uploader :logo, LogoUploader
 
@@ -77,7 +79,5 @@ class Company < ApplicationRecord
     return find_by_sql(query)
     
   end
-
-
 
 end

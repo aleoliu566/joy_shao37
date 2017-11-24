@@ -47,10 +47,28 @@
           <i class="fa fa-paper-plane-o"></i>
           <span>&nbsp;應徵</span>
         <% end %>
-        <%= link_to root_path, :class => "btn btn-danger btn-xs pull-right" do %>
+      <!--   <%= link_to root_path, :class => "btn btn-danger btn-xs pull-right" do %>
           <i class="fa fa-heart"></i>
           <span>&nbsp;收藏</span>
-        <% end %>
+        <% end %> -->
+          <% if current_user %>
+           <% if !current_user.is_fan_of?(j) %>
+             <%= link_to favorite_job_path(j), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
+               <i class="fa fa-heart-o"></i>
+                <span>&nbsp;收藏</span>
+             <% end %>
+           <% else %>
+             <%= link_to unfavorite_job_path(j), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
+               <i class="fa fa-heart"></i>
+                <span>&nbsp;已收藏</span>
+             <% end %>
+           <% end %>
+         <% else %>
+           <%= link_to favorite_job_path(j), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
+               <i class="fa fa-heart-o"></i>
+                <span>&nbsp;收藏</span>
+             <% end %>
+         <% end %>
       </div>
     </li>
     <% end %>

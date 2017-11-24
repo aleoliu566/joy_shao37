@@ -11,7 +11,6 @@ class CompaniesController < ApplicationController
 
   def index
     # @companies = Company.all
-
     if params[:search]
       @companies = Company.where('name LIKE ?', "%#{params[:search]}%")
     else
@@ -26,8 +25,21 @@ class CompaniesController < ApplicationController
     @company.save
   end
 
+  def favorite
+    CompanyFavorite.new_company_fav(current_user.id,params[:company_id])
+    flash[:notice] = "您已收藏此公司"
+    redirect_back fallback_location: root_path
+  end
+
+  def unfavorite
+    CompanyFavorite.delete_company_fav(current_user.id,params[:company_id])
+    flash[:notice] = "您已取消收藏此公司"
+    redirect_back fallback_location: root_path
+  end
+
   def collect
-    
+    @jobcollect = JobFavorite.get_all_fav(params[:user_id])
+    @companycollect = CompanyFavorite.get_all_fav(params[:user_id])
   end
 
   private

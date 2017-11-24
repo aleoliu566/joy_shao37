@@ -45,14 +45,20 @@ Rails.application.routes.draw do
     get 'collect', :to => 'companies#collect'
   end
 
-  
-  resources :jobs
+  resources :jobs do
+    member do
+       post :favorite
+       post :unfavorite
+    end
+  end
   
   resources :articles
 
   root 'companies#home'
 
   resources :companies do
+    post :favorite
+    post :unfavorite
     resources :jobs do
       member do
         get :check_resume

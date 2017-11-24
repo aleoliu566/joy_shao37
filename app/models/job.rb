@@ -5,6 +5,8 @@ class Job < ApplicationRecord
   has_many :resumes, :through => :resume_jobships 
   has_many :tag_jobships
   has_many :tags, :through => :tag_jobships
+  has_many :job_favorites
+  has_many :fans, :through => :job_favorites, :source => :user
   #資料驗證
   validates_presence_of :name, :published_on, :content, :salary
 
@@ -15,7 +17,7 @@ class Job < ApplicationRecord
       INSERT INTO jobs(company_id,name,published_on,content,salary,created_at,updated_at,status)
       VALUES ("#{cid}","#{n}","#{p}","#{c}","#{s}","#{t}" ,"#{t}","open")
       SQL
-      a = ActiveRecord::Base.connection.exec_query(query)
+      ActiveRecord::Base.connection.exec_query(query)
    
 
       query2 = <<-SQL
