@@ -9,7 +9,7 @@
     <% end %>
    <!--  #### 看貝貝要不要刪-->
     <% if current_user %>
-           <% if !current_user.is_fan_of?(@job) %>
+           <% if !current_user.is_fan_of?(@job.id,current_user.id).present? %>
              <%= link_to favorite_job_path(@job), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
                <i class="fa fa-heart-o"></i>
                 <span>&nbsp;收藏</span>
@@ -111,7 +111,7 @@
               <% end %>
               <!-- ### -->
               <% if current_user %>
-                 <% if !current_user.is_fan_of?(job) %>
+                 <% if !current_user.is_fan_of?(job.id,current_user.id).present? %>
                    <%= link_to favorite_job_path(job), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
                      <i class="fa fa-heart-o"></i>
                       <span>&nbsp;收藏</span>
