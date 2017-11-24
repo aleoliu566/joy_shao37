@@ -18,7 +18,9 @@
       <td>
         <%= article.created_at.localtime.strftime("%Y/%m/%d")%>
       </td>
-      <td class="count"></td>
+      <td class="count">
+        <%= article.view_count %>
+      </td>
       <td class="count"></td>
       <td>
         <%= link_to article_path(article), target: "_blank" , :class => "btn btn-success btn-xs" do %>

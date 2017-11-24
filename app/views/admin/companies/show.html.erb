@@ -70,11 +70,11 @@
           <td>
             <%= j.name %>
           </td>
-          <td class="count"></td>
+          <td class="count"><%= j.views_count %></td>
           <td class="count"></td>
           <td class="count"></td>
           <td>
-            <%= link_to enterprise_company_job_path(@company,j), :class => "btn btn-success btn-xs" do %>
+            <%= link_to admin_job_path(j), :class => "btn btn-success btn-xs" do %>
               <i class="fa fa-eye"></i>
               <span>查看詳細內容</span>
             <% end %>
