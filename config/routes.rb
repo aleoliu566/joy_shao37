@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     get 'collect', :to => 'companies#collect'
   end
 
+  resources :favorites
   resources :jobs do
     member do
        post :favorite

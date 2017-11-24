@@ -15,6 +15,7 @@ class User < ApplicationRecord
   def is_company_fan_of?(group)
     favorite_usercompanies.include?(group)
   end
+
   
   def is_fan_of?(group)
     favorite_userjobs.include?(group)
@@ -22,6 +23,7 @@ class User < ApplicationRecord
     # query = <<-SQL
     # SELECT 
     # INNER JOIN
+
     # SQL
     # ActiveRecord::Base.connection.exec_query(query)
 

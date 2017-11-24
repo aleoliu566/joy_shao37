@@ -27,7 +27,6 @@
         <span>&nbsp;應徵</span>
       <% end %>
     </div>
-    <!-- #### -->
   </div>
 
   <div class="article-info">
@@ -89,6 +88,35 @@
               <%= link_to job_path(job) do %>
                 <%= job.name %>
               <% end %>
+<<<<<<< HEAD
+=======
+              <div class="pull-right" style="font-size: 16px;">
+
+                <!-- ### -->
+                <% if current_user %>
+                 <% if !current_user.is_fan_of?(job) %>
+                   <%= link_to favorite_job_path(job), method: :post do %>
+                     <i class="fa fa-heart-o heart-icon-like" aria-hidden="true"></i>
+                   <% end %>
+                 <% else %>
+                   <%= link_to unfavorite_job_path(job), method: :post do %>
+                     <i class="fa fa-heart heart-icon-like" aria-hidden="true"></i>
+                   <% end %>
+                 <% end %>
+               <% else %>
+                 <%= link_to favorite_job_path(job), method: :post do %>
+                     <i class="fa fa-heart-o heart-icon-like" aria-hidden="true"></i>
+                   <% end %>
+               <% end %> 
+              <!-- ### -->
+
+
+              </div>  
+            </h4>
+            <p><%= job.company.name %></p>
+            <div class="company-job-content">
+              <p><%= job.content %></p>
+>>>>>>> job_fav
             </div>
             <div class="job-content">
               <%= job.content %>
