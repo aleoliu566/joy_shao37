@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20171123155706) do
     t.string "logo"
   end
 
+  create_table "company_favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer "company_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "job_favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer "job_id"
     t.integer "user_id"

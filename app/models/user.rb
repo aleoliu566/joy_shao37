@@ -9,6 +9,12 @@ class User < ApplicationRecord
   has_many :resumes
   has_many :job_favorites
   has_many :favorite_userjobs, :through => :job_favorites, :source => :job
+  has_many :company_favorites
+  has_many :favorite_usercompanies, :through => :company_favorites, :source => :company
+
+  def is_company_fan_of?(group)
+    favorite_usercompanies.include?(group)
+  end
   
   def is_fan_of?(group)
     favorite_userjobs.include?(group)
@@ -16,8 +22,6 @@ class User < ApplicationRecord
     # query = <<-SQL
     # SELECT 
     # INNER JOIN
-
-
     # SQL
     # ActiveRecord::Base.connection.exec_query(query)
 
