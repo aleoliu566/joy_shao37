@@ -21,10 +21,36 @@ class Company < ApplicationRecord
    #  self.find_by_sql(query)
   
    self.update_column("account_status", account_status)
-
-
   end
 
+  def self.search_company(search)
+    query = <<-SQL
+    SELECT *
+    FROM companies
+    WHERE name LIKE '%#{search}%'
+    SQL
+    self.find_by_sql(query)
+  end
+
+  def self.get_limit_company
+    query = <<-SQL
+    SELECT *
+    FROM companies
+    WHERE account_status = "open"
+    ORDER BY views_count DESC
+    LIMIT 3
+    SQL
+    self.find_by_sql(query)
+  end
+
+  def self.get_all_company
+    query = <<-SQL
+    SELECT *
+    FROM companies
+    WHERE account_status = "open"
+    SQL
+    self.find_by_sql(query)
+  end
 
   #UPDATE_hr
   def self.hr_update_company(c,name,phone,email,address,about,scale,logo)

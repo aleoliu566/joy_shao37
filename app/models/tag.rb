@@ -17,8 +17,11 @@ class Tag < ApplicationRecord
   #READ TAG
   def self.get_all_tags
   	 query = <<-SQL
-  	 	SELECT *
-  	 	FROM tags
+      SELECT tags.*, COUNT(tag_jobships.tag_id) AS count
+      FROM tags
+      LEFT JOIN tag_jobships
+      ON tags.id = tag_jobships.tag_id
+      GROUP BY tags.id
   	 SQL
   	 self.find_by_sql(query)
   end	
