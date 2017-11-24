@@ -549,3 +549,16 @@ input[type="submit"] {
   height: 30px;
   margin-right: 10px;
 }
+
+.red {
+  color: red;
+}
+
+html input[disabled] {
+  cursor: not-allowed;
+}
+
+input[disabled] {
+  background-color: #eee;
+  border: 1px solid #ccc;
+}

@@ -80,6 +80,7 @@
             </div>
             <div class="job-tag">
               <i class="fa fa-tag">&nbsp;
+                <%# tag = job.tag.split(',') %>
                 <% tag.each do |tag| %>
                   <%= link_to do %><%= tag %><% end %>&nbsp;  
                 <% end %>
