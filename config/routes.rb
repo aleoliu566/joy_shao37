@@ -45,7 +45,6 @@ Rails.application.routes.draw do
     get 'collect', :to => 'companies#collect'
   end
 
-  resources :favorites
   resources :jobs do
     member do
        post :favorite
@@ -58,6 +57,8 @@ Rails.application.routes.draw do
   root 'companies#home'
 
   resources :companies do
+    post :favorite
+    post :unfavorite
     resources :jobs do
       member do
         get :check_resume
