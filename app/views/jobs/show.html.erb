@@ -3,29 +3,30 @@
   <div class="page-title">
     <h2><%= @job.name %></h2>
     <div class="bolded-line"></div>
-    <%= link_to check_resume_company_job_path(@job.company,@job), :class => "btn btn-success btn-sm" do %>
-      <i class="fa fa-paper-plane-o"></i>
-      <span>&nbsp;應徵</span>
-    <% end %>
-   <!--  #### 看貝貝要不要刪-->
-    <% if current_user %>
-           <% if !current_user.is_fan_of?(@job) %>
-             <%= link_to favorite_job_path(@job), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
-               <i class="fa fa-heart-o"></i>
-                <span>&nbsp;收藏</span>
-             <% end %>
-           <% else %>
-             <%= link_to unfavorite_job_path(@job), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
-               <i class="fa fa-heart"></i>
-                <span>&nbsp;已收藏</span>
-             <% end %>
-           <% end %>
-         <% else %>
-           <%= link_to favorite_job_path(@job), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
-               <i class="fa fa-heart-o"></i>
-                <span>&nbsp;收藏</span>
-             <% end %>
-    <% end %>
+    <div class="job-content-submenu">
+      <% if current_user %>
+            <% if !current_user.is_fan_of?(@job) %>
+              <%= link_to favorite_job_path(@job), :class => "btn btn-danger btn-sm", method: :post do %>
+                <i class="fa fa-heart-o"></i>
+                  <span>&nbsp;收藏</span>
+              <% end %>
+            <% else %>
+              <%= link_to unfavorite_job_path(@job), :class => "btn btn-danger btn-sm", method: :post do %>
+                <i class="fa fa-heart"></i>
+                  <span>&nbsp;已收藏</span>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= link_to favorite_job_path(@job), :class => "btn btn-danger btn-sm", method: :post do %>
+                <i class="fa fa-heart-o"></i>
+                  <span>&nbsp;收藏</span>
+              <% end %>
+      <% end %>&nbsp;
+      <%= link_to check_resume_company_job_path(@job.company,@job), :class => "btn btn-success btn-sm" do %>
+        <i class="fa fa-paper-plane-o"></i>
+        <span>&nbsp;應徵</span>
+      <% end %>
+    </div>
     <!-- #### -->
   </div>
 
@@ -88,12 +89,6 @@
               <%= link_to job_path(job) do %>
                 <%= job.name %>
               <% end %>
-              <div class="pull-right" style="font-size: 16px;">
-              </div>  
-            </h4>
-            <p><%= job.company.name %></p>
-            <div class="company-job-content">
-              <p><%= job.content %></p>
             </div>
             <div class="job-content">
               <%= job.content %>
