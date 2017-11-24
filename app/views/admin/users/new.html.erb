@@ -9,9 +9,10 @@
     <br>
     <div>
       <%= form_tag admin_set_admin_path, method: :patch do %>
+        <%= label_tag :email, "管理者 Email" %>
         <%= text_field_tag :email %>
         <div class="login">
-          <%= submit_tag "確認" , class:'button btn-success medium' %>
+          <%= submit_tag "新增" , class:'button btn-success medium' %>
           <%= link_to '返回', admin_users_path, :class => "button btn-fail medium" %>
         </div>
       <% end %>
