@@ -123,12 +123,18 @@
   <ul class="article">
     <% @articles.each do |article| %>
     <li>
-      <div class="article-title">
-        <%= link_to article.title , article_path(article) %>
+      <div>
+        <%= link_to article_path(article) do %>
+          <%= image_tag article.banner_url(:image), style:"width:100%;" if article.banner_url %>
+        <% end %>
       </div>
-      <div class="article-content">
-        <%= article.content %> 
-      </div>
+      <div style="padding: 15px;">
+        <div class="article-title">
+          <%= link_to article.title , article_path(article) %>
+        </div>
+        <div class="article-content">
+          <%= simple_format(article.content) %> 
+        </div>
       <span class="article-view">
         <i class="fa fa-eye"></i>&nbsp;
         <%= article.view_count %>
@@ -137,6 +143,7 @@
         <i class="fa fa-heart"></i>
         <span>&nbsp;收藏</span>
       <% end %>
+      </div>
     </li>
     <% end %>
   </ul>

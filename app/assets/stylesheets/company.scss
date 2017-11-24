@@ -296,7 +296,6 @@ table {
   width: 47%;
   float: left;
   margin: 11px;
-  padding: 15px;
 
   .article-title {
     margin-bottom: 20px;
@@ -325,7 +324,7 @@ table {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     height: 60px;
-    margin-bottom: 15px;    
+    margin-bottom: 15px;
   }
 
   .article-view {
@@ -354,6 +353,11 @@ table {
 .article-page-content {
   padding: 10px;
   text-align: justify;
+  line-height: 24px;
+
+  li {
+    margin-bottom: 15px;
+  }
 }
 
 textarea {
@@ -376,20 +380,17 @@ textarea {
 }
 
 
-.company-job-block {
+.job li.company-job-block {
   border-radius: 0.3rem;
   border: 1px solid lightgrey;
   border-left-color: #12BDBC;
   border-left-style: solid;
   border-left-width: 10px;
-  padding: 15px 15px;
+  padding: 15px;
   margin-bottom: 15px;
-  .heart-icon-like{
-    color: red;
-  }
+  width: 47.2%;
+
   .company-job-content{
-    max-height: 40px;
-    overflow: hidden;
     margin-bottom: 13px;
   }
 }
@@ -541,4 +542,23 @@ input[type="submit"] {
   font-size: 14px;
   color: #999;
   margin-top: 15px;
+}
+
+.company-page-logo {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.red {
+  color: red;
+}
+
+html input[disabled] {
+  cursor: not-allowed;
+}
+
+input[disabled] {
+  background-color: #eee;
+  border: 1px solid #ccc;
 }

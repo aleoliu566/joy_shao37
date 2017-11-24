@@ -1,0 +1,21 @@
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <div class="unit">
+    <div class="page-title">
+      <h2>上傳履歷</h2>
+      <div class="bolded-line"></div>
+    </div>
+    <br>
+    <%= form_for @resume,:url => user_resumes_path(current_user.id), method: :post do |f| %>
+      <div>
+        <%= f.label, "上傳 PDF 履歷檔案" %>
+        <%= f.file_field :attachment %>
+      </div><br>
+      <div class="login">
+        <%= f.submit "上傳", :class => "button btn-success medium" %>
+        <%= link_to '返回', new_user_resume_path(current_user), :class => "button btn-fail medium" %>
+			</div>
+    <% end %>
+  </div>
+</div>
+<div class="col-sm-2"></div>

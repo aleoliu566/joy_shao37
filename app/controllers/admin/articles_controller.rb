@@ -47,7 +47,7 @@ class Admin::ArticlesController < ApplicationController
   private
 
   def article_params
-  	params.require(:article).permit(:title, :content)
+  	params.require(:article).permit(:title, :content, :banner)
 	end
 
   def set_company

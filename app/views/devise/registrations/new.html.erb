@@ -15,12 +15,12 @@
       -->
 
 			<div>
-        <%= f.label :email%>
+        <span class="red">*&nbsp;</span><%= f.label :email%>
         <%= f.email_field :email, autofocus: true, :class => "border-radius" %>
 			</div>
 
 			<div>
-        <%= f.label :password, "密碼" %>
+        <span class="red">*&nbsp;</span><%= f.label :password, "密碼" %>
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
@@ -28,7 +28,7 @@
 			</div>
 
       <div>
-        <%= f.label :password_confirmation, "再次確認密碼" %>
+        <span class="red">*&nbsp;</span><%= f.label :password_confirmation, "再次確認密碼" %>
         <%= f.password_field :password_confirmation, autocomplete: "off", :class => "border-radius" %>
 			</div>
       
@@ -36,6 +36,17 @@
         <%= f.label :姓名 %>
         <%= f.text_field :name, :class => "border-radius" %>
       </div>
+
+      <div>
+				<label for="gender">性別</label>&nbsp;&nbsp;
+				<input id="male" name="gender" type="radio" value="male"> 男&nbsp;&nbsp;&nbsp;&nbsp;
+				<input id="female" name="gender" type="radio" value="female"> 女
+			</div><br>
+
+			<div>
+				<label for="birthday">生日</label>
+				<input class="border-radius" id="birthday" name="birthday" type="date" style="width: 50%;">
+			</div>
       
       <br>
 

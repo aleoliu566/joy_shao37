@@ -3,6 +3,8 @@ class Article < ApplicationRecord
   belongs_to :user
   belongs_to :company
 
+  mount_uploader :banner, BannerUploader
+
     #UPDATE_hr
     def self.hr_update_article(a,title,content)
       t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')

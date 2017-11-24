@@ -29,7 +29,8 @@
   </div>
 
   <div class="article-page-content">
-    <%= @article.content %>
+    <%= image_tag @article.banner_url, style:"width:100%; margin-bottom: 40px;" if @article.banner_url %>
+    <%= simple_format @article.content %>
   </div>
 
 </div>

@@ -48,7 +48,7 @@ class Enterprise::ArticlesController < ApplicationController
 
   def update
       Article.hr_update_article(params[:id],article_params[:title],article_params[:content])
-
+      @article.update(article_params)
       redirect_to enterprise_company_articles_path(@company)
     # else
     #   render :action => :edit
@@ -85,7 +85,7 @@ class Enterprise::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content)
+    params.require(:article).permit(:title, :content, :banner)
   end
 
   def set_company
