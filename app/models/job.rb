@@ -166,9 +166,13 @@ class Job < ApplicationRecord
     def self.getJobInfos
         
         query = <<-SQL
-        SELECT J.id, J.name, J.content, J.views_count, C.name AS companyName
-        FROM jobs AS J JOIN companies AS C ON J.company_id=C.id
+        SELECT J.id, J.name, J.content, J.views_count, C.name AS companyName, COUNT(JF.user_id) AS fav_count
+        FROM jobs AS J 
+        JOIN companies AS C ON J.company_id=C.id
+        LEFT JOIN job_favorites AS JF ON JF.job_id = J.id 
         WHERE C.account_status = "open"
+        GROUP BY J.id
+        ORDER BY C.id
         SQL
         
         return find_by_sql(query)
