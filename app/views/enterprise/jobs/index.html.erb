@@ -30,8 +30,12 @@
           <td class="count">
             <%= job.views_count %>
           </td>
-          <td class="count"></td>
-          <td class="count"></td>
+          <td class="count">
+            <%= job.res_count %>
+          </td>
+          <td class="count">
+            <%= job.fav_count %>
+          </td>
           <td class="job-status">
            <% if job.status != 'open' %>
               <%= link_to enterprise_company_ban_path(@company.id, :id => job.id, :'close' => 'close'), method: :ban, :class => "btn btn-danger btn-xs" do %>
