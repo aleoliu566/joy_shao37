@@ -63,11 +63,7 @@
 
     <ul class="job">
       <% @job.company.jobs.each do |job| %>
-          <li class="company-job-block col-md-6">
-            <div class="job-company">
-              <%= image_tag job.company.logo_url ,class: 'pull-left' if job.company.logo_url %>
-              <%= link_to company_path(job.company) do %><%= job.company.name %><% end %> 
-            </div>
+          <li class="company-job-block">
             <div class="job-title">
               <%= link_to job_path(job) do %>
                 <%= job.name %>

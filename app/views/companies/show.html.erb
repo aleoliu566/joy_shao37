@@ -20,12 +20,30 @@
     </span>
   </div>
 
-  <div class="article-page-content">
-    <p>關於：<%= @company.about %></p>
-    <p>地址：<%= @company.address %></p>
-    <p>公司電話：<%= @company.phone %></p>
-    <p>公司規模：<%= @company.scale %>人</p>
-  </div>
+  <ul class="article-page-content">
+    <li>
+      <i class="fa fa-phone fa-fw"></i><span>&nbsp;&nbsp;聯絡電話：<%= @company.phone %></span>
+    </li>
+
+    <li>
+      <i class="fa fa-envelope-o fa-fw"></i><span>&nbsp;&nbsp;聯絡 Email：<%= @company.email %></span>
+    </li>
+
+    <li>
+      <i class="fa fa-map-marker fa-fw"></i><span>&nbsp;&nbsp;聯絡地址：<%= @company.address %></span>
+    </li>
+
+    <li>
+      <i class="fa fa-users fa-fw"></i><span>&nbsp;&nbsp;企業規模：<%= @company.scale %></span>
+    </li>
+
+    <li>
+      <i class="fa fa-info-circle fa-fw"></i><span>&nbsp;&nbsp;企業簡介：
+      <div style="line-height: 30px; margin-top: 10px; margin-left: 28px;">
+        <%= @company.about %></span>
+      </div>
+    </li>
+  </ul>
 
   <br><br>
   <div class="page-title">
@@ -33,9 +51,41 @@
     <div class="bolded-line"></div>
   </div>
 
-  <% @jobs.each do |job| %>
-    <%= render 'job', :job => job %>
-  <% end %>
+  <ul class="job">
+       <% @jobs.each do |job| %>
+          <li class="company-job-block">
+            <div class="job-title">
+              <%= link_to job_path(job) do %>
+                <%= job.name %>
+              <% end %>
+            </div>
+            <div class="job-content">
+              <%= job.content %>
+            </div>
+            <div class="job-tag">
+              <i class="fa fa-tag">&nbsp;
+                <% tag.each do |tag| %>
+                  <%= link_to do %><%= tag %><% end %>&nbsp;  
+                <% end %>
+              </i>
+            </div>
+            <span class="job-view">
+              <i class="fa fa-eye"></i>&nbsp;
+              <%= job.views_count %>
+            </span>
+            <div class="job-submenu clearfix">
+              <%= link_to check_resume_company_job_path(@company,job), :class => "btn btn-success btn-xs pull-right" do %>
+                <i class="fa fa-paper-plane-o"></i>
+                <span>&nbsp;應徵</span>
+              <% end %>
+              <%= link_to root_path, :class => "btn btn-danger btn-xs pull-right" do %>
+                <i class="fa fa-heart"></i>
+                <span>&nbsp;收藏</span>
+              <% end %>
+            </div>
+          </li>
+      <% end %>
+    </ul>
 
 </div>
 <div class="col-sm-2"></div>
