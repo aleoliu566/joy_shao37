@@ -9,4 +9,9 @@ class Admin::JobsController < ApplicationController
     @jobResumes = Job.getJobResumes
 
   end
+
+  def show
+  	 @job = Job.find(params[:id])
+  	 @tag = TagJobship.get_job_tag(params[:id])
+  end
 end

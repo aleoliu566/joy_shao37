@@ -17,7 +17,6 @@
       </tr>
     </thead>
      <tbody>
-
       <% @jobInfos.each do |jobInfo| %>
         <% resumesStr = "" %>
         <% jobResume = @jobResumes[jobInfo.id.to_s.to_sym] %>
@@ -29,11 +28,11 @@
       <tr>
         <td><%= jobInfo.name %></td>
         <td><%= jobInfo.companyName  %></td>
-        <td class="count"><%= jobInfo.resumes.count %></td>
-        <td class="count"><%=  %></td>
+        <td class="count"><%= jobInfo.views_count %></td>
+        <td class="count"><%= %></td>
         <td class="count"><%=  %></td>
         <td>
-            <%= link_to admin_jobs_path, :class => "btn btn-success btn-xs" do %>
+            <%= link_to admin_job_path(jobInfo), :class => "btn btn-success btn-xs" do %>
               <i class="fa fa-file-text-o"></i>
               <span>查看詳細資訊</span>
             <% end %>

@@ -11,12 +11,13 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :jobs
     resources :companies do
       member do
         post :ban
       end
-      resources :jobs
     end
+
 
     resources :jobs, only:[:index]
     resources :articles do
