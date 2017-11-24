@@ -42,36 +42,37 @@
     <div class="panel panel-default">
         <div class="panel-heading">職缺</div>
         <div class="panel-body">
-            <!--如果沒有收藏的職缺就顯示以下這段code-->
+            
+            <% if !@jobcollect.present? %>
 
-            <!--
             尚未收藏職缺，立即點選
             <%= link_to jobs_path do %>所有職缺<% end %>
             將有興趣的職缺加入收藏。
-            -->
+           
+            <% else %>
 
+            <% @jobcollect.each do |d| %>
             <!-- 點擊該愛心可以取消收藏該職業，並重整看不到該收藏(? -->
-
+            <div class="collect">
+            <%= link_to unfavorite_job_path(d.jobId), method: :post do %>
+                <i class="fa fa-heart"></i>
+            <% end %>
+            </div>
+            <!-- 以上 -->
             <ul>
                 <li>
-                    <%= link_to jobs_path do %>
+                    <%= link_to job_path(d.jobId) do %>
                         <div class="collect">
                             <i class="fa fa-heart"></i>
                         </div>
-                        前端工程師
-                        <span class="pull-right">Google</span>
-                    <% end %>
-                </li>
-                <li>
-                    <%= link_to jobs_path do %>
-                        <div class="collect">
-                            <i class="fa fa-heart"></i>
-                        </div>
-                        PM
-                        <span class="pull-right">Yahoo!</span>
+                        <%= d.jobName %>
+                        <span class="pull-right"><%= d.companyName %></span>
                     <% end %>
                 </li>
             </ul>
+            <% end %>
+            <% end %>
+
         </div>
     </div>
   </div>

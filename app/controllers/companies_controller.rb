@@ -27,7 +27,7 @@ class CompaniesController < ApplicationController
   end
 
   def collect
-    
+    @jobcollect = JobFavorite.get_all_fav(params[:user_id])
   end
 
   private

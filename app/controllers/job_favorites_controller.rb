@@ -1,0 +1,2 @@
+class JobFavoritesController < ApplicationController
+end
