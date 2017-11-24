@@ -12,20 +12,23 @@ class User < ApplicationRecord
   has_many :company_favorites
   has_many :favorite_usercompanies, :through => :company_favorites, :source => :company
 
-  def is_company_fan_of?(group)
-    favorite_usercompanies.include?(group)
+  def is_company_fan_of?(group,user)
+    #favorite_usercompanies.include?(group)
+    query = <<-SQL
+    SELECT company_id
+    FROM company_favorites
+    WHERE user_id = "#{user}" AND company_id = "#{group}"
+    SQL
+    ActiveRecord::Base.connection.exec_query(query)
   end
   
-  def is_fan_of?(group)
-    favorite_userjobs.include?(group)
-
-    # query = <<-SQL
-    # SELECT 
-    # INNER JOIN
-
-    # SQL
-    # ActiveRecord::Base.connection.exec_query(query)
-
+  def is_fan_of?(group,user)
+    query = <<-SQL
+    SELECT job_id
+    FROM job_favorites
+    WHERE user_id = "#{user}" AND job_id = "#{group}"
+    SQL
+    ActiveRecord::Base.connection.exec_query(query)
   end
 
   def admin?

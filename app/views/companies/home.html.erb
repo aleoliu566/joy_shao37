@@ -27,7 +27,7 @@
         <%= company.views_count %>
       </span>
       <% if current_user %>
-        <% if !current_user.is_company_fan_of?(company) %>
+        <% if !current_user.is_company_fan_of?(company.id,current_user.id).present? %>
           <%= link_to company_favorite_path(company), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
             <i class="fa fa-heart-o"></i>
             <span>&nbsp;收藏</span>
@@ -99,7 +99,7 @@
 
         <%# 收藏 %>
         <% if current_user %>
-           <% if !current_user.is_fan_of?(j) %>
+           <% if !current_user.is_fan_of?(j.id,current_user.id).present? %>
              <%= link_to favorite_job_path(j), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
                <i class="fa fa-heart-o"></i>
                 <span>&nbsp;收藏</span>
