@@ -44,9 +44,11 @@ class Job < ApplicationRecord
     def self.hr_get_all_job(c)
      # 把sql寫在這邊
      query = <<-SQL
-     SELECT jobs.*, GROUP_CONCAT(tags.name) AS tag
-     FROM tags,tag_jobships,jobs
-     WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND company_id = '#{c}' 
+     SELECT jobs.*, COUNT(job_favorites.user_id) AS fav_count
+     ,(SELECT COUNT(resume_jobships.resume_id) FROM resume_jobships WHERE resume_jobships.job_id = jobs.id) AS res_count
+     FROM jobs
+     LEFT JOIN job_favorites ON  job_favorites.job_id = jobs.id 
+     WHERE company_id = '#{c}' 
      GROUP BY jobs.id
      SQL
      all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
