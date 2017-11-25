@@ -7,6 +7,7 @@ class Enterprise::CompaniesController < ApplicationController
   def index
     @jobs = current_user.company.jobs
     @company = current_user.company
+    #Company.hr_get_company(params[:id])
   end
 
   def new
@@ -70,7 +71,6 @@ class Enterprise::CompaniesController < ApplicationController
 
 
   private
-  
   def set_company
     @company = Company.find(params[:id])
   end
