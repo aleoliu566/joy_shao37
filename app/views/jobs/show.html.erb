@@ -5,7 +5,7 @@
     <div class="bolded-line"></div>
     <div class="job-content-submenu">
       <% if current_user %>
-            <% if !current_user.is_fan_of?(@job) %>
+            <% if !current_user.is_fan_of?(@job.id,current_user.id).present? %>
               <%= link_to favorite_job_path(@job), :class => "btn btn-danger btn-sm", method: :post do %>
                 <i class="fa fa-heart-o"></i>
                   <span>&nbsp;收藏</span>
@@ -27,7 +27,6 @@
         <span>&nbsp;應徵</span>
       <% end %>
     </div>
-    <!-- #### -->
   </div>
 
   <div class="article-info">
@@ -89,6 +88,18 @@
               <%= link_to job_path(job) do %>
                 <%= job.name %>
               <% end %>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+              <div class="pull-right" style="font-size: 16px;">
+              </div>  
+            </h4>
+            <p><%= job.company.name %></p>
+            <div class="company-job-content">
+              <p><%= job.content %></p>
+>>>>>>> job_fav
+=======
+>>>>>>> company fav
             </div>
             <div class="job-content">
               <%= job.content %>
@@ -110,26 +121,66 @@
                 <i class="fa fa-paper-plane-o"></i>
                 <span>&nbsp;應徵</span>
               <% end %>
+<<<<<<< HEAD
+<<<<<<< HEAD
               <!-- ### -->
               <% if current_user %>
                  <% if !current_user.is_fan_of?(job) %>
                    <%= link_to favorite_job_path(job), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
                      <i class="fa fa-heart-o"></i>
+=======
+
+               <% if current_user %>
+                 <% if !current_user.is_fan_of?(job) %>
+                   <%= link_to favorite_job_path(job), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
+                     <i class="fa fa-heart-o" aria-hidden="true"></i>
+>>>>>>> change 收藏
+=======
+              <!-- ### -->
+              <% if current_user %>
+                 <% if !current_user.is_fan_of?(job.id,current_user.id).present? %>
+                   <%= link_to favorite_job_path(job), :class => "btn btn-danger btn-xs pull-right", method: :post do %>
+                     <i class="fa fa-heart-o"></i>
+>>>>>>> company fav
                       <span>&nbsp;收藏</span>
                    <% end %>
                  <% else %>
                    <%= link_to unfavorite_job_path(job),:class => "btn btn-danger btn-xs pull-right", method: :post do %>
+<<<<<<< HEAD
+<<<<<<< HEAD
                      <i class="fa fa-heart"></i>
+=======
+                     <i class="fa fa-heart" aria-hidden="true"></i>
+>>>>>>> change 收藏
+=======
+                     <i class="fa fa-heart"></i>
+>>>>>>> company fav
                      <span>&nbsp;已收藏</span>
                    <% end %>
                  <% end %>
                <% else %>
                  <%= link_to favorite_job_path(job),:class => "btn btn-danger btn-xs pull-right", method: :post do %>
+<<<<<<< HEAD
+<<<<<<< HEAD
                      <i class="fa fa-heart-o"></i>
                      <span>&nbsp;收藏</span>
                    <% end %>
                <% end %> 
               <!-- ### -->
+=======
+                     <i class="fa fa-heart-o" aria-hidden="true"></i>
+                     <span>&nbsp;收藏</span>
+                   <% end %>
+               <% end %> 
+
+>>>>>>> change 收藏
+=======
+                     <i class="fa fa-heart-o"></i>
+                     <span>&nbsp;收藏</span>
+                   <% end %>
+               <% end %> 
+              <!-- ### -->
+>>>>>>> company fav
             </div>
           </li>
       <% end %>

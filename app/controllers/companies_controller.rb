@@ -3,18 +3,17 @@ class CompaniesController < ApplicationController
 
   def home
     #更改呼叫 Job Model 中的 get_all_job 方法 （和開放/關閉職缺有關）
-    #第一筆尚未寫Order By，第二、三筆尚未轉 Raw SQL
-    @jobs = Job.get_all_job
-    @companies = Company.order(views_count: :desc).limit(3)
-    @articles = Article.order(view_count: :desc).limit(2)
+    @jobs = Job.get_limit_job #已orderby+limit3
+    @companies = Company.get_limit_company
+    @articles = Article.get_limit_article
   end
 
   def index
     # @companies = Company.all
     if params[:search]
-      @companies = Company.where('name LIKE ?', "%#{params[:search]}%")
+      @companies = Company.search_company(params[:search])
     else
-      @companies = Company.all
+      @companies = Company.get_all_company
     end
   end
 

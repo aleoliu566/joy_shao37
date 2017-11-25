@@ -21,10 +21,36 @@ class Company < ApplicationRecord
    #  self.find_by_sql(query)
   
    self.update_column("account_status", account_status)
-
-
   end
 
+  def self.search_company(search)
+    query = <<-SQL
+    SELECT *
+    FROM companies
+    WHERE name LIKE '%#{search}%'
+    SQL
+    self.find_by_sql(query)
+  end
+
+  def self.get_limit_company
+    query = <<-SQL
+    SELECT *
+    FROM companies
+    WHERE account_status = "open"
+    ORDER BY views_count DESC
+    LIMIT 3
+    SQL
+    self.find_by_sql(query)
+  end
+
+  def self.get_all_company
+    query = <<-SQL
+    SELECT *
+    FROM companies
+    WHERE account_status = "open"
+    SQL
+    self.find_by_sql(query)
+  end
 
   #UPDATE_hr
   def self.hr_update_company(c,name,phone,email,address,about,scale,logo)
@@ -71,9 +97,11 @@ class Company < ApplicationRecord
   def self.adminGetCompanyList
 
     query = <<-SQL
-    SELECT C.id, C.name, C.views_count, C.account_status, COUNT(RJ.id) AS resume_count
-    FROM (companies AS C LEFT JOIN jobs AS J ON C.id=J.company_id) LEFT JOIN resume_jobships AS RJ ON J.id=RJ.resume_id
-    GROUP BY (C.id) 
+    SELECT C.id, C.name, C.views_count, C.account_status, COUNT(CF.user_id) AS fav_count,
+    (SELECT COUNT(RJ.resume_id) FROM resume_jobships AS RJ, jobs AS J WHERE RJ.job_id = J.id AND C.id = J.id) AS resume_count
+    FROM companies AS C 
+    LEFT JOIN company_favorites AS CF ON  CF.company_id = C.id 
+    GROUP BY C.id
     SQL
 
     return find_by_sql(query)

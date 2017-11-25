@@ -44,9 +44,11 @@ class Job < ApplicationRecord
     def self.hr_get_all_job(c)
      # 把sql寫在這邊
      query = <<-SQL
-     SELECT jobs.*, GROUP_CONCAT(tags.name) AS tag
-     FROM tags,tag_jobships,jobs
-     WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND company_id = '#{c}' 
+     SELECT jobs.*, COUNT(job_favorites.user_id) AS fav_count
+     ,(SELECT COUNT(resume_jobships.resume_id) FROM resume_jobships WHERE resume_jobships.job_id = jobs.id) AS res_count
+     FROM jobs
+     LEFT JOIN job_favorites ON  job_favorites.job_id = jobs.id 
+     WHERE company_id = '#{c}' 
      GROUP BY jobs.id
      SQL
      all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
@@ -57,11 +59,24 @@ class Job < ApplicationRecord
      # 把sql寫在這邊
      query = <<-SQL
      SELECT jobs.*, GROUP_CONCAT(tags.name) AS tag
-     FROM tags,tag_jobships,jobs
-     WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND status = "open"
+     FROM tags,tag_jobships,jobs,companies
+     WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND companies.id = jobs.company_id AND companies.account_status = "open" AND status = "open"
      GROUP BY jobs.id
      SQL
      all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
+    end
+
+     def self.get_limit_job
+     # 把sql寫在這邊
+     query = <<-SQL
+     SELECT jobs.*, GROUP_CONCAT(tags.name) AS tag
+     FROM tags,tag_jobships,jobs,companies
+     WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND companies.id = jobs.company_id AND companies.account_status = "open" AND status = "open"
+     GROUP BY jobs.id
+     ORDER BY jobs.views_count DESC
+     LIMIT 3
+     SQL
+     limit_jobs = self.find_by_sql(query)  # 最後一行是回傳值
     end
 
      def self.get_job(c)
@@ -72,7 +87,7 @@ class Job < ApplicationRecord
      WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND company_id = '#{c}' AND status = "open"
      GROUP BY jobs.id
      SQL
-     all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
+     job = self.find_by_sql(query)  # 最後一行是回傳值
     end
 
 
@@ -151,8 +166,13 @@ class Job < ApplicationRecord
     def self.getJobInfos
         
         query = <<-SQL
-        SELECT J.id, J.name, J.content, J.views_count, C.name AS companyName
-        FROM jobs AS J JOIN companies AS C ON J.company_id=C.id
+        SELECT J.id, J.name, J.content, J.views_count, C.name AS companyName, COUNT(JF.user_id) AS fav_count
+        FROM jobs AS J 
+        JOIN companies AS C ON J.company_id=C.id
+        LEFT JOIN job_favorites AS JF ON JF.job_id = J.id 
+        WHERE C.account_status = "open"
+        GROUP BY J.id
+        ORDER BY C.id
         SQL
         
         return find_by_sql(query)

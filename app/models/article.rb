@@ -35,6 +35,51 @@ class Article < ApplicationRecord
       h_c_article = ActiveRecord::Base.connection.exec_query(query)
     end
 
+    #GET LIMIT ARTICLE
+    def self.get_limit_article
+    query = <<-SQL
+    SELECT articles.*
+    FROM articles,companies
+    WHERE articles.company_id = companies.id AND companies.account_status = "open"
+    ORDER BY view_count DESC
+    LIMIT 2
+    SQL
+    self.find_by_sql(query)
+    end
+
+
+    #GET ALL ARTICLE
+    def self.get_all_article
+    query = <<-SQL
+    SELECT articles.*
+    FROM articles,companies
+    WHERE articles.company_id = companies.id AND companies.account_status = "open"
+    ORDER BY articles.created_at DESC
+    SQL
+    self.find_by_sql(query)
+    end
+
+    #GET AN ARTICLE (還沒使用到)
+    def self.get_article(id)
+    query = <<-SQL
+    SELECT articles.*
+    FROM articles
+    WHERE articles.id = "#{id}"
+    SQL
+    self.find_by_sql(query)
+    end
+
+    #SEARCH AN ARTICLE
+    def self.search_article(search)
+    query = <<-SQL
+    SELECT *
+    FROM articles
+    WHERE title LIKE '%#{search}%'
+    SQL
+    self.find_by_sql(query)
+    end
+
+
 	  # #顯示
    #  def self.hr_get_all_article(c)
    #  # 把sql寫在這邊

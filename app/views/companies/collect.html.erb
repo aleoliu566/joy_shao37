@@ -50,15 +50,33 @@
             <% else %>
 
             <% @jobcollect.each do |d| %>
-            <ul>
+
+<!--             <ul>
                 <li>
                     <div class="collect">
-                        <%= link_to unfavorite_job_path(d.jobId), method: :post do %>
+                        <%#= link_to unfavorite_job_path(d.jobId), method: :post do %>
                             <i class="fa fa-heart"></i>
-                        <% end %>
+                        <%# end %>
                     </div>
+                    <%#= link_to job_path(d.jobId) do %>
+                        <%#= d.companyName %> - <%#= d.jobName %> -->
+
+            <!-- 點擊該愛心可以取消收藏該職業，並重整看不到該收藏(? -->
+            <div class="collect">
+            <%= link_to unfavorite_job_path(d.jobId), method: :post do %>
+                <i class="fa fa-heart"></i>
+            <% end %>
+            </div>
+            <!-- 以上 -->
+            <ul>
+                <li>
                     <%= link_to job_path(d.jobId) do %>
-                        <%= d.companyName %> - <%= d.jobName %>
+                        <div class="collect">
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        <%= d.jobName %>
+                        <span class="pull-right"><%= d.companyName %></span>
+
                     <% end %>
                 </li>
             </ul>

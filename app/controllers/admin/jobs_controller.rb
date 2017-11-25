@@ -5,7 +5,6 @@ class Admin::JobsController < ApplicationController
   def index
     # @jobs = Job.all
     @jobInfos = Job.getJobInfos
-
     @jobResumes = Job.getJobResumes
 
   end
