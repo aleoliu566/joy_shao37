@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :article_favorites
   has_many :favorite_userarticles, :through => :article_favorites, :source => :article
 
+  validates_presence_of :birthday
+
   def is_article_fan_of?(group,user)
     query = <<-SQL
     SELECT article_id

@@ -81,7 +81,9 @@ class Admin::CompaniesController < ApplicationController
   end
 
   def analysis
-    @companies = Company.all
+    #@companies = Company.all
+    #@company = AnalysisView.view
+    @exe = Company.execute
   end
 
 

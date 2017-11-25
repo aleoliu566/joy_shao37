@@ -5,11 +5,24 @@
     <div class="bolded-line"></div>
   </div>
   <div id="container">
-    <%#= bar_chart @companies.group(:scale).count %>
-    <% @companies.each do |company| %>
-      <%= company.name %>
-      <%= analysis_chart(company) %>
-    <% end %>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>標籤類別</th>
+          <th>性別</th>
+          <th>人數</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @exe.each do |company| %>
+        <tr>
+          <th><%= company.name %></th>
+          <th><%= company.gender == 1 ? "男" : "女"%></th>
+          <th><%= company.count %></th>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 
 </div>
