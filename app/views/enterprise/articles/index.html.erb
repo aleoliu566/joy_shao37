@@ -28,7 +28,9 @@
       <td class="count">
         <%= article.view_count %>
       </td>
-      <td class="count"></td>
+      <td class="count">
+        <%= article.fav_count %>
+      </td>
       <td>
         <%= link_to article_path(article), target: "_blank" , :class => "btn btn-success btn-xs" do %>
           <i class="fa fa-file-text-o"></i>

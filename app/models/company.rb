@@ -52,7 +52,14 @@ class Company < ApplicationRecord
     self.find_by_sql(query)
   end
 
-
+  # def self.hr_get_company(uid)
+  #   query = <<-SQL
+  #   SELECT *
+  #   FROM companies
+  #   WHERE companies.id = 4
+  #   SQL
+  #   self.find_by_sql(query)
+  # end
   # def self.update_company_views(cid)
   #     t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
   #     query = <<-SQL
