@@ -15,9 +15,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
-    @article.view_count += 1
-    @article.save
+    @article = Article.get_article(params[:id])[0]
+    Article.update_view_count(params[:id])
   end
 
   def favorite

@@ -248,4 +248,14 @@ class Job < ApplicationRecord
 
     end
 
+    def self.update_view_count(id)
+      query = <<-SQL
+      UPDATE jobs
+      SET views_count=(SELECT t from (select jobs.views_count as t FROM jobs WHERE id="#{id}") as sub_table)+1
+      WHERE id="#{id}"
+      SQL
+      ActiveRecord::Base.connection.exec_query(query)
+      return true
+    end
+
 end

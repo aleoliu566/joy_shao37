@@ -52,8 +52,8 @@ class Admin::CompaniesController < ApplicationController
   # end
 
   def update
-    @company.update(company_params)
-      # Company.admin_update_company(@company.id,company_params[:name],company_params[:phone],company_params[:email],company_params[:address],company_params[:about])
+    # @company.update(company_params)
+      Company.admin_update_company(@company.id,company_params[:name],company_params[:phone],company_params[:email],company_params[:address],company_params[:about])
 
     redirect_to home_path
   end

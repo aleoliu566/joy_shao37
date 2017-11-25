@@ -68,7 +68,7 @@ class Article < ApplicationRecord
     FROM articles
     WHERE articles.id = "#{id}"
     SQL
-    self.find_by_sql(query)
+    return self.find_by_sql(query)
     end
 
     #SEARCH AN ARTICLE
@@ -132,19 +132,24 @@ class Article < ApplicationRecord
       a_u_article = ActiveRecord::Base.connection.exec_query(query)
     end
 
-    def audit(article_status)
+    def self.audit(a,article_status)
+      query = <<-SQL
+      UPDATE articles
+      SET article_status="#{article_status}"
+      WHERE id="#{a}"
+      SQL
+      ActiveRecord::Base.connection.exec_query(query)
+      return true
+    end
 
-      # query = <<-SQL
-      # UPDATE articles
-      # SET article_status="#{article_status}"
-      # WHERE title="#{self.title}"
-      # SQL
-
-      #self.find_by_sql(query)
-      self.update_column("article_status", article_status)
-
-
-
+    def self.update_view_count(article_id)
+      query = <<-SQL
+      UPDATE articles
+      SET view_count=(SELECT t from (select articles.view_count as t FROM articles WHERE id="#{article_id}") as sub_table)+1
+      WHERE id="#{article_id}"
+      SQL
+      ActiveRecord::Base.connection.exec_query(query)
+      return true
     end
 
 

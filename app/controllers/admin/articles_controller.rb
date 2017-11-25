@@ -37,7 +37,7 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def audit
-    if @article.audit params[:article_status]
+    if @article.audit(params[:id],params[:article_status])
         redirect_to admin_articles_path
     else
     end
