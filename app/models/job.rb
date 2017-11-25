@@ -87,10 +87,41 @@ class Job < ApplicationRecord
      WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND company_id = '#{c}' AND status = "open"
      GROUP BY jobs.id
      SQL
-     job = self.find_by_sql(query)  # 最後一行是回傳值
+     self.find_by_sql(query)  # 最後一行是回傳值
+     end
+
+
+     def self.get_a_job(c,jid)
+     # 把sql寫在這邊
+     query = <<-SQL
+     SELECT jobs.*, GROUP_CONCAT(tags.name) AS tag
+     FROM tags,tag_jobships,jobs
+     WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND company_id = '#{c}' AND status = "open" AND jobs.id NOT IN 
+     (SELECT id FROM jobs WHERE id = "#{jid}")
+     GROUP BY jobs.id 
+     SQL
+     self.find_by_sql(query)  # 最後一行是回傳值
+     end
+
+    #查看職缺詳細內容
+    def self.get_detail_job(jid)
+    query = <<-SQL
+    SELECT jobs.* 
+    FROM jobs 
+    WHERE jobs.id = "#{jid}"
+    SQL
+    self.find_by_sql(query)  # 最後一行是回傳值
     end
 
-
+    def self.update_job_views(jid)
+      t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
+      query = <<-SQL
+      UPDATE jobs,(SELECT views_count FROM jobs WHERE id = "#{jid}") AS B
+      SET jobs.views_count = (B.views_count + 1), updated_at = "#{t}"
+      WHERE id = "#{jid}"
+      SQL
+      ActiveRecord::Base.connection.exec_query(query)  # 最後一行是回傳值
+    end
 
   	# #READ JOB 
    #  def self.hr_get_all_job(c)

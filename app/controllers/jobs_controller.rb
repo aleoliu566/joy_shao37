@@ -16,9 +16,12 @@ class JobsController < ApplicationController
   end
 
   def show
+    #@job = Job.get_detail_job(params[:id])
+
+    @jobs = Job.get_a_job(@job.company_id,params[:id])
+    Job.update_job_views(params[:id])
     @tag = TagJobship.get_job_tag(params[:id])
-    @job.views_count += 1
-    @job.save
+   
   end
 
   def check_resume
