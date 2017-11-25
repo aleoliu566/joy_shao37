@@ -7,8 +7,8 @@ class ArticleFavorite < ApplicationRecord
      # 把sql寫在這邊
      query = <<-SQL
      SELECT article_favorites.article_id AS articleId , articles.title AS articleTitle, companies.name AS companyName
-     FROM company_favorites,users,companies
-     WHERE users.id = article_favorites.user_id AND articles.id = article_favorites.article_id AND article_favorites.user_id = "#{uid}" AND users.company_id = companies.id
+     FROM article_favorites,users,articles,companies
+     WHERE users.id = article_favorites.user_id AND articles.id = article_favorites.article_id AND article_favorites.user_id = "#{uid}" AND articles.company_id = companies.id AND companies.account_status = "open"
      ORDER BY companies.id
      SQL
      self.find_by_sql(query)

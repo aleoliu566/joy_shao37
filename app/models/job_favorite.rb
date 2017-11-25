@@ -8,7 +8,7 @@ class JobFavorite < ApplicationRecord
      query = <<-SQL
      SELECT jobs.id AS jobId , jobs.name AS jobName , companies.name AS companyName
      FROM jobs,job_favorites,users,companies
-     WHERE jobs.id = job_favorites.job_id AND users.id = job_favorites.user_id AND companies.id = jobs.company_id AND job_favorites.user_id = "#{uid}" 
+     WHERE jobs.id = job_favorites.job_id AND users.id = job_favorites.user_id AND companies.id = jobs.company_id AND job_favorites.user_id = "#{uid}" AND companies.account_status = "open" AND jobs.status = "open"
      ORDER BY jobs.company_id
      SQL
      self.find_by_sql(query)

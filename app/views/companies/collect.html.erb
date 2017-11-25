@@ -75,11 +75,31 @@
     <div class="panel panel-default">
         <div class="panel-heading">文章</div>
         <div class="panel-body">
+           <% if !@articlecollect.present? %>
             尚未收藏文章，立即點選
             <%= link_to articles_path do %>所有文章<% end %>
             將有興趣的文章加入收藏。
+           
+            <% else %>
 
-            <!--以此類推 如果有收藏的文章就顯示那段code-->
+            <% @articlecollect.each do |a| %>
+            <ul>
+                <li>
+                    <div class="collect">
+                        <%= link_to unfavorite_article_path(a.articleId), method: :post do %>
+                            <i class="fa fa-heart"></i>
+                        <% end %>
+                    </div>
+                    <%= link_to article_path(a.articleId) do %>
+                        <%= a.articleTitle %>
+                    <% end %>
+                    <span class="pull-right"><%= a.companyName %></span>
+                </li>
+            </ul>
+
+            <% end %>
+            <% end %>
+
             
         </div>
     </div>
