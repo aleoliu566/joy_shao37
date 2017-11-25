@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171125040204) do
+ActiveRecord::Schema.define(version: 20171125043458) do
 
   create_table "article_favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer "article_id"
@@ -136,9 +136,6 @@ ActiveRecord::Schema.define(version: 20171125040204) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "name"
-    t.string "nickname"
-    t.string "phone"
-    t.string "address"
     t.date "birthday"
     t.boolean "gender"
     t.integer "role"
