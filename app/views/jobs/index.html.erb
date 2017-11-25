@@ -43,10 +43,20 @@
         <%= j.views_count %>
       </span>
       <div class="job-submenu">
-        <%= link_to check_resume_company_job_path(j.company,j), :class => "btn btn-success btn-xs pull-right" do %>
-          <i class="fa fa-paper-plane-o"></i>
-          <span>&nbsp;應徵</span>
-        <% end %>
+        <div style="display: inline-block; float: right;">
+          <%= form_for @resumeJobship,:url => apply_company_job_path(j.company,j), method: :post do |f| %>
+            <a>
+              <%= f.button data: { confirm:"您確定要應徵此職缺嗎？" }, 
+                                :class => "btn btn-success btn-xs pull-right" do %>
+                <i class="fa fa-paper-plane-o"></i>&nbsp;應徵
+              <% end %>
+            </a>
+          <% end %>
+        </div>
+        <%#= link_to check_resume_company_job_path(j.company,j), :class => "btn btn-success btn-xs pull-right" do %>
+          <!-- <i class="fa fa-paper-plane-o"></i>
+          <span>&nbsp;應徵</span> -->
+        <%# end %>
       <!--   <%= link_to root_path, :class => "btn btn-danger btn-xs pull-right" do %>
           <i class="fa fa-heart"></i>
           <span>&nbsp;收藏</span>

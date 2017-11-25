@@ -10,6 +10,8 @@ class JobsController < ApplicationController
     else
        @jobs = Job.get_all_job
     end
+
+    @resumeJobship = ResumeJobship.new
   end
 
   def show
@@ -18,7 +20,8 @@ class JobsController < ApplicationController
     @job.views_count += 1
     @job.save
     @tag = TagJobship.get_job_tag(params[:id])
-   
+
+    @resumeJobship = ResumeJobship.new
   end
 
   def check_resume
@@ -33,8 +36,6 @@ class JobsController < ApplicationController
 
     @resumeJobship.resume_id = current_user.resumes.last.id
     @resumeJobship.job_id = @job.id
-
-    puts @resumeJobship
 
     if @resumeJobship.save
       redirect_to root_path
@@ -65,7 +66,7 @@ class JobsController < ApplicationController
   end
 
   def resumeJobship_params
-    params.require(:resume_jobship).permit(:recommend_letter, :company_id, :id)
+    # params.require(:resume_jobship).permit(:recommend_letter, :company_id, :id)
   end
 
 end

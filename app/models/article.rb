@@ -99,21 +99,23 @@ class Article < ApplicationRecord
     def self.hr_get_all_article(c)
     # 把sql寫在這邊
       query = <<-SQL
-      SELECT articles.id, articles.title, articles.content, users.email, companies.name, articles.view_count, articles.created_at 
-      FROM articles,users, companies
-      WHERE articles.user_id = users.id AND articles.company_id = companies.id AND articles.company_id = "#{c}"
+      SELECT articles.*, users.email, companies.name, 
+      (SELECT COUNT(user_id) FROM article_favorites WHERE article_favorites.article_id = articles.id) AS fav_count
+      FROM articles,users,companies
+      WHERE articles.user_id = users.id AND articles.company_id = companies.id AND articles.company_id = "#{c}" AND articles.article_status = "pass"
       GROUP BY articles.id
       SQL
       all_artilces = self.find_by_sql(query)  
     end
 
     #顯示_admin
-    def self.admin_get_all_article(c)
+    def self.admin_get_all_article(status)
     # 把sql寫在這邊
       query = <<-SQL
-      SELECT articles.id, articles.title, articles.content, users.email, companies.name, articles.view_count 
-      FROM articles,users, companies
-      WHERE articles.user_id = users.id AND articles.company_id = companies.id AND articles.company_id = "#{c}"
+      SELECT articles.*, COUNT(article_favorites.user_id) AS fav_count
+      FROM articles
+      LEFT JOIN article_favorites ON article_favorites.article_id = articles.id 
+      WHERE article_status = "#{status}"
       GROUP BY articles.id
       SQL
       all_artilces = self.find_by_sql(query)  

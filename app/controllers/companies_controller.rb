@@ -6,6 +6,9 @@ class CompaniesController < ApplicationController
     @jobs = Job.get_limit_job #已orderby+limit3
     @companies = Company.get_limit_company
     @articles = Article.get_limit_article
+
+
+    @resumeJobship = ResumeJobship.new
   end
 
   def index
@@ -22,6 +25,7 @@ class CompaniesController < ApplicationController
     #(和hr的方法一樣，取特定公司)
     @company.views_count += 1
     @company.save
+    @resumeJobship = ResumeJobship.new
   end
 
   def favorite
