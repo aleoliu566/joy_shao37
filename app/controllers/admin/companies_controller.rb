@@ -7,13 +7,11 @@ class Admin::CompaniesController < ApplicationController
   layout 'admin'
 
   def home
-    @jobs = Job.all
+    # @jobs = Job.get_all_job
     @company = Company.adminGetCompanyList
-    # @company = Company.all
   end
 
   def index
-    
   end
 
   def show
