@@ -41,6 +41,51 @@ class User < ApplicationRecord
     ActiveRecord::Base.connection.exec_query(query)
   end
 
+  def self.all_user
+    query = <<-SQL
+    SELECT *
+    FROM users
+    SQL
+  end
+
+  def self.is_admin
+    query = <<-SQL
+    SELECT *
+    FROM users
+    WHERE role = 1
+    SQL
+    self.find_by_sql(query)    
+  end
+
+  def self.set_admin(user_email)
+    query = <<-SQL
+    UPDATE users
+    SET role = 1
+    WHERE email = "#{user_email}"
+    SQL
+    ActiveRecord::Base.connection.exec_query(query)
+  end
+
+  def self.remove_admin(user_email)
+    query = <<-SQL
+    UPDATE users
+    SET role = 0
+    WHERE email = "#{user_email}"
+    SQL
+    ActiveRecord::Base.connection.exec_query(query)
+  end
+
+  #UPDATE_admin
+  def self.admin_update_article(a,title,content)
+    t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
+    query = <<-SQL
+    UPDATE articles 
+    SET title = "#{title}", content = "#{content}", updated_at="#{t}"
+    WHERE id = "#{a}"
+    SQL
+    a_u_article = ActiveRecord::Base.connection.exec_query(query)
+  end
+
   def admin?
     self.role == true
   end

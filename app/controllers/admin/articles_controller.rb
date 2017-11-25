@@ -5,10 +5,6 @@ class Admin::ArticlesController < ApplicationController
 
   layout 'admin'
 
-	def say
-    	@jobs = Job.all
-	end
-
 	def index
     @articles_auditing = Article.admin_get_all_article("auditing")
     @articles_failed =  Article.admin_get_all_article("failed")

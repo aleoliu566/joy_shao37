@@ -3,37 +3,25 @@ class Admin::UsersController < ApplicationController
   layout 'admin'
   
   def index
-    @admin_users = User.where(role:true)
-    @users = User.all
-
+    @admin_users = User.is_admin
   end
 
   def create
-    
   end
 
-  def new 
-
-  end
-
-  def update
-    if User.find(params[:id]).update(user_params)
-      redirect_to admin_users_path
-    else
-      render 'admin/users/index'
-    end
+  def new
   end
 
   def remove_admin
-    if User.find(params[:id]).update(role:false)
+    if User.set_admin(params[:email])
       redirect_to admin_users_path
     else
-    end    
+    end
   end
 
   def set_admin
     if User.find_by(email: params[:email])
-      User.find_by(email: params[:email]).update(role:true)
+      User.set_admin(params[:email])
       redirect_to admin_users_path
     else
       flash[:notice] = "無此使用者"
