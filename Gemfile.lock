@@ -72,6 +72,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chartkick (1.5.2)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
     ckeditor (4.1.4)
@@ -113,6 +114,10 @@ GEM
       railties (>= 3.2, < 5.2)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
+    highcharts-rails (6.0.3)
+      railties (>= 3.1)
     hirb (0.7.3)
     hirb-unicode (0.0.5)
       hirb (~> 0.5)
@@ -310,11 +315,14 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   carrierwave
+  chartkick
   ckeditor
   cloudinary
   coffee-rails (~> 4.2)
   devise
   font-awesome-rails (~> 4.3)
+  groupdate
+  highcharts-rails
   hirb
   hirb-unicode
   jbuilder (~> 2.5)

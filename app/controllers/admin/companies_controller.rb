@@ -80,6 +80,9 @@ class Admin::CompaniesController < ApplicationController
     end
   end
 
+  def analysis
+    @companies = Company.all
+  end
 
 
   private

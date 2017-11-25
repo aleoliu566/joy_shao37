@@ -16,12 +16,14 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :jobs
+    resources :tags
+    resources :users
+
     resources :companies do
       member do
         post :ban
       end
     end
-
 
     resources :jobs, only:[:index]
     resources :articles do
@@ -30,18 +32,15 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :tags
-
-    resources :users
     patch 'set_admin', :to => 'users#set_admin'
     patch ':id/remove_admin', :to => 'users#remove_admin', :as => 'remove_admin'
-
     get 'record', :to => 'resumes#record'
+
+    get 'analysis', :to => 'companies#analysis', :as => 'analysis'
   end
 
   # 後台首頁
   get 'home', :to => 'admin/companies#home'
-  # get 'article', :to => 'admin/articles#say'
   devise_for :users
 
   resources :users do
@@ -77,7 +76,5 @@ Rails.application.routes.draw do
   end
 
   resources :articles, only: [:show, :index]
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
 
 end
