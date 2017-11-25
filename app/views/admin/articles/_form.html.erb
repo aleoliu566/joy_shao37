@@ -22,7 +22,9 @@
       <td class="count">
         <%= article.view_count %>
       </td>
-      <td class="count"></td>
+      <td class="count">
+        <%= article.fav_count %>
+      </td>
       <% if article.article_status == 'auditing' %>
       <td class="article-status">
         <%= link_to audit_admin_article_path(article, :article_status=>"pass"), method: :audit, data: {confirm:"您確定要讓此篇文章審核通過嗎？"}, :class => "btn btn-warning btn-xs" do %>

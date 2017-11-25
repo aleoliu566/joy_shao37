@@ -10,10 +10,9 @@ class Admin::ArticlesController < ApplicationController
 	end
 
 	def index
-    @articles_auditing = Article.where(article_status:'auditing')
-    @articles_failed = Article.where(article_status:'failed')
-    @articles_pass = Article.where(article_status:'pass')
-    #@articles = Article.admin_get_all_article(params[:company_id])
+    @articles_auditing = Article.admin_get_all_article("auditing")
+    @articles_failed =  Article.admin_get_all_article("failed")
+    @articles_pass =  Article.admin_get_all_article("pass")
 	end
 
   def edit
