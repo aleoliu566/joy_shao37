@@ -90,10 +90,21 @@
               <%= job.views_count %>
             </span>
             <div class="job-submenu clearfix">
-              <%= link_to check_resume_company_job_path(@company,job), :class => "btn btn-success btn-xs pull-right" do %>
-                <i class="fa fa-paper-plane-o"></i>
-                <span>&nbsp;應徵</span>
-              <% end %>
+              <div style="display: inline-block; float: right;">
+                <%= form_for @resumeJobship,:url => apply_company_job_path(job.company,job), method: :post do |f| %>
+                  <a>
+                    <%= f.button data: { confirm:"您確定要應徵此職缺嗎？" }, 
+                                      :class => "btn btn-success btn-xs pull-right" do %>
+                      <i class="fa fa-paper-plane-o"></i>&nbsp;應徵
+                    <% end %>
+                  </a>
+
+                <% end %>
+              </div>
+              <%#= link_to check_resume_company_job_path(@company,job), :class => "btn btn-success btn-xs pull-right" do %>
+                <!-- <i class="fa fa-paper-plane-o"></i>
+                <span>&nbsp;應徵</span> -->
+              <%# end %>
                <!-- ### -->
               <% if current_user %>
                  <% if !current_user.is_fan_of?(job.id,current_user.id).present? %>

@@ -9,15 +9,17 @@
     </span>
     </p>
   <h3>撰寫自我推薦信</h3>
+  
 
-  <%= form_for @resumeJobship,:url => apply_company_job_path(@company, @job), method: :post do |f| %>
-    <%= f.text_area :recommend_letter %>
-    <p>如果有填好的推薦信的話，會讓你有更好的機會被企業看見喔～</p>
+  <%= render 'resumes/submit_resume' %>
+  <%#= form_for @resumeJobship,:url => apply_company_job_path(@company, @job), method: :post do |f| %>
+    <%#= f.text_area :recommend_letter %>
+    <!-- <p>如果有填好的推薦信的話，會讓你有更好的機會被企業看見喔～</p> -->
     
-    <div class="login">
-      <%= f.submit "投遞", :class => "button btn-success medium" %>
-      <%= link_to '取消', root_path, :class => "button btn-fail medium" %>
-    </div>
-  <% end %>
+    <!-- <div class="login"> -->
+      <%#= f.submit "投遞", :class => "button btn-success medium" %>
+      <%#= link_to '取消', root_path, :class => "button btn-fail medium" %>
+    <!-- </div> -->
+  <%# end %>
 </div>
 <div class="col-sm-2"></div>

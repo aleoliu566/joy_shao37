@@ -17,4 +17,6 @@ class Resume < ApplicationRecord
     #   SQL
     #   self.find_by_sql(query)
     # end
+
+
 end
