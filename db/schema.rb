@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123155706) do
+ActiveRecord::Schema.define(version: 20171125040204) do
+
+  create_table "article_favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer "article_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "title"
@@ -133,7 +140,7 @@ ActiveRecord::Schema.define(version: 20171123155706) do
     t.string "phone"
     t.string "address"
     t.date "birthday"
-    t.integer "gender"
+    t.boolean "gender"
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

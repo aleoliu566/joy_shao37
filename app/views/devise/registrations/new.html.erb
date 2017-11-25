@@ -38,14 +38,14 @@
       </div>
 
       <div>
-				<label for="gender">性別</label>&nbsp;&nbsp;
-				<input id="male" name="gender" type="radio" value="male"> 男&nbsp;&nbsp;&nbsp;&nbsp;
-				<input id="female" name="gender" type="radio" value="female"> 女
+        <%= f.label :性別%>&nbsp;&nbsp;
+        <%= f.radio_button :gender, true %> 男&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= f.radio_button :gender, false %> 女 
 			</div><br>
 
 			<div>
-				<label for="birthday">生日</label>
-				<input class="border-radius" id="birthday" name="birthday" type="date" style="width: 50%;">
+        <%= f.label :生日 %>
+        <%= f.date_field :birthday, :class => "border-radius", style:'width:50%;' %>
 			</div>
       
       <br>
