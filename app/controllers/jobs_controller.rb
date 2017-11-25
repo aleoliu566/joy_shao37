@@ -5,20 +5,20 @@ class JobsController < ApplicationController
 
   def index
     #更改呼叫 Job Model 中的 get_all_job 方法 （和開放/關閉職缺有關）
-    
-
-    @jobs = Job.get_all_job
-    # if params[:search]
-    #   @jobs = Job.where('name LIKE ?', "%#{params[:search]}%")
-    # else
-    #   @jobs = Job.get_all_job
-    # end
+    if params[:search]
+       @jobs = Job.search_job(params[:search])
+    else
+       @jobs = Job.get_all_job
+    end
   end
 
   def show
-    @tag = TagJobship.get_job_tag(params[:id])
+    #@job = Job.get_detail_job(params[:id])
+    @jobs = Job.get_a_job(@job.company_id,params[:id])
     @job.views_count += 1
     @job.save
+    @tag = TagJobship.get_job_tag(params[:id])
+   
   end
 
   def check_resume

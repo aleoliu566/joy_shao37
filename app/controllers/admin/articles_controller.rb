@@ -13,7 +13,7 @@ class Admin::ArticlesController < ApplicationController
     @articles_auditing = Article.where(article_status:'auditing')
     @articles_failed = Article.where(article_status:'failed')
     @articles_pass = Article.where(article_status:'pass')
-    @articles = Article.admin_get_all_article(params[:company_id])
+    #@articles = Article.admin_get_all_article(params[:company_id])
 	end
 
   def edit

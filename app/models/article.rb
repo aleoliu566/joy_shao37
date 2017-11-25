@@ -2,6 +2,8 @@ class Article < ApplicationRecord
 	
   belongs_to :user
   belongs_to :company
+  has_many :article_favorites
+  has_many :article_fans, :through => :article_favorites, :source => :user
 
   mount_uploader :banner, BannerUploader
 
@@ -40,7 +42,7 @@ class Article < ApplicationRecord
     query = <<-SQL
     SELECT articles.*
     FROM articles,companies
-    WHERE articles.company_id = companies.id AND companies.account_status = "open"
+    WHERE articles.company_id = companies.id AND companies.account_status = "open" AND articles.article_status = "pass"
     ORDER BY view_count DESC
     LIMIT 2
     SQL
@@ -53,7 +55,7 @@ class Article < ApplicationRecord
     query = <<-SQL
     SELECT articles.*
     FROM articles,companies
-    WHERE articles.company_id = companies.id AND companies.account_status = "open"
+    WHERE articles.company_id = companies.id AND companies.account_status = "open" AND articles.article_status = "pass"
     ORDER BY articles.created_at DESC
     SQL
     self.find_by_sql(query)
@@ -74,7 +76,7 @@ class Article < ApplicationRecord
     query = <<-SQL
     SELECT *
     FROM articles
-    WHERE title LIKE '%#{search}%'
+    WHERE title LIKE '%#{search}%' AND articles.article_status = "pass"
     SQL
     self.find_by_sql(query)
     end

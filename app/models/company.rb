@@ -52,6 +52,16 @@ class Company < ApplicationRecord
     self.find_by_sql(query)
   end
 
+
+  # def self.update_company_views(cid)
+  #     t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
+  #     query = <<-SQL
+  #     UPDATE companies,(SELECT views_count FROM companies WHERE id = "#{cid}") AS B
+  #     SET companies.views_count = (B.views_count + 1), updated_at = "#{t}"
+  #     WHERE id = "#{cid}"
+  #     SQL
+  # end 
+
   #UPDATE_hr
   def self.hr_update_company(c,name,phone,email,address,about,scale,logo)
     t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
@@ -64,11 +74,11 @@ class Company < ApplicationRecord
   end
 
   #CREATE_admin
-  def self.admin_create_company(name,phone,email,address,about)
+  def self.admin_create_company(name,phone,email,address,about,scale)
     t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
     query = <<-SQL
-    INSERT INTO companies(name,phone,email,address,about,created_at,updated_at)
-    VALUES ("#{name}","#{phone}","#{email}","#{address}","#{about}","#{t}","#{t}")
+    INSERT INTO companies(name,phone,email,address,about,scale,created_at,updated_at)
+    VALUES ("#{name}","#{phone}","#{email}","#{address}","#{about}","#{scale}","#{t}","#{t}")
     SQL
     a_c_article = ActiveRecord::Base.connection.exec_query(query)
   end

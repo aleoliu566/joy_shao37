@@ -34,7 +34,7 @@ class Admin::CompaniesController < ApplicationController
   # end
 
   def create
-    @company = Company.admin_create_company(company_params[:name],company_params[:phone],company_params[:email],company_params[:address],company_params[:about])
+    @company = Company.admin_create_company(company_params[:name],company_params[:phone],company_params[:email],company_params[:address],company_params[:about],company_params[:scale])
 
     redirect_to home_path
   end
@@ -89,7 +89,7 @@ class Admin::CompaniesController < ApplicationController
   end
 
   def company_params
-    params.require(:company).permit(:name, :phone, :email, :address, :about,:user_ids)
+    params.require(:company).permit(:name, :phone, :email, :address, :about,:user_ids,:scale)
   end
 
 end

@@ -2,13 +2,13 @@ class CompanyFavorite < ApplicationRecord
 	belongs_to :user
   	belongs_to :company
 
-  	 #READ USER FAV
+  	#READ USER FAV
      def self.get_all_fav(uid)
      # 把sql寫在這邊
      query = <<-SQL
      SELECT company_favorites.company_id AS companyId , companies.name AS companyName
      FROM company_favorites,users,companies
-     WHERE users.id = company_favorites.user_id AND companies.id = company_favorites.company_id AND company_favorites.user_id = "#{uid}" 
+     WHERE users.id = company_favorites.user_id AND companies.id = company_favorites.company_id AND company_favorites.user_id = "#{uid}" AND companies.account_status = "open"
      ORDER BY companies.id
      SQL
      self.find_by_sql(query)

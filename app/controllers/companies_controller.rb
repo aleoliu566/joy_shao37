@@ -39,6 +39,7 @@ class CompaniesController < ApplicationController
   def collect
     @jobcollect = JobFavorite.get_all_fav(params[:user_id])
     @companycollect = CompanyFavorite.get_all_fav(params[:user_id])
+    @articlecollect = ArticleFavorite.get_all_fav(params[:user_id])
   end
 
   private

@@ -50,36 +50,20 @@
             <% else %>
 
             <% @jobcollect.each do |d| %>
-
-<!--             <ul>
-                <li>
-                    <div class="collect">
-                        <%#= link_to unfavorite_job_path(d.jobId), method: :post do %>
-                            <i class="fa fa-heart"></i>
-                        <%# end %>
-                    </div>
-                    <%#= link_to job_path(d.jobId) do %>
-                        <%#= d.companyName %> - <%#= d.jobName %> -->
-
-            <!-- 點擊該愛心可以取消收藏該職業，並重整看不到該收藏(? -->
-            <div class="collect">
-            <%= link_to unfavorite_job_path(d.jobId), method: :post do %>
-                <i class="fa fa-heart"></i>
-            <% end %>
-            </div>
-            <!-- 以上 -->
             <ul>
                 <li>
-                    <%= link_to job_path(d.jobId) do %>
-                        <div class="collect">
+                    <div class="collect">
+                        <%= link_to unfavorite_job_path(d.jobId), method: :post do %>
                             <i class="fa fa-heart"></i>
-                        </div>
+                        <% end %>
+                    </div>
+                    <%= link_to job_path(d.jobId) do %>
                         <%= d.jobName %>
-                        <span class="pull-right"><%= d.companyName %></span>
-
                     <% end %>
+                    <span class="pull-right"><%= d.companyName %></span>
                 </li>
             </ul>
+
             <% end %>
             <% end %>
 
@@ -91,11 +75,31 @@
     <div class="panel panel-default">
         <div class="panel-heading">文章</div>
         <div class="panel-body">
+           <% if !@articlecollect.present? %>
             尚未收藏文章，立即點選
             <%= link_to articles_path do %>所有文章<% end %>
             將有興趣的文章加入收藏。
+           
+            <% else %>
 
-            <!--以此類推 如果有收藏的文章就顯示那段code-->
+            <% @articlecollect.each do |a| %>
+            <ul>
+                <li>
+                    <div class="collect">
+                        <%= link_to unfavorite_article_path(a.articleId), method: :post do %>
+                            <i class="fa fa-heart"></i>
+                        <% end %>
+                    </div>
+                    <%= link_to article_path(a.articleId) do %>
+                        <%= a.articleTitle %>
+                    <% end %>
+                    <span class="pull-right"><%= a.companyName %></span>
+                </li>
+            </ul>
+
+            <% end %>
+            <% end %>
+
             
         </div>
     </div>

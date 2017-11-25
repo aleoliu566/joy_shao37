@@ -11,9 +11,19 @@ class User < ApplicationRecord
   has_many :favorite_userjobs, :through => :job_favorites, :source => :job
   has_many :company_favorites
   has_many :favorite_usercompanies, :through => :company_favorites, :source => :company
+  has_many :article_favorites
+  has_many :favorite_userarticles, :through => :article_favorites, :source => :article
+
+  def is_article_fan_of?(group,user)
+    query = <<-SQL
+    SELECT article_id
+    FROM article_favorites
+    WHERE user_id = "#{user}" AND article_id = "#{group}"
+    SQL
+    ActiveRecord::Base.connection.exec_query(query)
+  end
 
   def is_company_fan_of?(group,user)
-    #favorite_usercompanies.include?(group)
     query = <<-SQL
     SELECT company_id
     FROM company_favorites
