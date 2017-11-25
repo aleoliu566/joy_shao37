@@ -74,11 +74,11 @@ class Company < ApplicationRecord
   end
 
   #CREATE_admin
-  def self.admin_create_company(name,phone,email,address,about)
+  def self.admin_create_company(name,phone,email,address,about,scale)
     t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
     query = <<-SQL
-    INSERT INTO companies(name,phone,email,address,about,created_at,updated_at)
-    VALUES ("#{name}","#{phone}","#{email}","#{address}","#{about}","#{t}","#{t}")
+    INSERT INTO companies(name,phone,email,address,about,scale,created_at,updated_at)
+    VALUES ("#{name}","#{phone}","#{email}","#{address}","#{about}","#{scale}","#{t}","#{t}")
     SQL
     a_c_article = ActiveRecord::Base.connection.exec_query(query)
   end
