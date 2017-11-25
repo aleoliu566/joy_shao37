@@ -57,8 +57,12 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :articles
-
+   resources :articles do
+    member do
+       post :favorite
+       post :unfavorite
+    end
+  end
   root 'companies#home'
 
   resources :companies do

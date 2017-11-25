@@ -2,6 +2,8 @@ class Article < ApplicationRecord
 	
   belongs_to :user
   belongs_to :company
+  has_many :article_favorites
+  has_many :article_fans, :through => :article_favorites, :source => :user
 
   mount_uploader :banner, BannerUploader
 

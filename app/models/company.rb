@@ -52,6 +52,16 @@ class Company < ApplicationRecord
     self.find_by_sql(query)
   end
 
+
+  # def self.update_company_views(cid)
+  #     t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
+  #     query = <<-SQL
+  #     UPDATE companies,(SELECT views_count FROM companies WHERE id = "#{cid}") AS B
+  #     SET companies.views_count = (B.views_count + 1), updated_at = "#{t}"
+  #     WHERE id = "#{cid}"
+  #     SQL
+  # end 
+
   #UPDATE_hr
   def self.hr_update_company(c,name,phone,email,address,about,scale,logo)
     t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')

@@ -113,17 +113,28 @@ class Job < ApplicationRecord
     self.find_by_sql(query)  # 最後一行是回傳值
     end
 
-    def self.update_job_views(jid)
-      t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
+    # def self.update_job_views(jid)
+    #   t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
+    #   query = <<-SQL
+    #   UPDATE jobs,(SELECT views_count FROM jobs WHERE id = "#{jid}") AS B
+    #   SET jobs.views_count = (B.views_count + 1), updated_at = "#{t}"
+    #   WHERE id = "#{jid}"
+    #   SQL
+    #   ActiveRecord::Base.connection.exec_query(query)  # 最後一行是回傳值
+    # end
+
+
+    def self.search_job(search)
       query = <<-SQL
-      UPDATE jobs,(SELECT views_count FROM jobs WHERE id = "#{jid}") AS B
-      SET jobs.views_count = (B.views_count + 1), updated_at = "#{t}"
-      WHERE id = "#{jid}"
-      SQL
-      ActiveRecord::Base.connection.exec_query(query)  # 最後一行是回傳值
+      SELECT jobs.*,GROUP_CONCAT(tags.name) AS tag
+      FROM tags,tag_jobships,jobs,companies
+      WHERE jobs.name LIKE '%#{search}%' AND tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND companies.id = jobs.company_id AND companies.account_status = "open" AND status = "open"
+      GROUP BY jobs.id
+     SQL
+      self.find_by_sql(query)
     end
 
-  	# #READ JOB 
+   # #READ JOB 
    #  def self.hr_get_all_job(c)
    #   # 把sql寫在這邊
    #   query = <<-SQL
@@ -135,8 +146,6 @@ class Job < ApplicationRecord
    #   SQL
    #   all_jobs = self.find_by_sql(query)  # 最後一行是回傳值
    #  end
-
-
   
     #UPDATE
     def self.hr_update_job(j,n,p,c,s,tagid)

@@ -2,7 +2,7 @@ class CompanyFavorite < ApplicationRecord
 	belongs_to :user
   	belongs_to :company
 
-  	 #READ USER FAV
+  	#READ USER FAV
      def self.get_all_fav(uid)
      # 把sql寫在這邊
      query = <<-SQL
