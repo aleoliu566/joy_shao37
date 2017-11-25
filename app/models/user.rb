@@ -32,7 +32,7 @@ class User < ApplicationRecord
   end
 
   def admin?
-    self.role == 1
+    self.role == true
   end
 
 end

@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   layout 'admin'
   
   def index
-    @admin_users = User.where(role:1)
+    @admin_users = User.where(role:true)
     @users = User.all
 
   end
@@ -25,7 +25,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def remove_admin
-    if User.find(params[:id]).update(role:nil)
+    if User.find(params[:id]).update(role:false)
       redirect_to admin_users_path
     else
     end    
@@ -33,7 +33,7 @@ class Admin::UsersController < ApplicationController
 
   def set_admin
     if User.find_by(email: params[:email])
-      User.find_by(email: params[:email]).update(role:1)
+      User.find_by(email: params[:email]).update(role:true)
       redirect_to admin_users_path
     else
       flash[:notice] = "無此使用者"
