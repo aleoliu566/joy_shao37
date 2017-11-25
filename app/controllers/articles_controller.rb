@@ -5,7 +5,13 @@ class ArticlesController < ApplicationController
     # else
     #   @articles = Article.all
     # end
-    @articles = Article.get_all_article
+    # @articles = Article.get_all_article
+    
+    if params[:search]
+      @articles = Article.search_article(params[:search])
+    else
+      @articles = Article.get_all_article
+    end
   end
 
   def show

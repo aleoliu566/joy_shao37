@@ -69,6 +69,16 @@ class Article < ApplicationRecord
     self.find_by_sql(query)
     end
 
+    #SEARCH AN ARTICLE
+    def self.search_article(search)
+    query = <<-SQL
+    SELECT *
+    FROM articles
+    WHERE title LIKE '%#{search}%'
+    SQL
+    self.find_by_sql(query)
+    end
+
 
 	  # #顯示
    #  def self.hr_get_all_article(c)
