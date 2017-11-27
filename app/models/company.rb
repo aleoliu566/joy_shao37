@@ -8,7 +8,7 @@ class Company < ApplicationRecord
   mount_uploader :logo, LogoUploader
 
   def self.execute
-    query = <<-SQL
+      query = <<-SQL
       SELECT * , COUNT(gender) AS count
       FROM ADMIN_VIEW
       GROUP BY name, gender   
@@ -16,6 +16,13 @@ class Company < ApplicationRecord
     self.find_by_sql(query)
   end
 
+  def self.execute2
+     query = <<-SQL
+      SELECT birthday,job_name
+      FROM hr_view
+      SQL
+    self.find_by_sql(query)
+  end  
 
 
   def ban
