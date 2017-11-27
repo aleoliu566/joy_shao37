@@ -33,18 +33,18 @@
 			</div>
       
       <div>
-        <%= f.label :姓名 %>
+        <span class="red">*&nbsp;</span><%= f.label :姓名 %>
         <%= f.text_field :name, :class => "border-radius" %>
       </div>
 
       <div>
-        <%= f.label :性別%>&nbsp;&nbsp;
-        <%= f.radio_button :gender, true %> 男&nbsp;&nbsp;&nbsp;&nbsp;
-        <%= f.radio_button :gender, false %> 女 
+        <span class="red">*&nbsp;</span><%= f.label :性別%>&nbsp;&nbsp;
+        <%= f.radio_button :gender, 1 %> 男&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= f.radio_button :gender, 0 %> 女 
 			</div><br>
 
 			<div>
-        <%= f.label :生日 %>
+        <span class="red">*&nbsp;</span><%= f.label :生日 %>
         <%= f.date_field :birthday, :class => "border-radius", style:'width:50%;' %>
 			</div>
       

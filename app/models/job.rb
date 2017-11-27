@@ -153,6 +153,7 @@ class Job < ApplicationRecord
     def self.hr_update_job(j,n,p,c,s,tagid)
       t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
       query = <<-SQL
+      
       UPDATE jobs
       SET name = "#{n}", published_on = "#{p}", content = "#{c}", salary = "#{s}", updated_at = "#{t}"
       WHERE id = "#{j}"

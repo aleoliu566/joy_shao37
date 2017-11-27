@@ -7,6 +7,24 @@ class Company < ApplicationRecord
 
   mount_uploader :logo, LogoUploader
 
+  def self.execute
+      query = <<-SQL
+      SELECT * , COUNT(gender) AS count
+      FROM ADMIN_VIEW
+      GROUP BY name, gender   
+      SQL
+    self.find_by_sql(query)
+  end
+
+  def self.execute2
+     query = <<-SQL
+      SELECT birthday,job_name
+      FROM hr_view
+      SQL
+    self.find_by_sql(query)
+  end  
+
+
   def ban
 
     account_status = self.account_status != "banned" ? "banned" : "open"

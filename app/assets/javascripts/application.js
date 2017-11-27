@@ -15,6 +15,8 @@
 //= require bootstrap-sprockets
 //= require main
 //= require select2
+//= require highcharts
+//= require chartkick
 //= require ckeditor/init
 //= require turbolinks
 //= require_tree .
