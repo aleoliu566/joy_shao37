@@ -13,10 +13,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def remove_admin
-    if User.set_admin(params[:email])
-      redirect_to admin_users_path
-    else
-    end
+    User.remove_admin(params[:id])
+    redirect_to admin_users_path
   end
 
   def set_admin

@@ -68,11 +68,11 @@ class User < ApplicationRecord
     ActiveRecord::Base.connection.exec_query(query)
   end
 
-  def self.remove_admin(user_email)
+  def self.remove_admin(user_id)
     query = <<-SQL
     UPDATE users
     SET role = 0
-    WHERE email = "#{user_email}"
+    WHERE id = "#{user_id}"
     SQL
     ActiveRecord::Base.connection.exec_query(query)
   end
