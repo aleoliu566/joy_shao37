@@ -96,12 +96,12 @@ class Article < ApplicationRecord
    #  end
 
     #顯示_hr
-    def self.hr_get_all_article(c)
+    def self.hr_get_all_article(c, status)
       query = <<-SQL
       SELECT articles.*, users.email, companies.name, 
       (SELECT COUNT(user_id) FROM article_favorites WHERE article_favorites.article_id = articles.id) AS fav_count
       FROM articles,users,companies
-      WHERE articles.user_id = users.id AND articles.company_id = companies.id AND articles.company_id = "#{c}" AND articles.article_status = "pass"
+      WHERE articles.user_id = users.id AND articles.company_id = companies.id AND articles.company_id = "#{c}" AND articles.article_status = "#{status}"
       GROUP BY articles.id
       SQL
       all_artilces = self.find_by_sql(query)  

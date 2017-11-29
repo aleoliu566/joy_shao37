@@ -9,7 +9,50 @@
     <% end %>
   </div>
 
-    <table class="table table-bordered">
+  <table class="table table-bordered">
+  <tr>
+      <th style="width: 300px">文章標題</th>
+      <th>發佈日期</th>
+      <th>瀏覽次數</th>
+      <th>收藏次數</th>
+      <th style="width: 210px"></th>
+  </tr>
+  <% @articles.each do |article| %>
+  <tr>
+    <td>
+      <%= truncate(article.title, length: 20) %>
+    </td>
+    <td>
+      <%= article.created_at.localtime.strftime("%Y/%m/%d")%>
+    </td>
+    <td class="count">
+      <%= article.view_count %>
+    </td>
+    <td class="count">
+      <%= article.fav_count %>
+    </td>
+    <td>
+      <%= link_to article_path(article), target: "_blank" , :class => "btn btn-success btn-xs" do %>
+        <i class="fa fa-file-text-o"></i>
+        <span>查看</span>
+      <% end %>
+
+      <%= link_to edit_enterprise_company_article_path(@company,article), :class => "btn btn-primary btn-xs" do %>
+        <i class="fa fa-edit"></i>
+        <span>編輯</span>
+      <% end %>
+
+      <%= link_to enterprise_company_article_path(@company,article), :class => "btn btn-fail btn-xs", :method => :delete, :data => { :confirm => "您確定要刪除此文章嗎？" } do %>
+        <i class="fa fa-trash"></i>
+        <span>刪除</span>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+  </table>
+
+  <h4>尚未通過審核文章</h4>
+  <table class="table table-bordered">
     <tr>
         <th style="width: 300px">文章標題</th>
         <th>發佈日期</th>
@@ -17,40 +60,31 @@
         <th>收藏次數</th>
         <th style="width: 210px"></th>
     </tr>
-    <% @articles.each do |article| %>
-    <tr>
-      <td>
-        <%= truncate(article.title, length: 20) %>
-      </td>
-      <td>
-        <%= article.created_at.localtime.strftime("%Y/%m/%d")%>
-      </td>
-      <td class="count">
-        <%= article.view_count %>
-      </td>
-      <td class="count">
-        <%= article.fav_count %>
-      </td>
-      <td>
-        <%= link_to article_path(article), target: "_blank" , :class => "btn btn-success btn-xs" do %>
-          <i class="fa fa-file-text-o"></i>
-          <span>查看</span>
-        <% end %>
+   
+    <% @article_notyet.each do |article| %>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= article.created_at.localtime.strftime("%Y/%m/%d") %></td>
+        <td>0</td>
+        <td>0</td>
+        <td>
+          <%= link_to article_path(article), target: "_blank" , :class => "btn btn-success btn-xs" do %>
+            <i class="fa fa-file-text-o"></i>
+            <span>查看</span>
+          <% end %>
 
-        <%= link_to edit_enterprise_company_article_path(@company,article), :class => "btn btn-primary btn-xs" do %>
-          <i class="fa fa-edit"></i>
-          <span>編輯</span>
-        <% end %>
+          <%= link_to edit_enterprise_company_article_path(@company,article), :class => "btn btn-primary btn-xs" do %>
+            <i class="fa fa-edit"></i>
+            <span>編輯</span>
+          <% end %>
 
-        <%= link_to enterprise_company_article_path(@company,article), :class => "btn btn-fail btn-xs", :method => :delete, :data => { :confirm => "您確定要刪除此文章嗎？" } do %>
-          <i class="fa fa-trash"></i>
-          <span>刪除</span>
-        <% end %>
-      </td>
-    </tr>
+          <%= link_to enterprise_company_article_path(@company,article), :class => "btn btn-fail btn-xs", :method => :delete, :data => { :confirm => "您確定要刪除此文章嗎？" } do %>
+            <i class="fa fa-trash"></i>
+            <span>刪除</span>
+          <% end %>
+        </td>
+      </tr>
     <% end %>
-    </table>
-  
-
+  </table>
 </div>
 <div class="col-sm-1"></div>

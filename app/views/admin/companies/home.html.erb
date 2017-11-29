@@ -27,7 +27,7 @@
         <tr>
           <td><%= c.name %></td>
           <td class="count"><%= c.views_count %></td>
-          <td class="count"><%= c.resume_count%> </td>
+          <td class="count"><%= c.resume_count %> </td>
           <td class="count"><%= c.fav_count%> </td>
           <td class="company-status">
             <% if c.account_status == 'open' %>
@@ -52,15 +52,10 @@
               <i class="fa fa-edit"></i>
               <span>編輯</span>
             <% end %>
-
-            <!--要做停權，禁止公司可以新增職缺--> 
-
             <%= link_to admin_company_path(c), method: :delete, data: { confirm:"您確定要刪除該企業嗎？" }, :class => "btn btn-fail btn-xs" do %>
               <i class="fa fa-trash"></i>
               <span>刪除</span>
             <% end %>
-
-            <%#記得要寫path%>
           </td>
           <td style="text-align: left;">
             <% c.users.each do |u| %>

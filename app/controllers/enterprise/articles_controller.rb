@@ -11,7 +11,8 @@ class Enterprise::ArticlesController < ApplicationController
 
   def index
     # @articles = current_user.articles
-    @articles = Article.hr_get_all_article(params[:company_id])
+    @articles = Article.hr_get_all_article(params[:company_id],'pass')
+    @article_notyet = Article.hr_get_all_article(params[:company_id],'auditing')
   end
 
   def new

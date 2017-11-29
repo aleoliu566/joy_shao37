@@ -72,18 +72,19 @@ class Admin::CompaniesController < ApplicationController
 
   def ban
     @company = Company.find(params[:id])
-    if @company.ban
+    if @company.ban(@company.account_status)
         redirect_to home_path
     else
     end
   end
 
   def analysis
-    #@companies = Company.all
+    @companies = Company.all
     #@company = AnalysisView.view
     @exe = Company.execute
-    @exe2 = Company.execute2
+    @exe2 = Company.execute2(params[:company])
   end
+
 
 
   private

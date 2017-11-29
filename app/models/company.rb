@@ -16,29 +16,34 @@ class Company < ApplicationRecord
     self.find_by_sql(query)
   end
 
-  def self.execute2
+  def self.execute2(id)
      query = <<-SQL
       SELECT *
-      FROM HR_VIEW
+      FROM test
+      WHERE com = "#{id}"
       SQL
     self.find_by_sql(query)
   end  
 
-
-  def ban
-
-    account_status = self.account_status != "banned" ? "banned" : "open"
+    # account_status = self.account_status != "banned" ? "banned" : "open"
     # 若account_status="banned"，代表該公司被停權，禁止新增職缺
 
-  	# query = <<-SQL
-  	# UPDATE companies
-   #  SET account_status="#{account_status}"
-   #  WHERE name="#{self.name}"
-  	# SQL
-
-   #  self.find_by_sql(query)
-  
-   self.update_column("account_status", account_status)
+  def ban(status)
+    if status == 'banned'
+    	query = <<-SQL
+    	UPDATE companies
+      SET account_status="open"
+      WHERE name="#{self.name}"
+    	SQL
+    else
+      query = <<-SQL
+      UPDATE companies
+      SET account_status="banned"
+      WHERE name="#{self.name}"
+      SQL
+    end
+    ActiveRecord::Base.connection.exec_query(query)
+    return true
   end
 
   def self.search_company(search)

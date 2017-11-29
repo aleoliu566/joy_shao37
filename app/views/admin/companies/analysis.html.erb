@@ -26,30 +26,44 @@
       </tbody>
     </table>
   </div>
-  <div style="display: none;">
-    <table class="table table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>age</th>
-          <th>job</th>
-          <th>count</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @exe2.each do |job| %>
-        <tr>
-          <th><%= job.birthday%></th>
-          <th><%= job.job_name %></th>
-          <th><%= job.count1 %></th>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
   <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 
+
+  <h3 style="text-align: center; font-size: 16pt; margin-bottom: 10px;">公司中各職缺年齡層分佈</h3>
+    <%= form_tag admin_analysis_path, :method => :get do %>
+      <div class="col-xs-10">
+        <%= select_tag "company",
+                       content_tag(:option,'',:value=>"0") +
+                       options_for_select(Company.pluck(:name, :id), params[:company]? params[:company] : 0)
+        %>
+
+      </div>
+      <div class="col-xs-2">
+        <%= submit_tag '確認',class:"btn btn-success", style:'height:38px;' %>        
+      </div>
+    <% end %>
+
+  <table class="table table-bordered table-hover" style="margin-bottom: 40px;">
+    <thead>
+      <tr>
+        <th>年齡</th>
+        <th>職缺</th>
+        <th>應徵人數</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @exe2.each do |job| %>
+      <tr>
+        <th><%= job.age%> 歲</th>
+        <th><%= job.job_name %></th>
+        <th><%= job.count1 %></th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
   <!-- <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div> -->
+
 </div>
 <div class="col-sm-1"></div>
 
