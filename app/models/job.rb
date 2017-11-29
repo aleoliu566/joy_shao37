@@ -82,11 +82,11 @@ class Job < ApplicationRecord
     end
 
      def self.get_job(c)
-     # 把sql寫在這邊
+     t = DateTime.now.strftime('%Y-%m-%d')
      query = <<-SQL
      SELECT jobs.*, GROUP_CONCAT(tags.name) AS tag
      FROM tags,tag_jobships,jobs
-     WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND company_id = '#{c}' AND status = "open"
+     WHERE tags.id = tag_jobships.tag_id AND jobs.id = tag_jobships.job_id AND company_id = '#{c}' AND status = "open" AND published_on <= "#{t}"
      GROUP BY jobs.id
      SQL
      self.find_by_sql(query)  # 最後一行是回傳值
