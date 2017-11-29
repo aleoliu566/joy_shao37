@@ -50,7 +50,7 @@ class Company < ApplicationRecord
     query = <<-SQL
     SELECT *
     FROM companies
-    WHERE name LIKE '%#{search}%'
+    WHERE name LIKE '%#{search}%' AND account_status = "open"
     SQL
     self.find_by_sql(query)
   end
