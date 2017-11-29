@@ -11,7 +11,7 @@ class Article < ApplicationRecord
     def self.hr_update_article(a,title,content)
       t = DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
       query = <<-SQL
-      UPDATE articles 
+      UPDATE articles
       SET title = "#{title}", content = "#{content}", updated_at="#{t}"
       WHERE id = "#{a}"
       SQL
@@ -97,7 +97,6 @@ class Article < ApplicationRecord
 
     #顯示_hr
     def self.hr_get_all_article(c)
-    # 把sql寫在這邊
       query = <<-SQL
       SELECT articles.*, users.email, companies.name, 
       (SELECT COUNT(user_id) FROM article_favorites WHERE article_favorites.article_id = articles.id) AS fav_count
@@ -110,7 +109,6 @@ class Article < ApplicationRecord
 
     #顯示_admin
     def self.admin_get_all_article(status)
-    # 把sql寫在這邊
       query = <<-SQL
       SELECT articles.*, COUNT(article_favorites.user_id) AS fav_count
       FROM articles

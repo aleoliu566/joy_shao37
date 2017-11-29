@@ -6,7 +6,7 @@
     <h2>圖表分析</h2>
     <div class="bolded-line"></div>
   </div>
-  <div>
+  <div style="display: none;">
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
@@ -16,21 +16,76 @@
         </tr>
       </thead>
       <tbody>
-        <% @exe.each do |company| %>
-        <tr>
-          <th><%= company.name %></th>
-          <th><%= company.gender == 1 ? "男" : "女"%></th>
-          <th><%= company.count %></th>
+        <% @exe.each do |tag| %>
+        <tr class="tags">
+          <th class="tagName"><%= tag.name %></th>
+          <th class="gender"><%= tag.gender == 1 ? "男" : "女"%></th>
+          <th class="number"><%= tag.count %></th>
         </tr>
         <% end %>
       </tbody>
     </table>
   </div>
+  <div style="display: none;">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>age</th>
+          <th>job</th>
+          <th>count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @exe2.each do |job| %>
+        <tr>
+          <th><%= job.birthday%></th>
+          <th><%= job.job_name %></th>
+          <th><%= job.count1 %></th>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
+  <!-- <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div> -->
 </div>
 <div class="col-sm-1"></div>
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
 
 <script type="text/javascript">
+
+  maleArray = [];
+  femaleArray = [];
+  var tagName = [];
+  var init = "";
+  var initgender = "男"
+
+  $('.tags').map(function(e){
+    var tag = $(this).find(".tagName").html();
+    var gender = $(this).find(".gender").html();
+    var number = $(this).find(".number").html();
+
+    if(gender == "男" && gender != initgender){
+      maleArray.push(parseInt(number));
+    } else if(gender == "女" && gender != initgender){
+      femaleArray.push(parseInt(number));
+    } else if(initgender == "女"){
+      maleArray.push(0);
+      femaleArray.push(parseInt(number));
+    } else if(initgender == "男"){
+      femaleArray.push(0);
+      maleArray.push(parseInt(number));
+    }
+
+    if(tag != init){
+      tagName.push(tag);
+    }
+    init = tag;
+    initgender = gender;
+  });
+
   Highcharts.chart('container', {
 
     chart: {
@@ -38,18 +93,19 @@
     },
 
     title: {
-        text: 'Total fruit consumtion, grouped by gender'
+        text: '標籤與男女投遞履歷關係'
     },
 
     xAxis: {
-        categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+        // categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+        categories: tagName
     },
 
     yAxis: {
         allowDecimals: false,
         min: 0,
         title: {
-            text: 'Number of fruits'
+            text: '人數'
         }
     },
 
@@ -68,21 +124,14 @@
     },
 
     series: [{
-        name: 'John',
-        data: [5, 3, 4, 7, 2],
+        name: '男',
+        data: maleArray,
         stack: 'male'
     }, {
-        name: 'Joe',
-        data: [3, 4, 4, 2, 5],
-        stack: 'male'
-    }, {
-        name: 'Jane',
-        data: [2, 5, 6, 2, 1],
-        stack: 'female'
-    }, {
-        name: 'Janet',
-        data: [3, 0, 4, 4, 3],
+        name: '女',
+        data: femaleArray,
         stack: 'female'
     }]
 });
+
 </script>

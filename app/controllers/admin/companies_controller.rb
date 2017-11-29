@@ -82,7 +82,7 @@ class Admin::CompaniesController < ApplicationController
     #@companies = Company.all
     #@company = AnalysisView.view
     @exe = Company.execute
-    #@exe2 = Company.execute2
+    @exe2 = Company.execute2
   end
 
 

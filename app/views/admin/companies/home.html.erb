@@ -68,7 +68,7 @@
               <%= link_to "刪除", enterprise_remove_hr_path(c,u), :method => :patch ,class:"btn btn-danger btn-xs" %>
             <% end %>
 
-            <div class="set-hr-box">
+            <div class="set-hr-box" data-turbolinks="false">
               <%= form_tag enterprise_set_hr_path(c), :method => :patch do %>
                 <%= select_tag "user",
                                content_tag(:option,'',:value=>"0") +
@@ -79,7 +79,6 @@
                 <%= submit_tag '新增',class:"btn btn-fail btn-xs" %>
               <% end %>
             </div>
-
           </tr>
         </tr>
 
@@ -92,6 +91,12 @@
 
 
 <script>
+  $(document).on('turbolinks:before-cache', function(e) {
+    return $('.form-control.select2').each(function() {
+      return $(this).select2('destroy');
+    });
+  });
+
   $( ".select2" ).select2({
       theme: "bootstrap"
   });

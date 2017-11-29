@@ -15,17 +15,9 @@ class Admin::ArticlesController < ApplicationController
     
   end
 
-  # def update
-  #   if @article.update(article_params)
-  #     redirect_to admin_articles_path
-  #   else
-  #     redirect_to root_path
-  #   end
-  # end
-
   def update
     if Article.admin_update_article(params[:id],article_params[:title],article_params[:content])
-
+      @article.update(article_params)
       redirect_to admin_articles_path
     else
      redirect_to root_path
@@ -33,7 +25,7 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def audit
-    if @article.audit(params[:id],params[:article_status])
+    if Article.audit(params[:id],params[:article_status])
         redirect_to admin_articles_path
     else
     end

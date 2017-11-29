@@ -18,8 +18,8 @@ class Company < ApplicationRecord
 
   def self.execute2
      query = <<-SQL
-      SELECT birthday,job_name
-      FROM hr_view
+      SELECT *
+      FROM HR_VIEW
       SQL
     self.find_by_sql(query)
   end  

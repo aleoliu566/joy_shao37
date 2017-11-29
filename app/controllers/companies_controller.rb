@@ -9,6 +9,7 @@ class CompaniesController < ApplicationController
 
 
     @resumeJobship = ResumeJobship.new
+
   end
 
   def index
