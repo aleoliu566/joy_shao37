@@ -18,9 +18,9 @@
       <tbody>
         <% @exe.each do |tag| %>
         <tr class="tags">
-          <th class="tagName"><%= tag.name %></th>
-          <th class="gender"><%= tag.gender == 1 ? "男" : "女"%></th>
-          <th class="number"><%= tag.count %></th>
+          <td class="tagName"><%= tag.name %></td>
+          <td class="gender"><%= tag.gender == 1 ? "男" : "女"%></td>
+          <td class="number"><%= tag.count %></td>
         </tr>
         <% end %>
       </tbody>
@@ -28,7 +28,7 @@
   </div>
   <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
-
+  <br><br>
 
   <h3 style="text-align: center; font-size: 16pt; margin-bottom: 10px;">公司中各職缺年齡層分佈</h3>
     <%= form_tag admin_analysis_path, :method => :get do %>
@@ -55,9 +55,9 @@
     <tbody>
       <% @exe2.each do |job| %>
       <tr>
-        <th><%= job.age%> 歲</th>
-        <th><%= job.job_name %></th>
-        <th><%= job.count1 %></th>
+        <td><%= job.age%> 歲</td>
+        <td><%= job.job_name %></td>
+        <td style="text-align: right"><%= job.count1 %></td>
       </tr>
       <% end %>
     </tbody>
