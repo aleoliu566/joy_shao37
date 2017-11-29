@@ -48,7 +48,7 @@ class Enterprise::ArticlesController < ApplicationController
   end
 
   def update
-      Article.hr_update_article(params[:id],article_params[:title],article_params[:content])
+      # Article.hr_update_article(params[:id],article_params[:title],article_params[:content])
       @article.update(article_params)
       redirect_to enterprise_company_articles_path(@company)
     # else

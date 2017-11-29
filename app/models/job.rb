@@ -203,7 +203,8 @@ class Job < ApplicationRecord
         WHERE id = "#{jobid}"
         SQL
       end
-        self.find_by_sql(query)
+      ActiveRecord::Base.connection.exec_query(query)
+        # self.find_by_sql(query)
     end
 
     def self.getJobInfos

@@ -59,6 +59,7 @@ class Enterprise::JobsController < ApplicationController
      else
      end
     end
+    redirect_to enterprise_company_jobs_path
   end
 
   private
