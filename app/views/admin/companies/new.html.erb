@@ -31,10 +31,10 @@
         <%= j.label :about, "關於" %>
         <%= j.text_area :about, rows: "3" %>
       </div>
-      <div>
-        <%= j.label :user_ids, "HR 帳號設定" %>
-        <%= j.collection_select(:user_ids, User.all, :id, :email) %>
-      </div>
+      <!-- <div> -->
+        <%#= j.label :user_ids, "HR 帳號設定" %>
+        <%#= j.collection_select(:user_ids, User.all, :id, :email) %>
+      <!-- </div> -->
       <div class="login">
         <%= j.submit "新增", :class => "button btn-success medium" %>
         <%= link_to '返回', home_path, :class => "button btn-fail medium" %>
